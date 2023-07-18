@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Whyte Inktrap';
+    src: url('WhyteInktrap-Bold.eot');
+    src: local('Whyte Inktrap Bold'), local('WhyteInktrap-Bold'),
+        url('WhyteInktrap-Bold.eot?#iefix') format('embedded-opentype'),
+        url('WhyteInktrap-Bold.woff2') format('woff2'),
+        url('WhyteInktrap-Bold.woff') format('woff'),
+        url('WhyteInktrap-Bold.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+
+@font-face {
+    font-family: 'Whyte Inktrap';
+    src: url('WhyteInktrap-Regular.eot');
+    src: local('Whyte Inktrap Regular'), local('WhyteInktrap-Regular'),
+        url('WhyteInktrap-Regular.eot?#iefix') format('embedded-opentype'),
+        url('WhyteInktrap-Regular.woff2') format('woff2'),
+        url('WhyteInktrap-Regular.woff') format('woff'),
+        url('WhyteInktrap-Regular.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}

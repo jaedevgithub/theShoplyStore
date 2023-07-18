@@ -1,0 +1,13 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  @font-face {
+    font-family: "Whyte";
+    src: url(/home/johander/DevProjects/figmaStore/public/Fonts/Whyte-Regular.ttf) format(ttf),
+      url(/home/johander/DevProjects/figmaStore/public/Fonts/Whyte-Bold.ttf) format(ttf),
+      url(/home/johander/DevProjects/figmaStore/public/Fonts/WhyteInktrap-Regular.ttf) format(ttf);
+    font-style: normal, italic, bold;
+  }
+}
