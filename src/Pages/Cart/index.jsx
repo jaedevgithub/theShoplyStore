@@ -60,16 +60,11 @@ function Cart() {
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price}</p>
-                      <div className="flex space-x-2">
+                      <ul>
                         {product.sizes.map((size, sizeIndex) => (
-                          <span
-                            key={sizeIndex}
-                            className="border border-gray-400 rounded-full px-3 py-1 text-sm font-semibold"
-                          >
-                            {size}
-                          </span>
+                          <li key={sizeIndex}>Size: {size}</li>
                         ))}
-                      </div>
+                      </ul>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleReduceQuantity(product)}
