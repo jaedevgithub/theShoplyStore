@@ -39,9 +39,6 @@ function Cart() {
     }
   };
 
-  // Crear un objeto de productos únicos
-  const uniqueProducts = [...new Set(cartProducts)];
-
   return (
     <Layout>
       <div className="container mx-auto px-4">
@@ -49,7 +46,7 @@ function Cart() {
         {cartProducts.length > 0 ? (
           <div>
             <ul>
-              {uniqueProducts.map((product, index) => {
+              {cartProducts.map((product, index) => {
                 const count = productCounts[product.id];
                 const showCounter = count > 1;
 
@@ -63,7 +60,16 @@ function Cart() {
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price}</p>
-                      <p>Size: {product.size}</p>
+                      <div className="flex space-x-2">
+                        {product.sizes.map((size, sizeIndex) => (
+                          <span
+                            key={sizeIndex}
+                            className="border border-gray-400 rounded-full px-3 py-1 text-sm font-semibold"
+                          >
+                            {size}
+                          </span>
+                        ))}
+                      </div>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleReduceQuantity(product)}
