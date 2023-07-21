@@ -5,9 +5,9 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-  const { productToShow } = context;
+  const { productToShow, productSizes, addProductToCart } = context;
   const [selectedImage, setSelectedImage] = useState("");
-  const [selectedSize, setSelectedSize] = useState("");
+  const [selectedSize, setSelectedSize] = useState(""); // Nuevo estado para controlar la talla seleccionada
 
   if (!productToShow) {
     return null;
@@ -20,22 +20,27 @@ const ProductDetail = () => {
   };
 
   const handleSizeSelect = (size) => {
-    setSelectedSize(size);
+    setSelectedSize(size); // Actualizar el estado con la talla seleccionada
   };
-
+  
   const addProductsToCart = () => {
-    const existingProduct = context.cartProducts.find(
-      (product) => product.id === productToShow.id && product.size === selectedSize
-    );
+    if (selectedSize) {
+      const productId = productToShow.id;
+      const sizes = productSizes[productId] || {};
 
-    if (existingProduct) {
-      context.addProductToCart(existingProduct, 1);
+      if (sizes[selectedSize]) {
+        const updatedSizes = { ...sizes, [selectedSize]: false };
+        addProductToCart(productToShow, updatedSizes); // Pass the updated sizes object to addProductToCart
+      } else {
+        const updatedSizes = { ...sizes, [selectedSize]: true };
+        addProductToCart(productToShow, updatedSizes); // Pass the updated sizes object to addProductToCart
+      }
     } else {
-      const productWithSize = { ...productToShow, size: selectedSize };
-      context.addProductToCart(productWithSize, 1);
+      console.error(
+        "Por favor, selecciona una talla antes de agregar al carrito."
+      );
     }
   };
-
   return (
     <>
       {/* Desktop Product Detail Page */}
@@ -76,7 +81,7 @@ const ProductDetail = () => {
             <h3 className="text-2xl mb-2">Sizes:</h3>
             {productToShow.sizes.map((size) => (
               <button
-                key={size}
+                key={size.name}
                 onClick={() => handleSizeSelect(size)}
                 className={`inline-block border border-gray-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2 ${
                   selectedSize === size ? "bg-gray-200" : ""

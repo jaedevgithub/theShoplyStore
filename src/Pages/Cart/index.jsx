@@ -4,15 +4,15 @@ import Layout from "../../Components/Layout";
 
 function Cart() {
   const context = useContext(ShoppingCartContext);
-  const cartProducts = context.cartProducts;
-  const productCounts = context.productCounts;
+  const cartProducts = context.cartProducts || []; // Ensure cartProducts is defined
+  const productCounts = context.productCounts || {}; // Ensure productCounts is defined
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const calculateTotal = () => {
       let total = 0;
       for (const product of cartProducts) {
-        const count = productCounts[product.id];
+        const count = productCounts[product.id] || 0; // Ensure count is defined
         total += product.price * count;
       }
       return total;
@@ -31,13 +31,14 @@ function Cart() {
   };
 
   const handleReduceQuantity = (product) => {
-    const quantity = productCounts[product.id] - 1;
+    const quantity = productCounts[product.id] || 0; // Ensure quantity is defined
     if (quantity > 0) {
       context.addProductToCart(product, -1);
     } else {
       context.removeProductFromCart(product);
     }
   };
+  
 
   return (
     <Layout>
@@ -47,7 +48,7 @@ function Cart() {
           <div>
             <ul>
               {cartProducts.map((product, index) => {
-                const count = productCounts[product.id];
+                const count = productCounts[product.id] || 0; // Ensure count is defined
                 const showCounter = count > 1;
 
                 return (
@@ -60,11 +61,8 @@ function Cart() {
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price}</p>
-                      <ul>
-                        {product.sizes.map((size, sizeIndex) => (
-                          <li key={sizeIndex}>Size: {size}</li>
-                        ))}
-                      </ul>
+                      <p>Size: {product.size.name}</p>
+                      
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleReduceQuantity(product)}
@@ -81,6 +79,12 @@ function Cart() {
                         </button>
                       </div>
                     </div>
+                    <button
+                      onClick={() => handleRemoveProduct(product)}
+                      className="text-red-500"
+                    >
+                      Remove
+                    </button>
                   </li>
                 );
               })}

@@ -1,5 +1,3 @@
-// ShoppingCartContext.js
-
 import React, { createContext, useState, useEffect } from "react";
 
 export const ShoppingCartContext = createContext();
@@ -9,46 +7,61 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
-  const [productCounts, setProductCounts] = useState({});
+  const [productSizes, setProductSizes] = useState({}); // Updated state to store the selected sizes
 
   const openProductDetail = () => setIsProductDetailOpen(true);
   const closeProductDetail = () => setIsProductDetailOpen(false);
 
   useEffect(() => {
-    const updatedCount = Object.values(productCounts).reduce(
-      (totalCount, quantity) => totalCount + quantity,
+    const updatedCount = Object.values(productSizes).reduce(
+      (totalCount, sizes) => totalCount + sizes.length,
       0
     );
     setCount(updatedCount);
-  }, [productCounts]);
+  }, [productSizes]);
 
-  const addProductToCart = (product, quantity = 1) => {
-    const updatedCartProducts = [...cartProducts];
-    const updatedProductCounts = { ...productCounts };
+  const addProductToCart = (product, size) => {
+    const productId = product.id;
+    const updatedProductSizes = { ...productSizes };
 
-    if (updatedProductCounts[product.id]) {
-      updatedProductCounts[product.id] += quantity;
+    if (updatedProductSizes[productId]) {
+      updatedProductSizes[productId].push(size);
     } else {
-      updatedProductCounts[product.id] = quantity;
-      updatedCartProducts.push(product);
+      updatedProductSizes[productId] = [size];
     }
 
-    setCartProducts(updatedCartProducts);
-    setProductCounts(updatedProductCounts);
+    setProductSizes(updatedProductSizes);
+
+    const existingProductIndex = cartProducts.findIndex(
+      (p) => p.id === productId && p.size === size
+    );
+
+    if (existingProductIndex !== -1) {
+      const updatedCartProducts = [...cartProducts];
+      updatedCartProducts[existingProductIndex].quantity += 1;
+      setCartProducts(updatedCartProducts);
+    } else {
+      setCartProducts((prevCartProducts) => [
+        ...prevCartProducts,
+        { ...product, size, quantity: 1 },
+      ]);
+    }
   };
 
   const removeProductFromCart = (product) => {
-    const updatedProductCounts = { ...productCounts };
-    const count = updatedProductCounts[product.id];
+    const productId = product.id;
+    const sizes = productSizes[productId];
+    const updatedProductSizes = { ...productSizes };
+    const count = updatedProductSizes[productId].length;
 
     if (count > 1) {
-      updatedProductCounts[product.id] -= 1;
+      updatedProductSizes[productId] = sizes.slice(0, -1);
     } else {
-      delete updatedProductCounts[product.id];
-      setCartProducts(cartProducts.filter((item) => item.id !== product.id));
+      delete updatedProductSizes[productId];
+      setCartProducts(cartProducts.filter((item) => item.id !== productId));
     }
 
-    setProductCounts(updatedProductCounts);
+    setProductSizes(updatedProductSizes);
   };
 
   return (
@@ -65,7 +78,7 @@ export const ShoppingCartProvider = ({ children }) => {
         setCartProducts,
         addProductToCart,
         removeProductFromCart,
-        productCounts,
+        productSizes,
       }}
     >
       {children}
