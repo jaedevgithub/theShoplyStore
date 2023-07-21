@@ -5,14 +5,13 @@ import Layout from "../../Components/Layout";
 function Cart() {
   const context = useContext(ShoppingCartContext);
   const cartProducts = context.cartProducts || []; // Ensure cartProducts is defined
-  const productCounts = context.productCounts || {}; // Ensure productCounts is defined
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const calculateTotal = () => {
       let total = 0;
       for (const product of cartProducts) {
-        const count = productCounts[product.id] || 0; // Ensure count is defined
+        const count = product.quantity || 0; // Ensure quantity is defined
         total += product.price * count;
       }
       return total;
@@ -20,7 +19,7 @@ function Cart() {
 
     const newTotal = calculateTotal();
     setTotal(newTotal);
-  }, [cartProducts, productCounts]);
+  }, [cartProducts]);
 
   const handleRemoveProduct = (product) => {
     context.removeProductFromCart(product);
@@ -31,7 +30,7 @@ function Cart() {
   };
 
   const handleReduceQuantity = (product) => {
-    const quantity = productCounts[product.id] || 0; // Ensure quantity is defined
+    const quantity = product.quantity || 0; // Ensure quantity is defined
     if (quantity > 0) {
       context.addProductToCart(product, -1);
     } else {
@@ -47,11 +46,11 @@ function Cart() {
           <div>
             <ul>
               {cartProducts.map((product, index) => {
-                const count = productCounts[product.id] || 0; // Ensure count is defined
+                const count = product.quantity || 0; // Ensure quantity is defined
                 const showCounter = count > 1;
 
                 console.log("Product", product);
-                console.log("Selected Size", product.selectedSize);
+                console.log("Selected Size", product.size);
 
                 return (
                   <li key={index} className="flex items-center space-x-4">
@@ -63,7 +62,13 @@ function Cart() {
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price}</p>
-                      <p>Size: {product.sizes.find((size) => size === product.selectedSize)}</p> {/* Mostrar la talla seleccionada */}
+                      <p>
+                        Size:{" "}
+                        {typeof product.size === "object"
+                          ? Object.keys(product.size).join(", ")
+                          : product.size}
+                      </p>{" "}
+                      {/* Show the selected size */}
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleReduceQuantity(product)}

@@ -7,7 +7,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
-  const [productSizes, setProductSizes] = useState({}); // Updated state to store the selected sizes
+  const [productSizes, setProductSizes] = useState({});
 
   const openProductDetail = () => setIsProductDetailOpen(true);
   const closeProductDetail = () => setIsProductDetailOpen(false);
@@ -32,13 +32,16 @@ export const ShoppingCartProvider = ({ children }) => {
 
     setProductSizes(updatedProductSizes);
 
-    const existingProductIndex = cartProducts.findIndex(
-      (p) => p.id === productId && p.size === size
+    const existingProduct = cartProducts.find(
+      (p) => p.id === product.id && p.size === size
     );
 
-    if (existingProductIndex !== -1) {
-      const updatedCartProducts = [...cartProducts];
-      updatedCartProducts[existingProductIndex].quantity += 1;
+    if (existingProduct) {
+      const updatedCartProducts = cartProducts.map((p) =>
+        p.id === product.id && p.size === size
+          ? { ...p, quantity: p.quantity + 1 }
+          : p
+      );
       setCartProducts(updatedCartProducts);
     } else {
       setCartProducts((prevCartProducts) => [
@@ -52,16 +55,16 @@ export const ShoppingCartProvider = ({ children }) => {
     const productId = product.id;
     const sizes = productSizes[productId];
     const updatedProductSizes = { ...productSizes };
-    const count = updatedProductSizes[productId].length;
 
-    if (count > 1) {
+    if (sizes && sizes.length > 0) {
       updatedProductSizes[productId] = sizes.slice(0, -1);
     } else {
       delete updatedProductSizes[productId];
-      setCartProducts(cartProducts.filter((item) => item.id !== productId));
     }
 
     setProductSizes(updatedProductSizes);
+
+    setCartProducts(cartProducts.filter((item) => item.id !== productId));
   };
 
   return (
