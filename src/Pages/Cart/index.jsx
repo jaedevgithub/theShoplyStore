@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
 
@@ -38,7 +38,6 @@ function Cart() {
       context.removeProductFromCart(product);
     }
   };
-  
 
   return (
     <Layout>
@@ -51,6 +50,9 @@ function Cart() {
                 const count = productCounts[product.id] || 0; // Ensure count is defined
                 const showCounter = count > 1;
 
+                console.log("Product", product);
+                console.log("Selected Size", product.selectedSize);
+
                 return (
                   <li key={index} className="flex items-center space-x-4">
                     <img
@@ -61,8 +63,7 @@ function Cart() {
                     <div>
                       <p>{product.title}</p>
                       <p>${product.price}</p>
-                      <p>Size: {product.size.name}</p>
-                      
+                      <p>Size: {product.sizes.find((size) => size === product.selectedSize)}</p> {/* Mostrar la talla seleccionada */}
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleReduceQuantity(product)}

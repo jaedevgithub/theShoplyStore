@@ -22,7 +22,7 @@ const ProductDetail = () => {
   const handleSizeSelect = (size) => {
     setSelectedSize(size); // Actualizar el estado con la talla seleccionada
   };
-  
+
   const addProductsToCart = () => {
     if (selectedSize) {
       const productId = productToShow.id;
@@ -30,10 +30,10 @@ const ProductDetail = () => {
 
       if (sizes[selectedSize]) {
         const updatedSizes = { ...sizes, [selectedSize]: false };
-        addProductToCart(productToShow, updatedSizes); // Pass the updated sizes object to addProductToCart
+        addProductToCart({ ...productToShow, selectedSize }, updatedSizes); // Pass the updated sizes object to addProductToCart
       } else {
         const updatedSizes = { ...sizes, [selectedSize]: true };
-        addProductToCart(productToShow, updatedSizes); // Pass the updated sizes object to addProductToCart
+        addProductToCart({ ...productToShow, selectedSize }, updatedSizes); // Pass the updated sizes object to addProductToCart
       }
     } else {
       console.error(
@@ -41,6 +41,7 @@ const ProductDetail = () => {
       );
     }
   };
+
   return (
     <>
       {/* Desktop Product Detail Page */}
@@ -91,6 +92,8 @@ const ProductDetail = () => {
               </button>
             ))}
           </div>
+          <p>Selected Size: {selectedSize}</p>{" "}
+          {/* Mostrar la talla seleccionada */}
           <button
             className="font-semibold border-2 border-black rounded-full p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase"
             onClick={addProductsToCart}
