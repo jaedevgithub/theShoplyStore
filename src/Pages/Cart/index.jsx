@@ -66,7 +66,7 @@ function Cart() {
       }
     }
   };
-  
+
   return (
     <Layout>
       <div className="container mx-auto px-4">
@@ -75,7 +75,8 @@ function Cart() {
           <div>
             <ul>
               {cartProducts.map((product, index) => {
-                const count = product.quantity || 0; // Ensure quantity is defined
+                const count = product.quantity || 0;
+                const subtotal = product.price * count; // Calculate subtotal for each product
                 const showCounter = count > 1;
 
                 console.log("Product", product);
@@ -98,6 +99,7 @@ function Cart() {
                           : product.size}
                       </p>{" "}
                       {/* Show the selected size */}
+                      <p>Subtotal: ${subtotal.toFixed(2)}</p>
                       <div className="flex items-center space-x-2">
                         <button
                           onClick={() => handleReduceQuantity(product)}
