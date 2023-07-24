@@ -8,6 +8,7 @@ function Cart() {
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
+    // Calculate the total price of all products in the cart when cartProducts change
     const calculateTotal = () => {
       let total = 0;
       for (const product of cartProducts) {
@@ -21,19 +22,22 @@ function Cart() {
     setTotal(newTotal);
   }, [cartProducts]);
 
+  // Function to handle removing a product from the cart
   const handleRemoveProduct = (product) => {
     const updatedCartProducts = cartProducts.filter(
       (p) => !(p.id === product.id && p.size === product.size)
     );
     context.setCartProducts(updatedCartProducts);
-    context.setCount(context.count - product.quantity); // Restar la cantidad del producto eliminado al contador
+    context.setCount(context.count - product.quantity); // Subtract the quantity of the removed product from the counter
   };
 
+  // Function to handle adding the quantity of a product in the cart by 1
   const handleAddQuantity = (product) => {
     context.addProductToCart(product, product.size);
     context.setCount(context.count + 1); // Update the counter directly
   };
 
+  // Function to handle reducing the quantity of a product in the cart by 1
   const handleReduceQuantity = (product) => {
     const quantity = product.quantity || 0;
     if (quantity > 1) {
@@ -44,7 +48,7 @@ function Cart() {
           : p
       );
       context.setCartProducts(updatedCartProducts);
-      context.setCount(context.count - 1); // Restar 1 al contador
+      context.setCount(context.count - 1); // Subtract 1 from the counter
     } else {
       // Find all the product sizes with quantity greater than 0
       const sizesWithQuantity = productSizes
@@ -58,13 +62,34 @@ function Cart() {
           (p) => !(p.id === product.id && p.size === product.size)
         );
         context.setCartProducts(updatedCartProducts);
-        context.setCount(context.count - 1); // Restar 1 al contador
+        context.setCount(context.count - 1); // Subtract 1 from the counter
       } else {
         // Remove the entire product from the cart if no other sizes are available
         context.removeProductFromCart(product);
-        context.setCount(context.count - 1); // Restar 1 al contador
+        context.setCount(context.count - 1); // Subtract 1 from the counter
       }
     }
+  };
+
+  // Function to handle the checkout process
+  const handleCheckout = () => {
+    // Get the current date
+    const currentDate = new Date().toLocaleDateString();
+
+    // Create the order with the necessary data
+    const orderToAdd = {
+      date: currentDate,
+      products: cartProducts,
+      total: total,
+    };
+
+    // Store the order in the global cart state
+    context.setOrder(orderToAdd);
+    console.log("Order Created:", orderToAdd);
+
+    // Clear the cart and reset the counter
+    context.setCartProducts([]);
+    context.setCount(0);
   };
 
   return (
@@ -77,10 +102,6 @@ function Cart() {
               {cartProducts.map((product, index) => {
                 const count = product.quantity || 0;
                 const subtotal = product.price * count; // Calculate subtotal for each product
-                const showCounter = count > 1;
-
-                console.log("Product", product);
-                console.log("Selected Size", product.size);
 
                 return (
                   <li key={index} className="flex items-center space-x-4">
@@ -128,9 +149,10 @@ function Cart() {
             </ul>
             <p>Total Items: {context.count}</p>
             <p>Total Price: ${total}</p>
+            <button onClick={handleCheckout}>Checkout</button>
           </div>
         ) : (
-          <p>Your cart is empty</p>
+          <p>{context.count > 0 ? "Order Placed" : "Your cart is empty"}</p>
         )}
       </div>
     </Layout>

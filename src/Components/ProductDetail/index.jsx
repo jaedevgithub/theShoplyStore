@@ -5,36 +5,45 @@ import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-  const { productToShow, productSizes, addProductToCart } = context;
+  const { productToShow } = context;
   const [selectedImage, setSelectedImage] = useState("");
-  const [selectedSize, setSelectedSize] = useState(""); // Nuevo estado para controlar la talla seleccionada
 
+  // State to control the selected size
+  const [selectedSize, setSelectedSize] = useState("");
+
+  // If there's no product to show, return null to render nothing
   if (!productToShow) {
     return null;
   }
 
   const category = productToShow.category ? productToShow.category.name : "";
 
+  // Update the state with the clicked image
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
 
+  // Update the state with the selected size
   const handleSizeSelect = (size) => {
-    setSelectedSize(size); // Actualizar el estado con la talla seleccionada
+    setSelectedSize(size);
   };
 
+  // Function to add the selected product to the cart and update the counter
   const addProductsToCart = () => {
     if (selectedSize) {
+      // If a size is selected, add the product to the cart using the context function
       context.addProductToCart(productToShow, selectedSize);
-      context.setCount(context.count + 1); // Update the counter directly
+      // Update the counter directly in the context
+      context.setCount(context.count + 1);
     } else {
-      console.error("Por favor, selecciona una talla antes de agregar al carrito.");
+      console.error("Please select a size before adding to the cart.");
     }
   };
 
   return (
     <>
       {/* Desktop Product Detail Page */}
+
       <section className="hidden md:flex flex-row-3 items-center justify-between mt-60 mb-60 relative top-10">
         <aside>
           {productToShow.images.map((image, index) => (
@@ -72,7 +81,7 @@ const ProductDetail = () => {
             <h3 className="text-2xl mb-2">Sizes:</h3>
             {productToShow.sizes.map((size) => (
               <button
-                key={size.name}
+                key={size} // Usar directamente el valor de la talla como clave
                 onClick={() => handleSizeSelect(size)}
                 className={`inline-block border border-gray-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2 ${
                   selectedSize === size ? "bg-gray-200" : ""
@@ -95,6 +104,7 @@ const ProductDetail = () => {
       </section>
 
       {/* Mobile Product Detail Page */}
+
       <section className="md:hidden mt-40 mb-60 top-10">
         <div className="flex flex-col items-left">
           <p className="text-xl relative ml-10">{category}</p>
