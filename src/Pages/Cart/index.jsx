@@ -33,13 +33,20 @@ function Cart() {
   const handleReduceQuantity = (product) => {
     const quantity = product.quantity || 0;
     if (quantity > 1) {
-      context.addProductToCart(product, product.size);
-      context.setCount(context.count - 1); // Update the counter directly
+      // Reduce the quantity of the product in the cart by 1
+      const updatedCartProducts = cartProducts.map((p) =>
+        p.id === product.id && p.size === product.size
+          ? { ...p, quantity: p.quantity - 1 }
+          : p
+      );
+      context.setCartProducts(updatedCartProducts);
+      context.setCount(context.count - 1); // Restar 1 al contador
     } else {
       context.removeProductFromCart(product);
-      context.setCount(context.count - 1); // Update the counter directly
+      context.setCount(context.count - 1); // Restar 1 al contador
     }
   };
+  
   return (
     <Layout>
       <div className="container mx-auto px-4">
