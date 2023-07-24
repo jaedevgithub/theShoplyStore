@@ -26,15 +26,18 @@ function Cart() {
   };
 
   const handleAddQuantity = (product) => {
-    context.addProductToCart(product, product.size); // Pass the size information
+    context.addProductToCart(product, product.size);
+    context.setCount(context.count + 1); // Update the counter directly
   };
 
   const handleReduceQuantity = (product) => {
     const quantity = product.quantity || 0;
     if (quantity > 1) {
-      context.addProductToCart(product, product.size); // Pass the size information
+      context.addProductToCart(product, product.size);
+      context.setCount(context.count - 1); // Update the counter directly
     } else {
-      context.removeProductFromCart(product); // Remove the product with specific size
+      context.removeProductFromCart(product);
+      context.setCount(context.count - 1); // Update the counter directly
     }
   };
   return (
@@ -69,13 +72,13 @@ function Cart() {
                       </p>{" "}
                       {/* Show the selected size */}
                       <div className="flex items-center space-x-2">
-                      <button
-                        onClick={() => handleReduceQuantity(product)}
-                        className="text-red-500"
-                      >
-                        -
-                      </button>
-                      <p>{count}</p>
+                        <button
+                          onClick={() => handleReduceQuantity(product)}
+                          className="text-red-500"
+                        >
+                          -
+                        </button>
+                        <p>{count}</p>
                         <button
                           onClick={() => handleAddQuantity(product)}
                           className="text-green-500"

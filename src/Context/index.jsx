@@ -7,28 +7,26 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
-  const [productSizes, setProductSizes] = useState([]);
+
+  useEffect(() => {
+    const updatedCount = cartProducts.reduce(
+      (totalCount, product) => totalCount + (product.quantity || 0),
+      0
+    );
+    setCount(updatedCount);
+  }, [cartProducts]);
 
   const openProductDetail = () => setIsProductDetailOpen(true);
   const closeProductDetail = () => setIsProductDetailOpen(false);
 
-  useEffect(() => {
-    const updatedCount = productSizes.reduce(
-      (totalCount, product) => totalCount + product.sizes.length,
-      0
-    );
-    setCount(updatedCount);
-  }, [productSizes]);
-
-  const addProductToCart = (product, size) => {
-    const productId = product.id;
+  const addProductToCart = (product, selectedSize) => {
     const existingProduct = cartProducts.find(
-      (p) => p.id === product.id && p.size === size
+      (p) => p.id === product.id && p.size === selectedSize
     );
 
     if (existingProduct) {
       const updatedCartProducts = cartProducts.map((p) =>
-        p.id === product.id && p.size === size
+        p.id === product.id && p.size === selectedSize
           ? { ...p, quantity: p.quantity + 1 }
           : p
       );
@@ -36,52 +34,31 @@ export const ShoppingCartProvider = ({ children }) => {
     } else {
       setCartProducts((prevCartProducts) => [
         ...prevCartProducts,
-        { ...product, size, quantity: 1 },
-      ]);
-    }
-
-    const productIndex = productSizes.findIndex((p) => p.id === productId);
-    if (productIndex >= 0) {
-      const updatedProductSizes = [...productSizes];
-      updatedProductSizes[productIndex].sizes.push(size);
-      setProductSizes(updatedProductSizes);
-    } else {
-      setProductSizes((prevProductSizes) => [
-        ...prevProductSizes,
-        { id: productId, sizes: [size] },
+        { ...product, size: selectedSize, quantity: 1 },
       ]);
     }
   };
 
   const removeProductFromCart = (product) => {
-    const productId = product.id;
-    const productIndex = productSizes.findIndex((p) => p.id === productId);
-    if (productIndex >= 0) {
-      const updatedProductSizes = [...productSizes];
-      updatedProductSizes[productIndex].sizes.pop();
-      setProductSizes(updatedProductSizes);
-    }
+    setCartProducts(cartProducts.filter((item) => item.id !== product.id));
+  };
 
-    setCartProducts(cartProducts.filter((item) => item.id !== productId));
+  const contextValue = {
+    count,
+    setCount,
+    openProductDetail,
+    closeProductDetail,
+    isProductDetailOpen,
+    productToShow,
+    setProductToShow,
+    cartProducts,
+    setCartProducts,
+    addProductToCart,
+    removeProductFromCart,
   };
 
   return (
-    <ShoppingCartContext.Provider
-      value={{
-        count,
-        setCount,
-        openProductDetail,
-        closeProductDetail,
-        isProductDetailOpen,
-        productToShow,
-        setProductToShow,
-        cartProducts,
-        setCartProducts,
-        addProductToCart,
-        removeProductFromCart,
-        productSizes,
-      }}
-    >
+    <ShoppingCartContext.Provider value={contextValue}>
       {children}
     </ShoppingCartContext.Provider>
   );

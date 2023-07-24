@@ -25,20 +25,10 @@ const ProductDetail = () => {
 
   const addProductsToCart = () => {
     if (selectedSize) {
-      const productId = productToShow.id;
-      const sizes = productSizes[productId] || {};
-
-      if (sizes[selectedSize]) {
-        const updatedSizes = { ...sizes, [selectedSize]: false };
-        addProductToCart({ ...productToShow, selectedSize }, updatedSizes); // Pass the updated sizes object to addProductToCart
-      } else {
-        const updatedSizes = { ...sizes, [selectedSize]: true };
-        addProductToCart({ ...productToShow, selectedSize }, updatedSizes); // Pass the updated sizes object to addProductToCart
-      }
+      context.addProductToCart(productToShow, selectedSize);
+      context.setCount(context.count + 1); // Update the counter directly
     } else {
-      console.error(
-        "Por favor, selecciona una talla antes de agregar al carrito."
-      );
+      console.error("Por favor, selecciona una talla antes de agregar al carrito.");
     }
   };
 
