@@ -22,7 +22,11 @@ function Cart() {
   }, [cartProducts]);
 
   const handleRemoveProduct = (product) => {
-    context.removeProductFromCart(product); // Remove the product with specific size
+    const updatedCartProducts = cartProducts.filter(
+      (p) => !(p.id === product.id && p.size === product.size)
+    );
+    context.setCartProducts(updatedCartProducts);
+    context.setCount(context.count - product.quantity); // Restar la cantidad del producto eliminado al contador
   };
 
   const handleAddQuantity = (product) => {
@@ -42,8 +46,24 @@ function Cart() {
       context.setCartProducts(updatedCartProducts);
       context.setCount(context.count - 1); // Restar 1 al contador
     } else {
-      context.removeProductFromCart(product);
-      context.setCount(context.count - 1); // Restar 1 al contador
+      // Find all the product sizes with quantity greater than 0
+      const sizesWithQuantity = productSizes
+        .find((p) => p.id === product.id)
+        .sizes.filter((size) => product.quantityBySize[size] > 0);
+
+      // Check if there are other sizes available with quantity greater than 0
+      if (sizesWithQuantity.length > 1) {
+        // Remove only the specific product size from the cart
+        const updatedCartProducts = cartProducts.filter(
+          (p) => !(p.id === product.id && p.size === product.size)
+        );
+        context.setCartProducts(updatedCartProducts);
+        context.setCount(context.count - 1); // Restar 1 al contador
+      } else {
+        // Remove the entire product from the cart if no other sizes are available
+        context.removeProductFromCart(product);
+        context.setCount(context.count - 1); // Restar 1 al contador
+      }
     }
   };
   
