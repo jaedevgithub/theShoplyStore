@@ -4,14 +4,14 @@ import Layout from "../../Components/Layout";
 
 function Cart() {
   const context = useContext(ShoppingCartContext);
-  const cartProducts = context.cartProducts || []; // Ensure cartProducts is defined
+  const cartProducts = context.cartProducts || [];
   const [total, setTotal] = useState(0);
 
   useEffect(() => {
     const calculateTotal = () => {
       let total = 0;
       for (const product of cartProducts) {
-        const count = product.quantity || 0; // Ensure quantity is defined
+        const count = product.quantity || 0;
         total += product.price * count;
       }
       return total;
@@ -22,22 +22,21 @@ function Cart() {
   }, [cartProducts]);
 
   const handleRemoveProduct = (product) => {
-    context.removeProductFromCart(product);
+    context.removeProductFromCart(product); // Remove the product with specific size
   };
 
   const handleAddQuantity = (product) => {
-    context.addProductToCart(product, 1);
+    context.addProductToCart(product, product.size); // Pass the size information
   };
 
   const handleReduceQuantity = (product) => {
-    const quantity = product.quantity || 0; // Ensure quantity is defined
-    if (quantity > 0) {
-      context.addProductToCart(product, -1);
+    const quantity = product.quantity || 0;
+    if (quantity > 1) {
+      context.addProductToCart(product, product.size); // Pass the size information
     } else {
-      context.removeProductFromCart(product);
+      context.removeProductFromCart(product); // Remove the product with specific size
     }
   };
-
   return (
     <Layout>
       <div className="container mx-auto px-4">
@@ -70,13 +69,13 @@ function Cart() {
                       </p>{" "}
                       {/* Show the selected size */}
                       <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => handleReduceQuantity(product)}
-                          className="text-red-500"
-                        >
-                          -
-                        </button>
-                        <p>{count}</p>
+                      <button
+                        onClick={() => handleReduceQuantity(product)}
+                        className="text-red-500"
+                      >
+                        -
+                      </button>
+                      <p>{count}</p>
                         <button
                           onClick={() => handleAddQuantity(product)}
                           className="text-green-500"

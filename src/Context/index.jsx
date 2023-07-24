@@ -7,14 +7,14 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
-  const [productSizes, setProductSizes] = useState({});
+  const [productSizes, setProductSizes] = useState([]);
 
   const openProductDetail = () => setIsProductDetailOpen(true);
   const closeProductDetail = () => setIsProductDetailOpen(false);
 
   useEffect(() => {
-    const updatedCount = Object.values(productSizes).reduce(
-      (totalCount, sizes) => totalCount + sizes.length,
+    const updatedCount = productSizes.reduce(
+      (totalCount, product) => totalCount + product.sizes.length,
       0
     );
     setCount(updatedCount);
@@ -22,16 +22,6 @@ export const ShoppingCartProvider = ({ children }) => {
 
   const addProductToCart = (product, size) => {
     const productId = product.id;
-    const updatedProductSizes = { ...productSizes };
-
-    if (updatedProductSizes[productId]) {
-      updatedProductSizes[productId].push(size);
-    } else {
-      updatedProductSizes[productId] = [size];
-    }
-
-    setProductSizes(updatedProductSizes);
-
     const existingProduct = cartProducts.find(
       (p) => p.id === product.id && p.size === size
     );
@@ -49,20 +39,28 @@ export const ShoppingCartProvider = ({ children }) => {
         { ...product, size, quantity: 1 },
       ]);
     }
+
+    const productIndex = productSizes.findIndex((p) => p.id === productId);
+    if (productIndex >= 0) {
+      const updatedProductSizes = [...productSizes];
+      updatedProductSizes[productIndex].sizes.push(size);
+      setProductSizes(updatedProductSizes);
+    } else {
+      setProductSizes((prevProductSizes) => [
+        ...prevProductSizes,
+        { id: productId, sizes: [size] },
+      ]);
+    }
   };
 
   const removeProductFromCart = (product) => {
     const productId = product.id;
-    const sizes = productSizes[productId];
-    const updatedProductSizes = { ...productSizes };
-
-    if (sizes && sizes.length > 0) {
-      updatedProductSizes[productId] = sizes.slice(0, -1);
-    } else {
-      delete updatedProductSizes[productId];
+    const productIndex = productSizes.findIndex((p) => p.id === productId);
+    if (productIndex >= 0) {
+      const updatedProductSizes = [...productSizes];
+      updatedProductSizes[productIndex].sizes.pop();
+      setProductSizes(updatedProductSizes);
     }
-
-    setProductSizes(updatedProductSizes);
 
     setCartProducts(cartProducts.filter((item) => item.id !== productId));
   };
