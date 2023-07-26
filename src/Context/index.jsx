@@ -7,6 +7,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState(null);
   const [cartProducts, setCartProducts] = useState([]);
+  const [order, setOrder] = useState([]);
 
   useEffect(() => {
     // Calculate the total count of items in the cart when cartProducts change
@@ -42,8 +43,6 @@ export const ShoppingCartProvider = ({ children }) => {
       ]);
     }
   };
-
-  const [order, setOrder] = useState([]); // State to hold the order information
 
   const removeProductFromCart = (product) => {
     // Function to remove a product from the cart

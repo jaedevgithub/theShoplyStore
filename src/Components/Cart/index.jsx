@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
+import { Link } from "react-router-dom";
 
 function Cart() {
   const context = useContext(ShoppingCartContext);
@@ -149,7 +150,14 @@ function Cart() {
             </ul>
             <p>Total Items: {context.count}</p>
             <p>Total Price: ${total}</p>
-            <button onClick={handleCheckout}>Checkout</button>
+            <Link to="/my-orders/last">
+              <button
+                className="bg-black py-3 text-white w-full rounded-lg"
+                onClick={handleCheckout}
+              >
+                Checkout
+              </button>
+            </Link>
           </div>
         ) : (
           <p>{context.count > 0 ? "Order Placed" : "Your cart is empty"}</p>

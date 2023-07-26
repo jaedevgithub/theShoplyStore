@@ -42,7 +42,7 @@ const ProductDetail = () => {
 
   return (
     <>
-      {/* Desktop Product Detail Page */}
+      {/* Desktop product detail page */}
 
       <section className="hidden md:flex flex-row-3 items-center justify-between mt-60 mb-60 relative top-10">
         <aside>
@@ -81,7 +81,7 @@ const ProductDetail = () => {
             <h3 className="text-2xl mb-2">Sizes:</h3>
             {productToShow.sizes.map((size) => (
               <button
-                key={size} // Usar directamente el valor de la talla como clave
+                key={size} // Use the size value directly as the key.
                 onClick={() => handleSizeSelect(size)}
                 className={`inline-block border border-gray-400 rounded-full px-3 py-1 text-sm font-semibold mr-2 mb-2 ${
                   selectedSize === size ? "bg-gray-200" : ""
@@ -91,8 +91,7 @@ const ProductDetail = () => {
               </button>
             ))}
           </div>
-          <p>Selected Size: {selectedSize}</p>{" "}
-          {/* Mostrar la talla seleccionada */}
+          <p>Selected Size: {selectedSize}</p> {/* Show the selected size */}
           <button
             className="font-semibold border-2 border-black rounded-full p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase"
             onClick={addProductsToCart}
@@ -103,7 +102,7 @@ const ProductDetail = () => {
         </div>
       </section>
 
-      {/* Mobile Product Detail Page */}
+      {/* Mobile product detail page */}
 
       <section className="md:hidden mt-40 mb-60 top-10">
         <div className="flex flex-col items-left">
