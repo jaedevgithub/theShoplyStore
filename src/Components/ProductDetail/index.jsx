@@ -7,28 +7,23 @@ const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
   const { productToShow } = context;
   const [selectedImage, setSelectedImage] = useState("");
-
-  // State to control the selected size
   const [selectedSize, setSelectedSize] = useState("");
 
-  // If there's no product to show, return null to render nothing
   if (!productToShow) {
+    // If there's no product to show, return null to render nothing
     return null;
   }
 
   const category = productToShow.category ? productToShow.category.name : "";
 
-  // Update the state with the clicked image
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
 
-  // Update the state with the selected size
   const handleSizeSelect = (size) => {
     setSelectedSize(size);
   };
 
-  // Function to add the selected product to the cart and update the counter
   const addProductsToCart = () => {
     if (selectedSize) {
       // If a size is selected, add the product to the cart using the context function
@@ -43,14 +38,10 @@ const ProductDetail = () => {
   return (
     <>
       {/* Desktop product detail page */}
-
       <section className="hidden md:flex flex-row-3 items-center justify-between mt-60 mb-60 relative top-10">
         <aside>
           {productToShow.images.map((image, index) => (
-            <figure
-              key={index}
-              className="-mb-4 scale-75 relative -top-60 left-4"
-            >
+            <figure key={index} className="-mb-4 scale-75 relative -top-60 left-4">
               <img
                 className={`w-32 h-32 object-cover rounded-3xl ${
                   selectedImage === image ? "border-4 border-black" : ""
@@ -62,7 +53,6 @@ const ProductDetail = () => {
             </figure>
           ))}
         </aside>
-
         <figure className="h-100 w-96 scale-150 relative right-10">
           <img
             className="h-full w-full object-cover rounded-3xl"
@@ -70,7 +60,6 @@ const ProductDetail = () => {
             alt={productToShow.title}
           />
         </figure>
-
         <div className="flex flex-col justify-between relative -top-80 right-40">
           <div className="flex flex-col items-left">
             <p className="text-xl">{category}</p>
@@ -91,7 +80,8 @@ const ProductDetail = () => {
               </button>
             ))}
           </div>
-          <p>Selected Size: {selectedSize}</p> {/* Show the selected size */}
+          <p>Selected Size: {selectedSize}</p>
+          {/* Show the selected size */}
           <button
             className="font-semibold border-2 border-black rounded-full p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase"
             onClick={addProductsToCart}
@@ -103,14 +93,12 @@ const ProductDetail = () => {
       </section>
 
       {/* Mobile product detail page */}
-
       <section className="md:hidden mt-40 mb-60 top-10">
         <div className="flex flex-col items-left">
           <p className="text-xl relative ml-10">{category}</p>
           <h2 className="text-4xl mb-5 ml-10">{productToShow.title}</h2>
           <p className="text-xl mb-5 ml-10">{productToShow.description}</p>
         </div>
-
         <Carousel
           className="rounded-xl"
           swipeable={true}
@@ -121,10 +109,7 @@ const ProductDetail = () => {
           centerSlidePercentage={100}
         >
           {productToShow.images.map((image, index) => (
-            <div
-              className="h-80 w-80 mx-2 flex justify-center items-center"
-              key={index}
-            >
+            <div className="h-80 w-80 mx-2 flex justify-center items-center" key={index}>
               <img
                 src={image}
                 alt={productToShow.title}
@@ -134,7 +119,6 @@ const ProductDetail = () => {
             </div>
           ))}
         </Carousel>
-
         <div className="flex items-center justify-center">
           <button
             className="font-semibold border-2 border-black rounded-full p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase"

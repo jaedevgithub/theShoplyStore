@@ -5,6 +5,7 @@ import("preline");
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
+
   const activeStyle = "underline underline-offset-4";
 
   return (
@@ -29,6 +30,31 @@ const Navbar = () => {
               About
             </NavLink>
           </li>
+          <button>
+            <svg
+              className="relative left-5"
+              xmlnsXlink="http://www.w3.org/1999/xlink"
+              xmlns="http://www.w3.org/2000/svg"
+              width="18"
+              height="19"
+              viewBox="0 0 18 19"
+              fill="none"
+            >
+              <circle
+                cx="7.23318"
+                cy="7.73218"
+                r="5"
+                transform="rotate(-45 7.23318 7.73218)"
+                stroke="black"
+                strokeWidth="2"
+              />
+              <path
+                d="M10.7695 11.2677L14.3051 14.8032"
+                stroke="black"
+                strokeWidth="2"
+              />
+            </svg>
+          </button>
         </ul>
         <ul className="flex items-center">
           <div>

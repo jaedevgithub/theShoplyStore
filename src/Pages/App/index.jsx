@@ -14,6 +14,7 @@ import { ShoppingCartProvider } from "../../Context";
 import "./App.css";
 
 const AppRoutes = () => {
+  // Define the routes using the useRoutes hook
   let routes = useRoutes([
     { path: "/", element: <Home /> },
     { path: "/my-account", element: <MyAccount /> },
@@ -34,12 +35,15 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
-      <ShoppingCartProvider>
-        <BrowserRouter>
-          <AppRoutes />
-          <Navbar />
-        </BrowserRouter>
-      </ShoppingCartProvider>
+    // Wrap the entire app with the ShoppingCartProvider to provide the shopping cart context to all components
+    <ShoppingCartProvider>
+      <BrowserRouter>
+        {/* Render the routes defined in AppRoutes */}
+        <AppRoutes />
+        {/* Render the Navbar component at the top level to be visible in all pages */}
+        <Navbar />
+      </BrowserRouter>
+    </ShoppingCartProvider>
   );
 };
 

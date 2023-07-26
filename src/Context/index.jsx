@@ -1,16 +1,19 @@
 import React, { createContext, useState, useEffect } from "react";
 
+// Create a new context called ShoppingCartContext
 export const ShoppingCartContext = createContext();
 
+// ShoppingCartProvider is a wrapper component that provides the shopping cart context to its children
 export const ShoppingCartProvider = ({ children }) => {
-  const [count, setCount] = useState(0);
-  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
-  const [productToShow, setProductToShow] = useState(null);
-  const [cartProducts, setCartProducts] = useState([]);
-  const [order, setOrder] = useState([]);
+  // Define the state variables using useState hooks
+  const [count, setCount] = useState(0); // Total count of items in the cart
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false); // Whether the product detail modal is open or not
+  const [productToShow, setProductToShow] = useState(null); // The product to show details for in the modal
+  const [cartProducts, setCartProducts] = useState([]); // Array containing products added to the cart
+  const [order, setOrder] = useState([]); // Array containing the orders
 
+  // useEffect hook to recalculate the total count of items in the cart whenever cartProducts change
   useEffect(() => {
-    // Calculate the total count of items in the cart when cartProducts change
     const updatedCount = cartProducts.reduce(
       (totalCount, product) => totalCount + (product.quantity || 0),
       0
@@ -18,11 +21,14 @@ export const ShoppingCartProvider = ({ children }) => {
     setCount(updatedCount);
   }, [cartProducts]);
 
-  const openProductDetail = () => setIsProductDetailOpen(true); // Function to open the product detail
-  const closeProductDetail = () => setIsProductDetailOpen(false); // Function to close the product detail
+  // Function to open the product detail modal
+  const openProductDetail = () => setIsProductDetailOpen(true);
 
+  // Function to close the product detail modal
+  const closeProductDetail = () => setIsProductDetailOpen(false);
+
+  // Function to add a product to the cart with the selected size
   const addProductToCart = (product, selectedSize) => {
-    // Function to add a product to the cart with the selected size
     const existingProduct = cartProducts.find(
       (p) => p.id === product.id && p.size === selectedSize
     );
@@ -44,8 +50,8 @@ export const ShoppingCartProvider = ({ children }) => {
     }
   };
 
+  // Function to remove a product from the cart
   const removeProductFromCart = (product) => {
-    // Function to remove a product from the cart
     setCartProducts(cartProducts.filter((item) => item.id !== product.id));
   };
 
@@ -66,6 +72,7 @@ export const ShoppingCartProvider = ({ children }) => {
     setOrder,
   };
 
+  // Render the ShoppingCartContext.Provider component to provide the context to all children
   return (
     <ShoppingCartContext.Provider value={contextValue}>
       {children}
