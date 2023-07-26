@@ -20,6 +20,7 @@ function MyOrders() {
         <Link key={index} to={`/my-orders/${index}`}>
           <OrdersCard
             key={index}
+            date={order.date} // Pasar la fecha como prop
             totalPrice={order.total}
             totalProducts={order.products.length}
           />

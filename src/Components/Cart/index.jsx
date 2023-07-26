@@ -85,7 +85,7 @@ function Cart() {
     };
 
     // Store the order in the global cart state
-    context.setOrder(orderToAdd);
+    context.setOrder([...context.order, orderToAdd]);
     console.log("Order Created:", orderToAdd);
 
     // Clear the cart and reset the counter

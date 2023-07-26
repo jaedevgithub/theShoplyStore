@@ -24,7 +24,7 @@ const MyOrder = () => {
         <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer" />
       </Link>
       <h2 className="text-2xl font-bold mb-4">My Order</h2>
-      {order.products.map((product, index) => (
+      {order[index].products.map((product, index) => (
         <div
           key={index}
           className="flex items-center border-b border-gray-300 pb-4 mb-4"
@@ -41,7 +41,7 @@ const MyOrder = () => {
           </div>
         </div>
       ))}
-      <p className="text-xl font-bold">Total: ${order.total}</p>
+      <p className="text-xl font-bold">Total: ${order[index].total}</p>
     </div>
   );
 };
