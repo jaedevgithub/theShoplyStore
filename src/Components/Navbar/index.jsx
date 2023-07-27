@@ -1,18 +1,89 @@
-import { useContext } from "react";
-import { NavLink } from "react-router-dom";
+import React, { useContext, useState, useEffect } from "react";
+import { NavLink, Link } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
 import("preline");
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
-
   const activeStyle = "underline underline-offset-4";
+  const [isSearchVisible, setIsSearchVisible] = useState(false);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(true);
+  const [prevScrollPos, setPrevScrollPos] = useState(0);
+
+  // Function to handle click on the search button
+  const handleSearchButtonClick = () => {
+    setIsSearchVisible(!isSearchVisible);
+  };
+
+  // Function to handle scroll and show/hide Navbar and Search Bar
+  const handleScroll = () => {
+    const currentScrollPos = window.pageYOffset;
+    const isScrollingDown = prevScrollPos < currentScrollPos;
+
+    setPrevScrollPos(currentScrollPos);
+
+    if (isSearchVisible && isScrollingDown) {
+      // If the Search Bar is open and scrolling down, close it
+      setIsSearchVisible(false);
+    }
+
+    // Hide Navbar when scrolling down and show it when scrolling up
+    setIsNavbarVisible(!isScrollingDown || currentScrollPos === 0);
+  };
+
+  useEffect(() => {
+    // Add scroll event when component mounts
+    window.addEventListener("scroll", handleScroll);
+
+    // Clean up the event when component unmounts
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [isSearchVisible]);
+
 
   return (
     <header>
+      {/* Search Bar */}
+
+      <div
+        className={`search-bar-container ${
+          isSearchVisible ? "h-20" : "h-0"
+        } overflow-hidden transition-all duration-200 ease-in-out z-2 fixed top-20 w-screen border-t-2 border-black  ${
+          isSearchVisible ? "border-b-2 border-black" : ""
+        } ${
+          isSearchVisible || isNavbarVisible
+            ? "opacity-100"
+            : "opacity-0 hidden"
+        }`}
+      >
+        <div className="flex items-center justify-center h-20 w-full bg-white">
+          <div className="flex items-center w-full mx-auto rounded-lg">
+            <div className="w-full">
+              <input
+                type="Text"
+                onChange={(event) =>
+                  context.setSearchByTitle(event.target.value)
+                }
+                className="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
+                placeholder="Search"
+                style={{
+                  color: "black",
+                  fontSize: 30,
+                }}
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+
       {/* Desktop Navbar */}
 
-      <nav className="hidden md:flex justify-between top-0 items-center fixed z-10 w-full py-5 px-8 text-sm font-light bg-amber-400 h-20">
+      <nav
+        className={`hidden md:flex justify-between top-0 items-center fixed z-10 w-full py-5 px-8 text-sm font-light bg-amber-400 h-20 transition-opacity ${
+          isNavbarVisible ? "opacity-100" : "opacity-0"
+        }`}
+      >
         <ul className="flex items-center gap-3">
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
             <NavLink
@@ -30,7 +101,7 @@ const Navbar = () => {
               About
             </NavLink>
           </li>
-          <button>
+          <button onClick={handleSearchButtonClick}>
             <svg
               className="relative left-5"
               xmlnsXlink="http://www.w3.org/1999/xlink"
@@ -88,12 +159,15 @@ const Navbar = () => {
       </nav>
 
       {/* Mobile Navbar */}
-
       <section aria-label="Global">
-        <div className="md:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-amber-400 h-20">
+        <div
+          className={`md:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-amber-400 h-20 ${
+            isNavbarVisible ? "opacity-100" : "opacity-0"
+          }`}
+        >
           <button
             type="button"
-            className=" hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black"
+            className=" hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
             data-hs-collapse="#navbar-image-and-text-1"
             aria-controls="navbar-image-and-text-1"
             aria-label="Toggle navigation"
@@ -121,9 +195,9 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <button>
+          <button onClick={handleSearchButtonClick}>
             <svg
-              className="relative left-5"
+              className="relative right-2"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -146,18 +220,18 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          <button className="">
-            <NavLink
-              to="/"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              <img src="src/Assets/Images/logo-full.static.svg" />
-            </NavLink>
+          <button className="w-52 h-full">
+            <Link to="/">
+              <img
+                className="w-full h-full object-cover relative right-2"
+                src="src/Assets/Images/logo-full.static.svg"
+              />
+            </Link>
           </button>
 
           <button>
             <svg
-              className="relative right-5 svg-map-pin"
+              className="relative right-3 svg-map-pin"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               width="16"
               height="20"
@@ -182,7 +256,7 @@ const Navbar = () => {
             </svg>
           </button>
 
-          <button className="font-semibold border-2 bg-black border-black rounded-full p-2 text-md uppercase w-10 h-6 text-center flex items-center justify-center scale-150">
+          <button className="font-semibold border-2 bg-black border-black rounded-full p-2 text-md uppercase w-10 h-6 text-center flex items-center justify-center scale-150 relative left-3">
             <NavLink
               to="/cart"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -194,9 +268,11 @@ const Navbar = () => {
       </section>
       <nav
         id="navbar-image-and-text-1"
-        className="sm:hidden z-10 absolute top-20 right-20 hs-collapse overflow-hidden transition-all duration-300 basis-full grow w-screen h-80 flex flex-col items-center"
+        className={` sm:hidden z-10 absolute top-40 right-25 hs-collapse overflow-hidden transition-all duration-300 basis-full grow w-screen h-80 flex flex-col items-center bg-white h-screen ${
+          isNavbarVisible ? "opacity-100" : "opacity-0"
+        }`}
       >
-        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl">
+        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-32 ml-10">
           <NavLink
             href="#"
             aria-current="page"

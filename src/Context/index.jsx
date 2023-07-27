@@ -11,6 +11,19 @@ export const ShoppingCartProvider = ({ children }) => {
   const [productToShow, setProductToShow] = useState(null); // The product to show details for in the modal
   const [cartProducts, setCartProducts] = useState([]); // Array containing products added to the cart
   const [order, setOrder] = useState([]); // Array containing the orders
+  const [items, setItems] = useState([]); // Array containing the items
+  const [searchByTitle, setSearchByTitle] = useState([]); // Get products by title
+  console.log("searchByTitle", searchByTitle);
+
+  useEffect(() => {
+    fetch("https://testing-api-cghc.onrender.com/products")
+      .then((res) => res.json())
+      .then((data) => setItems(data))
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+        setItems([]);
+      });
+  }, []);
 
   // useEffect hook to recalculate the total count of items in the cart whenever cartProducts change
   useEffect(() => {
@@ -70,6 +83,10 @@ export const ShoppingCartProvider = ({ children }) => {
     removeProductFromCart,
     order,
     setOrder,
+    items,
+    setItems,
+    searchByTitle,
+    setSearchByTitle,
   };
 
   // Render the ShoppingCartContext.Provider component to provide the context to all children

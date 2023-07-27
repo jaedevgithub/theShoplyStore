@@ -29,6 +29,7 @@ function Cart() {
       (p) => !(p.id === product.id && p.size === product.size)
     );
     context.setCartProducts(updatedCartProducts);
+    
     context.setCount(context.count - product.quantity); // Subtract the quantity of the removed product from the counter
   };
 
