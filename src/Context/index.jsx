@@ -12,9 +12,11 @@ export const ShoppingCartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]); // Array containing products added to the cart
   const [order, setOrder] = useState([]); // Array containing the orders
   const [items, setItems] = useState([]); // Array containing the items
-  const [searchByTitle, setSearchByTitle] = useState([]); // Get products by title
+  const [searchByTitle, setSearchByTitle] = useState(""); // Get products by title (changed to an empty string)
+  const [filteredItems, setFilteredItems] = useState(null);
   console.log("searchByTitle", searchByTitle);
 
+  // useEffect to fetch data from the API when the component mounts
   useEffect(() => {
     fetch("https://testing-api-cghc.onrender.com/products")
       .then((res) => res.json())
@@ -24,6 +26,21 @@ export const ShoppingCartProvider = ({ children }) => {
         setItems([]);
       });
   }, []);
+
+  // Function to filter items based on the searchByTitle state
+  const filteredItemsByTitle = (items, searchByTitle) => {
+    return items?.filter((item) =>
+      item.title.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
+  // useEffect to update the filteredItems whenever the searchByTitle or items state changes
+  useEffect(() => {
+    if (searchByTitle)
+      setFilteredItems(filteredItemsByTitle(items, searchByTitle));
+  }, [items, searchByTitle]);
+
+  console.log("filteredItems", filteredItems);
 
   // useEffect hook to recalculate the total count of items in the cart whenever cartProducts change
   useEffect(() => {
@@ -87,6 +104,8 @@ export const ShoppingCartProvider = ({ children }) => {
     setItems,
     searchByTitle,
     setSearchByTitle,
+    filteredItems,
+    setFilteredItems,
   };
 
   // Render the ShoppingCartContext.Provider component to provide the context to all children
