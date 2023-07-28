@@ -5,7 +5,7 @@ export const ShoppingCartContext = createContext();
 
 // ShoppingCartProvider is a wrapper component that provides the shopping cart context to its children
 export const ShoppingCartProvider = ({ children }) => {
-  // Define the state variables using useState hooks
+  // State variables using useState hooks
   const [count, setCount] = useState(0); // Total count of items in the cart
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false); // Whether the product detail modal is open or not
   const [productToShow, setProductToShow] = useState(null); // The product to show details for in the modal
@@ -13,11 +13,14 @@ export const ShoppingCartProvider = ({ children }) => {
   const [order, setOrder] = useState([]); // Array containing the orders
   const [items, setItems] = useState([]); // Array containing the items
   const [searchByTitle, setSearchByTitle] = useState(""); // Get products by title (changed to an empty string)
-  const [filteredItems, setFilteredItems] = useState(null);
+  const [searchByCategory, setSearchByCategory] = useState(null); // Search products by category (initially null)
+  const [filteredItems, setFilteredItems] = useState(null); // Filtered items based on searchByTitle or searchByCategory
+
   console.log("searchByTitle", searchByTitle);
+  console.log("searchByCategory:", searchByCategory);
+  console.log("filteredItems", filteredItems);
 
   // useEffect to fetch data from the API when the component mounts
-
   useEffect(() => {
     fetch("https://testing-api-cghc.onrender.com/products")
       .then((res) => res.json())
@@ -29,37 +32,30 @@ export const ShoppingCartProvider = ({ children }) => {
   }, []);
 
   // Function to filter items based on the searchByTitle state
-
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) =>
       item.title.toLowerCase().includes(searchByTitle.toLowerCase())
     );
   };
 
-  // useEffect to update the filteredItems whenever the searchByTitle or items state changes
-
-
-
-  // useEffect to update the filteredItems whenever the searchByCategory or items state changes
-
-  const [searchByCategory, setSearchByCategory] = useState(null);
-  console.log ("searchByCategory:", searchByCategory);
-
-  const filteredItemsByCategory = (items, searchByTitle) => {
-    console.log("items:", items);
+  // Function to filter items based on the searchByCategory state
+  const filteredItemsByCategory = (items, searchByCategory) => {
     return items?.filter((item) =>
-      item.category.name.toLowerCase().includes(searchByTitle.toLowerCase())
+      item.category.name.toLowerCase().includes(searchByCategory.toLowerCase())
     );
   };
 
+  // useEffect to update the filteredItems whenever the searchByTitle or searchByCategory state changes
   useEffect(() => {
-    if (searchByTitle)
+    if (searchByTitle) {
       setFilteredItems(filteredItemsByTitle(items, searchByTitle));
-    if (searchByCategory)
+    } else if (searchByCategory) {
       setFilteredItems(filteredItemsByCategory(items, searchByCategory));
+    } else {
+      // If neither searchByTitle nor searchByCategory, reset filteredItems to null
+      setFilteredItems(null);
+    }
   }, [items, searchByTitle, searchByCategory]);
-
-  console.log("filteredItems", filteredItems);
 
   // useEffect hook to recalculate the total count of items in the cart whenever cartProducts change
   useEffect(() => {

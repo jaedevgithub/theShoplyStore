@@ -5,6 +5,7 @@ import { ShoppingCartContext } from "../../Context";
 import OrdersCard from "../../Components/OrdersCard";
 
 function MyOrders() {
+  // Get the shopping cart context using useContext hook
   const context = useContext(ShoppingCartContext);
 
   // Check if there are no orders or the orders array is empty
@@ -20,17 +21,24 @@ function MyOrders() {
       </div>
 
       {/* Map through each order in the context and display an OrdersCard for each */}
-      {context.order.map((order, index) => (
-        // Link to the individual order details page using the index as a parameter
-        <Link key={index} to={`/my-orders/${index}`}>
-          <OrdersCard
-            key={index}
-            date={order.date} // Pass the order date as a prop
-            totalPrice={order.total}
-            totalProducts={order.products.length}
-          />
-        </Link>
-      ))}
+      {context.order.map((order, index) => {
+        // Check if the 'products' property is defined before accessing it
+        if (order.products && order.products.length > 0) {
+          // Link to the individual order details page using the index as a parameter
+          return (
+            <Link key={index} to={`/my-orders/${index}`}>
+              <OrdersCard
+                key={index}
+                date={order.date} // Pass the order date as a prop
+                totalPrice={order.total}
+                totalProducts={order.products.length}
+              />
+            </Link>
+          );
+        } else {
+          return null;
+        }
+      })}
     </Layout>
   );
 }

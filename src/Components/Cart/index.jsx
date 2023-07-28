@@ -4,12 +4,13 @@ import Layout from "../../Components/Layout";
 import { Link } from "react-router-dom";
 
 function Cart() {
+  // Get the shopping cart context and extract cartProducts, count, and order
   const context = useContext(ShoppingCartContext);
   const cartProducts = context.cartProducts || [];
   const [total, setTotal] = useState(0);
 
+  // Calculate the total price of all products in the cart when cartProducts change
   useEffect(() => {
-    // Calculate the total price of all products in the cart when cartProducts change
     const calculateTotal = () => {
       let total = 0;
       for (const product of cartProducts) {
@@ -29,7 +30,6 @@ function Cart() {
       (p) => !(p.id === product.id && p.size === product.size)
     );
     context.setCartProducts(updatedCartProducts);
-    
     context.setCount(context.count - product.quantity); // Subtract the quantity of the removed product from the counter
   };
 

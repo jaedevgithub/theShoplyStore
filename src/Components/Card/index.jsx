@@ -1,18 +1,22 @@
-import { useContext } from "react";
+import React, { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
-import React from "react";
 import { NavLink } from "react-router-dom";
 
 const Card = ({ data }) => {
-  const image = data.images && data.images.length > 0 ? data.images[0] : "";
-  const title = data.title ? data.title : "";
-  const price = data.price ? data.price : "";
+  // Destructure the required data from the "data" prop
+  const { images, title, price } = data;
   const context = useContext(ShoppingCartContext);
 
+  // Function to show the product detail when clicked
   const showProduct = (productDetail) => {
     context.openProductDetail();
     context.setProductToShow(productDetail);
   };
+
+  // Use short-circuiting to set default values for image, title, and price
+  const image = images && images.length > 0 ? images[0] : "";
+  const displayTitle = title ? title : "Title Not Available";
+  const displayPrice = price ? price : "Price Not Available";
 
   return (
     <>
@@ -25,12 +29,12 @@ const Card = ({ data }) => {
             <img
               className="w-full h-full object-cover rounded-3xl"
               src={image}
-              alt={title}
+              alt={displayTitle}
             />
           </figure>
           <p className="flex justify-between">
-            <span className="text-sm font-light">{title}</span>
-            <span className="text-lg font-medium">${price}</span>
+            <span className="text-sm font-light">{displayTitle}</span>
+            <span className="text-lg font-medium">${displayPrice}</span>
           </p>
         </div>
       </NavLink>

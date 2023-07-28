@@ -1,5 +1,6 @@
 import React from "react";
 import { BrowserRouter, Route, Routes } from "react-router-dom";
+import { ShoppingCartProvider } from "../../Context";
 import Home from "../Home";
 import MyAccount from "../MyAccount";
 import MyOrder from "../MyOrder";
@@ -12,9 +13,9 @@ import Cart from "../../Components/Cart";
 import ProductDetail from "../../Components/ProductDetail";
 import Navbar from "../../Components/Navbar";
 import SearchResultsPage from "../SearchResultsPage";
-import { ShoppingCartProvider } from "../../Context";
 import "./App.css";
 
+// Define the routes for the application
 const AppRoutes = () => {
   return (
     <Routes>
@@ -37,9 +38,12 @@ const AppRoutes = () => {
 
 const App = () => {
   return (
+    // Wrap the application with the ShoppingCartProvider and BrowserRouter
     <ShoppingCartProvider>
       <BrowserRouter>
+        {/* Render the application routes */}
         <AppRoutes />
+        {/* Render the Navbar */}
         <Navbar />
       </BrowserRouter>
     </ShoppingCartProvider>

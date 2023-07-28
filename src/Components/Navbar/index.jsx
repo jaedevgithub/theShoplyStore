@@ -1,9 +1,10 @@
 import React, { useContext, useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
-import("preline");
+import "preline";
 
 const Navbar = () => {
+  // Get the shopping cart context using useContext hook
   const context = useContext(ShoppingCartContext);
   const activeStyle = "underline underline-offset-4";
   const [isSearchVisible, setIsSearchVisible] = useState(false);
@@ -43,10 +44,26 @@ const Navbar = () => {
     };
   }, [isSearchVisible]);
 
+  // Function to handle search form submission
   const handleSearch = (event) => {
     event.preventDefault();
     // Redirect to the search results page with the search query as a URL parameter
     navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
+  };
+
+  // Function to handle click on NavLink
+  const handleNavLinkClick = (event) => {
+    // Check if the NavLink is already active
+    const isActive = event.currentTarget === document.activeElement;
+    if (isActive) {
+      // If it's on the Home page, refresh the page
+      if (window.location.pathname === "/") {
+        window.location.reload();
+      } else {
+        // If it's not on the Home page, navigate to the root path "/"
+        navigate("/");
+      }
+    }
   };
 
   return (
@@ -69,7 +86,7 @@ const Navbar = () => {
               <form onSubmit={handleSearch}>
                 <input
                   type="text"
-                  id="searchInput" 
+                  id="searchInput"
                   value={searchQuery}
                   onChange={(event) => setSearchQuery(event.target.value)}
                   className="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
@@ -86,13 +103,13 @@ const Navbar = () => {
       </div>
 
       {/* Desktop Navbar */}
-
       <nav
         className={`hidden md:flex justify-between top-0 items-center fixed z-10 w-full py-5 px-8 text-sm font-light bg-amber-400 h-20 transition-opacity ${
           isNavbarVisible ? "opacity-100" : "opacity-0"
         }`}
       >
         <ul className="flex items-center gap-3">
+          {/* Shop NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
             <NavLink
               to="/shop"
@@ -101,6 +118,7 @@ const Navbar = () => {
               Shop
             </NavLink>
           </li>
+          {/* About NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
             <NavLink
               to="/about"
@@ -109,6 +127,7 @@ const Navbar = () => {
               About
             </NavLink>
           </li>
+          {/* Search Button */}
           <button onClick={handleSearchButtonClick}>
             <svg
               className="relative left-5"
@@ -136,17 +155,20 @@ const Navbar = () => {
           </button>
         </ul>
         <ul className="flex items-center">
+          {/* Logo NavLink */}
           <div>
             <NavLink
               to="/"
+              onClick={handleNavLinkClick}
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <img src="src/Assets/Images/logo-full.static.svg"></img>
+              <img src="src/Assets/Images/logo-full.static.svg" alt="Logo" />
             </NavLink>
           </div>
         </ul>
         <ul />
         <ul className="flex items-center gap-3">
+          {/* Sign In NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
             <NavLink
               to="/sign-in"
@@ -155,6 +177,7 @@ const Navbar = () => {
               Sign In
             </NavLink>
           </li>
+          {/* Cart NavLink with item count */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
             <NavLink
               to="/cart"
@@ -173,9 +196,10 @@ const Navbar = () => {
             isNavbarVisible ? "opacity-100" : "opacity-0"
           }`}
         >
+          {/* Mobile Menu Toggle Button */}
           <button
             type="button"
-            className=" hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
+            className="hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
             data-hs-collapse="#navbar-image-and-text-1"
             aria-controls="navbar-image-and-text-1"
             aria-label="Toggle navigation"
@@ -203,6 +227,7 @@ const Navbar = () => {
             </svg>
           </button>
 
+          {/* Mobile Search Button */}
           <button onClick={handleSearchButtonClick}>
             <svg
               className="relative right-2"
@@ -228,6 +253,8 @@ const Navbar = () => {
               />
             </svg>
           </button>
+
+          {/* Mobile Logo Button */}
           <button className="w-52 h-full">
             <Link to="/">
               <img
@@ -237,6 +264,7 @@ const Navbar = () => {
             </Link>
           </button>
 
+          {/* Mobile Map Pin Button */}
           <button>
             <svg
               className="relative right-3 svg-map-pin"
@@ -264,6 +292,7 @@ const Navbar = () => {
             </svg>
           </button>
 
+          {/* Mobile Cart Button with item count */}
           <button className="font-semibold border-2 bg-black border-black rounded-full p-2 text-md uppercase w-10 h-6 text-center flex items-center justify-center scale-150 relative left-3">
             <NavLink
               to="/cart"
@@ -274,13 +303,17 @@ const Navbar = () => {
           </button>
         </div>
       </section>
+
+      {/* Mobile Navbar Menu */}
       <nav
         id="navbar-image-and-text-1"
         className={` sm:hidden z-10 absolute top-40 right-25 hs-collapse overflow-hidden transition-all duration-300 basis-full grow w-screen h-80 flex flex-col items-center bg-white h-screen ${
           isNavbarVisible ? "opacity-100" : "opacity-0"
         }`}
       >
+        {/* Mobile Menu Links */}
         <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-32 ml-10">
+          {/* Shop NavLink */}
           <NavLink
             href="#"
             aria-current="page"
@@ -289,6 +322,7 @@ const Navbar = () => {
           >
             <p className="relative left-4 top-4">Shop</p>
           </NavLink>
+          {/* About NavLink */}
           <NavLink
             to="/about"
             className={({ isActive }) => (isActive ? activeStyle : undefined)}
@@ -296,6 +330,7 @@ const Navbar = () => {
           >
             <p className="relative left-4 top-6">About</p>
           </NavLink>
+          {/* More Mobile Menu Links Here */}
         </div>
       </nav>
     </header>
