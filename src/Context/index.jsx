@@ -17,6 +17,7 @@ export const ShoppingCartProvider = ({ children }) => {
   console.log("searchByTitle", searchByTitle);
 
   // useEffect to fetch data from the API when the component mounts
+
   useEffect(() => {
     fetch("https://testing-api-cghc.onrender.com/products")
       .then((res) => res.json())
@@ -28,6 +29,7 @@ export const ShoppingCartProvider = ({ children }) => {
   }, []);
 
   // Function to filter items based on the searchByTitle state
+
   const filteredItemsByTitle = (items, searchByTitle) => {
     return items?.filter((item) =>
       item.title.toLowerCase().includes(searchByTitle.toLowerCase())
@@ -35,10 +37,27 @@ export const ShoppingCartProvider = ({ children }) => {
   };
 
   // useEffect to update the filteredItems whenever the searchByTitle or items state changes
+
+
+
+  // useEffect to update the filteredItems whenever the searchByCategory or items state changes
+
+  const [searchByCategory, setSearchByCategory] = useState(null);
+  console.log ("searchByCategory:", searchByCategory);
+
+  const filteredItemsByCategory = (items, searchByTitle) => {
+    console.log("items:", items);
+    return items?.filter((item) =>
+      item.category.name.toLowerCase().includes(searchByTitle.toLowerCase())
+    );
+  };
+
   useEffect(() => {
     if (searchByTitle)
       setFilteredItems(filteredItemsByTitle(items, searchByTitle));
-  }, [items, searchByTitle]);
+    if (searchByCategory)
+      setFilteredItems(filteredItemsByCategory(items, searchByCategory));
+  }, [items, searchByTitle, searchByCategory]);
 
   console.log("filteredItems", filteredItems);
 
@@ -106,6 +125,8 @@ export const ShoppingCartProvider = ({ children }) => {
     setSearchByTitle,
     filteredItems,
     setFilteredItems,
+    searchByCategory,
+    setSearchByCategory,
   };
 
   // Render the ShoppingCartContext.Provider component to provide the context to all children

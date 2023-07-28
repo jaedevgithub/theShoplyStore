@@ -1,6 +1,7 @@
 import React, { useContext, useState, useEffect } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
+import("preline");
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
