@@ -1,7 +1,6 @@
 import React, { useContext, useState, useEffect } from "react";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
-import("preline");
 
 const Navbar = () => {
   const context = useContext(ShoppingCartContext);
@@ -9,6 +8,8 @@ const Navbar = () => {
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
+  const [searchQuery, setSearchQuery] = useState("");
+  const navigate = useNavigate(); // Use the useNavigate hook here
 
   // Function to handle click on the search button
   const handleSearchButtonClick = () => {
@@ -41,11 +42,15 @@ const Navbar = () => {
     };
   }, [isSearchVisible]);
 
+  const handleSearch = (event) => {
+    event.preventDefault();
+    // Redirect to the search results page with the search query as a URL parameter
+    navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
+  };
 
   return (
     <header>
       {/* Search Bar */}
-
       <div
         className={`search-bar-container ${
           isSearchVisible ? "h-20" : "h-0"
@@ -60,18 +65,20 @@ const Navbar = () => {
         <div className="flex items-center justify-center h-20 w-full bg-white">
           <div className="flex items-center w-full mx-auto rounded-lg">
             <div className="w-full">
-              <input
-                type="Text"
-                onChange={(event) =>
-                  context.setSearchByTitle(event.target.value)
-                }
-                className="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
-                placeholder="Search"
-                style={{
-                  color: "black",
-                  fontSize: 30,
-                }}
-              />
+              <form onSubmit={handleSearch}>
+                <input
+                  type="text"
+                  id="searchInput" 
+                  value={searchQuery}
+                  onChange={(event) => setSearchQuery(event.target.value)}
+                  className="w-full px-4 py-1 text-gray-800 rounded-full focus:outline-none"
+                  placeholder="Search"
+                  style={{
+                    color: "black",
+                    fontSize: 30,
+                  }}
+                />
+              </form>
             </div>
           </div>
         </div>
