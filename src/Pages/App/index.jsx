@@ -10,6 +10,7 @@ import About from "../About";
 import Cart from "../../Components/Cart";
 import ProductDetail from "../../Components/ProductDetail";
 import Navbar from "../../Components/Navbar";
+import SearchResultsPage from "../SearchResultsPage";
 import { ShoppingCartProvider } from "../../Context";
 import "./App.css";
 
@@ -27,6 +28,7 @@ const AppRoutes = () => {
     { path: "/about", element: <About /> },
     { path: "/cart", element: <Cart /> },
     { path: "/product-detail", element: <ProductDetail /> },
+    { path: "/search-results", element: <SearchResultsPage /> },
     { path: "/*", element: <NotFound /> },
   ]);
 
