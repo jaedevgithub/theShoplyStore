@@ -3,6 +3,8 @@ import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
 import CategoryFilter from "../../Components/CategoryFilter";
+import HomePageSlider from "../../Components/HomePageSlider";
+
 
 function Home() {
   // Get the shopping cart context and extract filteredItems and items
@@ -13,7 +15,8 @@ function Home() {
     <>
       {/* Main section for desktop view */}
       <Layout>
-        <h1>Home</h1>
+      <HomePageSlider></HomePageSlider>
+
         <CategoryFilter />
         <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28 top-60">
           {filteredProducts.map((item, index) => (

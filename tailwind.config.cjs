@@ -3,13 +3,16 @@ module.exports = {
   content: ["./index.html", "./src/**/*.{js,ts,jsx,tsx}"],
 
   theme: {
-    extend: {},
+    extend: {
+      colors: {
+        customYellow: "#FFC700",
+      },
+    },
   },
+
   plugins: [require("preline/plugin")],
 
   fontFamily: {
     Whyte: ["Whyte", "sans-serif"],
   },
-
 };
-

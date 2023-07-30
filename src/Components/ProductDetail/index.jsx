@@ -1,7 +1,7 @@
 import React, { useContext, useState } from "react";
-import { ShoppingCartContext } from "../../Context";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import { ShoppingCartContext } from "../../Context";
 
 const ProductDetail = () => {
   // Get the shopping cart context using useContext hook
