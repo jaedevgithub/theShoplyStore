@@ -6,6 +6,9 @@ module.exports = {
     extend: {
       colors: {
         customYellow: "#FFC700",
+        scale: {
+          '175': '1.75',
+        }
       },
     },
   },

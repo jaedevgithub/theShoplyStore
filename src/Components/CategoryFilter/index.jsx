@@ -10,7 +10,7 @@ const CategoryFilter = () => {
   };
 
   return (
-    <section className="relative top-40 ">
+    <section className="hidden md: relative top-40 ">
       <section className="grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg">
         {/* Render clickable category options */}
         <p onClick={() => handleCategoryClick("shoes")}>Shoes</p>

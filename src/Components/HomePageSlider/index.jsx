@@ -1,39 +1,161 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
+import { useSwipeable } from "react-swipeable";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function HomePageSlider() {
   return (
-    <section className="relative top-5 border-b-2 border-black scale-150 cursor-pointer">
-      <div className="w-screen overflow-hidden">
-        <Carousel
-          swipeable={true}
-          emulateTouch={true} // Add this prop to enable touch event emulation
-          showStatus={false}
-          showThumbs={false}
-          showIndicators={false}
-          centerMode={true}
-          centerSlidePercentage={100}
-          infiniteLoop={true}
-        >
-          <div>
-            <img
-              src="src/Assets/Images/SLIDESHOW FOR WEB .png"
-              alt="Image for the Carousel"
-              className="w-full h-auto inline-block cursor-pointer"
-            />
+    <>
+      <section className="hidden sm:block relative -top-20 border-b-2 border-black cursor-pointer bg-customYellow">
+        <div className="w-screen overflow-hidden">
+          <div className="w-[2880px] h-[610px] overflow-hidden">
+            <Carousel
+              swipeable={true}
+              emulateTouch={true}
+              showStatus={false}
+              showThumbs={false}
+              showIndicators={false}
+              centerMode={false} // Set centerMode to false to enable free swipe
+              infiniteLoop={true}
+              showArrows={false}
+              transitionTime={1000}
+              stopOnHover={false}
+            >
+              <div>
+                {/* Button with an overlay that contains a link */}
+                <div className="relative group h-[610px] w-[2880px] ">
+                  <img
+                    src="src/Assets/Images/SLIDESHOW FOR WEB .png"
+                    alt="Image for the Carousel"
+                    className="w-full h-full inline-block cursor-pointer"
+                  />
+                  {/* Overlay */}
+                  <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[15%]">
+                    <Link
+                      to="/destination1"
+                      className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                    >
+                      Jedi Mind T-Shirt
+                    </Link>
+                  </button>
+                  <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity right-[15%]">
+                    <Link
+                      to="/destination1"
+                      className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                    >
+                      Converse All Star
+                    </Link>
+                  </button>
+                </div>
+              </div>
+              <div>
+                {/* Cloned image for infinite loop */}
+                <div>
+                  {/* Button with an overlay that contains a link */}
+                  <div className="relative group h-[610px] w-[2880px] ">
+                    <img
+                      src="src/Assets/Images/SLIDESHOW FOR WEB .png"
+                      alt="Image for the Carousel"
+                      className="w-full h-full inline-block cursor-pointer"
+                    />
+                    {/* Overlay */}
+                    <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[15%]">
+                      <Link
+                        to="/destination1"
+                        className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                      >
+                        Jedi Mind T-Shirt
+                      </Link>
+                    </button>
+                    <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity right-[15%]">
+                      <Link
+                        to="/destination1"
+                        className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                      >
+                        Converse All Star
+                      </Link>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </Carousel>
           </div>
-          <div>
-            {/* Cloned image for infinite loop */}
-            <img
-              src="src/Assets/Images/SLIDESHOW FOR WEB .png"
-              alt="Image for the Carousel"
-              className="w-full h-auto inline-block cursor-pointer"
-            />
-          </div>
-        </Carousel>
-      </div>
-    </section>
+        </div>
+      </section>
+
+         {/* Mobile carousel */}
+
+      <section className="md:hidden relative top-5 border-b-2 border-black cursor-pointer">
+        <div className="w-screen overflow-hidden max-w-screen-sm">
+          <Carousel
+            swipeable={true}
+            emulateTouch={true}
+            showStatus={false}
+            showThumbs={false}
+            showIndicators={false}
+            centerMode={false} // Set centerMode to false to enable free swipe
+            infiniteLoop={true}
+            showArrows={false}
+          >
+            <div>
+              {/* Button with an overlay that contains a link */}
+              <div className="relative group">
+                <img
+                  src="src\Assets\Images\1.png"
+                  alt="Image for the Carousel"
+                  className="w-full h-auto inline-block cursor-pointer"
+                />
+                {/* Overlay */}
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[450px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Jedi Mind T-Shirt
+                  </Link>
+                </button>
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity -left-[630px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Converse All Star
+                  </Link>
+                </button>
+              </div>
+            </div>
+            <div>
+              {/* Cloned image for infinite loop */}
+              <div className="relative group h-[300px]">
+                <img
+                  src="src\Assets\Images\2.png"
+                  alt="Image for the Carousel"
+                  className="w-screen h-auto inline-block cursor-pointer object-cover scale 150 "
+                />
+                {/* Overlay */}
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[450px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Jedi Mind T-Shirt
+                  </Link>
+                </button>
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity -left-[630px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Converse All Star
+                  </Link>
+                </button>
+              </div>
+            </div>
+          </Carousel>
+        </div>
+      </section>
+    </>
   );
 }
 
