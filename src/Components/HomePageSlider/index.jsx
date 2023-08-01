@@ -9,7 +9,7 @@ function HomePageSlider() {
     <>
       <section className="hidden sm:block relative -top-20 border-b-2 border-black cursor-pointer bg-customYellow">
         <div className="w-screen overflow-hidden">
-          <div className="w-[2880px] h-[610px] overflow-hidden">
+          <div className="w-full h-auto overflow-hidden">
             <Carousel
               swipeable={true}
               emulateTouch={true}
@@ -17,21 +17,21 @@ function HomePageSlider() {
               showThumbs={false}
               showIndicators={false}
               centerMode={false} // Set centerMode to false to enable free swipe
-              infiniteLoop={true}
+              infiniteLoop={false}
               showArrows={false}
               transitionTime={1000}
               stopOnHover={false}
             >
               <div>
                 {/* Button with an overlay that contains a link */}
-                <div className="relative group h-[610px] w-[2880px] ">
+                <div>
                   <img
-                    src="src/Assets/Images/SLIDESHOW FOR WEB .png"
+                    src="src/Assets/Images/slideshow.png"
                     alt="Image for the Carousel"
                     className="w-full h-full inline-block cursor-pointer"
                   />
                   {/* Overlay */}
-                  <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[15%]">
+                  <button className="absolute -top-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[15%]">
                     <Link
                       to="/destination1"
                       className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
@@ -53,9 +53,9 @@ function HomePageSlider() {
                 {/* Cloned image for infinite loop */}
                 <div>
                   {/* Button with an overlay that contains a link */}
-                  <div className="relative group h-[610px] w-[2880px] ">
+                  <div>
                     <img
-                      src="src/Assets/Images/SLIDESHOW FOR WEB .png"
+                      src="src/Assets/Images/slideshow.png"
                       alt="Image for the Carousel"
                       className="w-full h-full inline-block cursor-pointer"
                     />
@@ -84,10 +84,10 @@ function HomePageSlider() {
         </div>
       </section>
 
-         {/* Mobile carousel */}
+      {/* Mobile carousel */}
 
-      <section className="md:hidden relative top-5 border-b-2 border-black cursor-pointer">
-        <div className="w-screen overflow-hidden max-w-screen-sm">
+      <section className="md:hidden relative border-b-2 border-black cursor-pointer -top-40 bg-customYellow h-[430px]">
+        <div className="w-screen overflow-hidden max-w-screen-sm relative top-20">
           <Carousel
             swipeable={true}
             emulateTouch={true}
@@ -131,7 +131,7 @@ function HomePageSlider() {
                 <img
                   src="src\Assets\Images\2.png"
                   alt="Image for the Carousel"
-                  className="w-screen h-auto inline-block cursor-pointer object-cover scale 150 "
+                  className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />
                 {/* Overlay */}
                 <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[450px]">
@@ -143,6 +143,60 @@ function HomePageSlider() {
                   </Link>
                 </button>
                 <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity -left-[630px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Converse All Star
+                  </Link>
+                </button>
+              </div>
+            </div>
+            <div>
+              {/* Cloned image for infinite loop */}
+              <div className="relative group h-[300px]">
+                <img
+                  src="src\Assets\Images\3.png"
+                  alt="Image for the Carousel"
+                  className="w-screen h-auto inline-block cursor-pointer object-cover"
+                />
+                {/* Overlay */}
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[450px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Jedi Mind T-Shirt
+                  </Link>
+                </button>
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity -left-[630px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Converse All Star
+                  </Link>
+                </button>
+              </div>
+            </div>
+            <div>
+              {/* Cloned image for infinite loop */}
+              <div className="relative group h-[300px]">
+                <img
+                  src="src\Assets\Images\4.png"
+                  alt="Image for the Carousel"
+                  className="w-screen h-auto inline-block cursor-pointer object-cover"
+                />
+                {/* Overlay */}
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[100px]">
+                  <Link
+                    to="/destination1"
+                    className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"
+                  >
+                    Jedi Mind T-Shirt
+                  </Link>
+                </button>
+                <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity -left-[830px]">
                   <Link
                     to="/destination1"
                     className="text-black text-xl bg-zinc-50 px-4 py-2 rounded-full"

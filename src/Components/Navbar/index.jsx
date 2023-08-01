@@ -73,7 +73,9 @@ const Navbar = () => {
         className={`search-bar-container ${
           isSearchVisible ? "h-20" : "h-0"
         } overflow-hidden transition-all duration-200 ease-in-out z-2 fixed top-20 w-screen  ${
-          isSearchVisible ? "border-b-2 border-black border-t-2 border-black" : ""
+          isSearchVisible
+            ? "border-b-2 border-black border-t-2 border-black"
+            : ""
         } ${
           isSearchVisible || isNavbarVisible
             ? "opacity-100"
@@ -104,7 +106,7 @@ const Navbar = () => {
 
       {/* Desktop Navbar */}
       <nav
-        className={`hidden md:flex justify-between top-0 items-center fixed z-10 w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
+        className={`hidden md:flex justify-between top-0 items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
           isNavbarVisible ? "opacity-100" : "opacity-0"
         }`}
       >
@@ -192,7 +194,7 @@ const Navbar = () => {
       {/* Mobile Navbar */}
       <section aria-label="Global">
         <div
-          className={`md:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-amber-400 h-20 ${
+          className={`md:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 ${
             isNavbarVisible ? "opacity-100" : "opacity-0"
           }`}
         >
