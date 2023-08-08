@@ -106,7 +106,7 @@ const Navbar = () => {
 
       {/* Desktop Navbar */}
       <nav
-        className={`hidden md:flex justify-between top-0 items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
+        className={`hidden md:flex justify-between top-0 font-[Whyte] text-[14px] items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
           isNavbarVisible ? "opacity-100" : "opacity-0"
         }`}
       >

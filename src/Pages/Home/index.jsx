@@ -24,7 +24,7 @@ function Home() {
 
         {/* Main section for desktop view */}
 
-        <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28 top-60">
+        <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28 top-0">
           {filteredProducts.map((item, index) => (
             <Card key={index} data={item} />
           ))}
@@ -33,7 +33,7 @@ function Home() {
 
       {/* Secondary section for mobile view */}
 
-      <section className="md:hidden w-full right-14 mx-1 relative">
+      <section className="md:hidden w-full right-14 mx-1 relative top-[-1250px]">
         <div className="grid grid-cols-2 gap-x-60 gap-y-20 items-center justify-center scale-50 relative">
           {filteredProducts.map((item, index) => (
             <Card key={index} data={item} />

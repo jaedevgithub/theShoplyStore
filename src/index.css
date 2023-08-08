@@ -1,24 +1,96 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 @font-face {
-    font-family: 'Whyte Inktrap';
-    src: url('WhyteInktrap-Bold.eot');
-    src: local('Whyte Inktrap Bold'), local('WhyteInktrap-Bold'),
-        url('WhyteInktrap-Bold.eot?#iefix') format('embedded-opentype'),
-        url('WhyteInktrap-Bold.woff2') format('woff2'),
-        url('WhyteInktrap-Bold.woff') format('woff'),
-        url('WhyteInktrap-Bold.ttf') format('truetype');
-    font-weight: bold;
-    font-style: normal;
+  font-family: "Whyte";
+  src: url("src/Assets/fonts/whyte/Whyte-Regular.eot");
+  src: local("src/Assets/fonts/whyte/Whyte Regular"),
+    local("src/Assets/fonts/whyte/Whyte-Regular"),
+    url("src/Assets/fonts/whyte/Whyte-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("src/Assets/fonts/whyte/Whyte-Regular.woff2") format("woff2"),
+    url("src/Assets/fonts/whyte/Whyte-Regular.woff") format("woff"),
+    url("src/Assets/fonts/whyte/Whyte-Regular.ttf") format("truetype");
+  font-weight: 100;
+  font-weight: 200;
+  font-weight: 300;
+  font-weight: 400;
+  font-weight: 500;
+  font-weight: 600;
+  font-weight: 700;
+  font-weight: 800;
+  font-weight: 900;
+  font-style: normal;
 }
 
+@font-face {
+  font-family: "WhyteBold";
+  src: url("src/Assets/fonts/whyte/Whyte-Bold.eot");
+  src: local("src/Assets/fonts/whyte/Whyte Bold"),
+    local("src/Assets/fonts/whyte/Whyte-Bold"),
+    url("src/Assets/fonts/whyte/Whyte-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("src/Assets/fonts/whyte/Whyte-Bold.woff2") format("woff2"),
+    url("src/Assets/fonts/whyte/Whyte-Bold.woff") format("woff"),
+    url("src/Assets/fonts/whyte/Whyte-Bold.ttf") format("truetype");
+  font-weight: 100;
+  font-weight: 200;
+  font-weight: 300;
+  font-weight: 400;
+  font-weight: 500;
+  font-weight: 600;
+  font-weight: 700;
+  font-weight: 800;
+  font-weight: 900;
+  font-style: normal;
+}
 
 @font-face {
-    font-family: 'Whyte Inktrap';
-    src: url('WhyteInktrap-Regular.eot');
-    src: local('Whyte Inktrap Regular'), local('WhyteInktrap-Regular'),
-        url('WhyteInktrap-Regular.eot?#iefix') format('embedded-opentype'),
-        url('WhyteInktrap-Regular.woff2') format('woff2'),
-        url('WhyteInktrap-Regular.woff') format('woff'),
-        url('WhyteInktrap-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
+  font-family: "WhyteInktrapBold";
+  src: url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.eot");
+  src: local("src/Assets/fonts/whyte-inktrap/Whyte Inktrap Bold"),
+    local("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.eot?#iefix")
+      format("embedded-opentype"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.woff2")
+      format("woff2"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.woff") format("woff"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.ttf")
+      format("truetype");
+  font-weight: 100;
+  font-weight: 200;
+  font-weight: 300;
+  font-weight: 400;
+  font-weight: 500;
+  font-weight: 600;
+  font-weight: 700;
+  font-weight: 800;
+  font-weight: 900;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "WhyteInktrap";
+  src: url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.eot");
+  src: local("src/Assets/fonts/whyte-inktrap/Whyte Inktrap Regular"),
+    local("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.eot?#iefix")
+      format("embedded-opentype"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.woff2")
+      format("woff2"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.woff")
+      format("woff"),
+    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.ttf")
+      format("truetype");
+  font-weight: 100;
+  font-weight: 200;
+  font-weight: 300;
+  font-weight: 400;
+  font-weight: 500;
+  font-weight: 600;
+  font-weight: 700;
+  font-weight: 800;
+  font-weight: 900;
+  font-style: normal;
 }
