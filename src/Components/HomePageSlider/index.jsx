@@ -26,7 +26,7 @@ function HomePageSlider() {
                 {/* Button with an overlay that contains a link */}
                 <div>
                   <img
-                    src="src/Assets/Images/slideshow.png"
+                    src="public/Images/slideshow.png"
                     alt="Image for the Carousel"
                     className="w-full h-full inline-block cursor-pointer"
                   />
@@ -55,7 +55,7 @@ function HomePageSlider() {
                   {/* Button with an overlay that contains a link */}
                   <div>
                     <img
-                      src="src/Assets/Images/slideshow.png"
+                      src="public/Images/slideshow.png"
                       alt="Image for the Carousel"
                       className="w-full h-full inline-block cursor-pointer"
                     />
@@ -102,7 +102,7 @@ function HomePageSlider() {
               {/* Button with an overlay that contains a link */}
               <div className="relative group">
                 <img
-                  src="src\Assets\Images\1.png"
+                  src="public/Images/1.png"
                   alt="Image for the Carousel"
                   className="w-full h-auto inline-block cursor-pointer"
                 />
@@ -129,7 +129,7 @@ function HomePageSlider() {
               {/* Cloned image for infinite loop */}
               <div className="relative group h-[300px]">
                 <img
-                  src="src\Assets\Images\2.png"
+                  src="public/Images/2.png"
                   alt="Image for the Carousel"
                   className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />
@@ -156,7 +156,7 @@ function HomePageSlider() {
               {/* Cloned image for infinite loop */}
               <div className="relative group h-[300px]">
                 <img
-                  src="src\Assets\Images\3.png"
+                  src="public/Images/3.png"
                   alt="Image for the Carousel"
                   className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />
@@ -183,7 +183,7 @@ function HomePageSlider() {
               {/* Cloned image for infinite loop */}
               <div className="relative group h-[300px]">
                 <img
-                  src="src\Assets\Images\4.png"
+                  src="public/Images/4.png"
                   alt="Image for the Carousel"
                   className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />

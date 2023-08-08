@@ -17,7 +17,7 @@ const CategoryFilter = () => {
       {/* Category filter for desktop*/}
       <figure className="hidden md:flex items-center justify-center">
         <img
-          src="src\Assets\Images\categoryfilter-black.png"
+          src="public/Images/categoryfilter-black.png"
           alt="category-image"
           className="w-full h-full inline-block md:ml-40 sm:ml-0"
         />
@@ -51,7 +51,7 @@ const CategoryFilter = () => {
 
       <figure className="flex items-center justify-center md:hidden relative -top-[120px]">
         <img
-          src="src\Assets\Images\categoryfilter-mobile.png"
+         src="public/Images/categoryfilter-mobile.png"
           alt="category-image"
           className="w-full h-full inline-block md:ml-40 sm:ml-0"
         />

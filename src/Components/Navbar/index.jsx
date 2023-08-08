@@ -164,7 +164,7 @@ const Navbar = () => {
               onClick={handleNavLinkClick}
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
-              <img src="src/Assets/Images/logo-full.static.svg" alt="Logo" />
+              <img src="public/Images/logo-full.static.svg" alt="Logo" />
             </NavLink>
           </div>
         </ul>
@@ -261,7 +261,7 @@ const Navbar = () => {
             <Link to="/">
               <img
                 className="w-full h-full object-cover relative right-2"
-                src="src/Assets/Images/logo-full.static.svg"
+                src="public/Images/logo-full.static.svg"
               />
             </Link>
           </button>
@@ -314,7 +314,7 @@ const Navbar = () => {
         }`}
       >
         {/* Mobile Menu Links */}
-        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-32 ml-10">
+        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-32 ml-10 font-[Whyte]">
           {/* Shop NavLink */}
           <NavLink
             href="#"
