@@ -26,7 +26,7 @@ function HomePageSlider() {
                 {/* Button with an overlay that contains a link */}
                 <div>
                   <img
-                    src="public/slideshow.png"
+                    src="/slideshow.png"
                     alt="Image for the Carousel"
                     className="w-full h-full inline-block cursor-pointer"
                   />
