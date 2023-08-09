@@ -27,6 +27,6 @@ module.exports = {
   plugins: [require("preline/plugin")],
 
   fontFamily: {
-    Whyte: ["Whyte", "sans-serif"],
+    Whyte: ["whyte", "sans-serif"],
   },
 };

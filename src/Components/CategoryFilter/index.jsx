@@ -17,7 +17,7 @@ const CategoryFilter = () => {
       {/* Category filter for desktop*/}
       <figure className="hidden md:flex items-center justify-center">
         <img
-          src="public/Images/categoryfilter-black.png"
+          src="categoryfilter-desktop.png"
           alt="category-image"
           className="w-full h-full inline-block md:ml-40 sm:ml-0"
         />
@@ -27,7 +27,7 @@ const CategoryFilter = () => {
         {/* Render clickable category options */}
         <p
           onClick={() => handleCategoryClick("shoes")}
-          className={`font-[Whyte] font-bold relative uppercase underline underline-offset-8 right-[95px] text-[54px] cursor-pointer] ${
+          className={`font-Whyte font-bold relative uppercase underline underline-offset-8 right-[95px] text-[54px] cursor-pointer ${
             selectedCategory === "shoes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
@@ -37,7 +37,7 @@ const CategoryFilter = () => {
         </p>
         <p
           onClick={() => handleCategoryClick("clothes")}
-          className={`font-[Whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[54px] cursor-pointer  ${
+          className={`font-[whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[54px] cursor-pointer  ${
             selectedCategory === "clothes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
@@ -51,7 +51,7 @@ const CategoryFilter = () => {
 
       <figure className="flex items-center justify-center md:hidden relative -top-[120px]">
         <img
-         src="public/Images/categoryfilter-mobile.png"
+          src="categoryfilter-mobile.png"
           alt="category-image"
           className="w-full h-full inline-block md:ml-40 sm:ml-0"
         />
@@ -61,7 +61,7 @@ const CategoryFilter = () => {
         {/* Render clickable category options */}
         <p
           onClick={() => handleCategoryClick("shoes")}
-          className={`font-[Whyte] font-bold relative uppercase underline underline-offset-8 right-[-8px] text-[19px] top-[19px] cursor-pointer ${
+          className={`font-[whyte] font-bold relative uppercase underline underline-offset-8 right-[-8px] text-[19px] top-[19px] cursor-pointer ${
             selectedCategory === "shoes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
@@ -71,7 +71,7 @@ const CategoryFilter = () => {
         </p>
         <p
           onClick={() => handleCategoryClick("clothes")}
-          className={`font-[Whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[19px] top-[19px] left-[-110px]  cursor-pointer  ${
+          className={`font-[whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[19px] top-[19px] left-[-110px]  cursor-pointer  ${
             selectedCategory === "clothes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"

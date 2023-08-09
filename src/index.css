@@ -3,15 +3,15 @@
 @tailwind utilities;
 
 @font-face {
-  font-family: "Whyte";
-  src: url("src/Assets/fonts/whyte/Whyte-Regular.eot");
-  src: local("src/Assets/fonts/whyte/Whyte Regular"),
-    local("src/Assets/fonts/whyte/Whyte-Regular"),
-    url("src/Assets/fonts/whyte/Whyte-Regular.eot?#iefix")
+  font-family: "whyte";
+  src: url("public/Fonts/Whyte-Regular.eot");
+  src: local("public/Fonts/Whyte-Regular"),
+    local("public/Fonts/Whyte-Regular"),
+    url("public/Fonts/Whyte-Regular.eot?#iefix")
       format("embedded-opentype"),
-    url("src/Assets/fonts/whyte/Whyte-Regular.woff2") format("woff2"),
-    url("src/Assets/fonts/whyte/Whyte-Regular.woff") format("woff"),
-    url("src/Assets/fonts/whyte/Whyte-Regular.ttf") format("truetype");
+    url("public/Fonts/Whyte-Regular.woff2") format("woff2"),
+    url("public/Fonts/Whyte-Regular.woff") format("woff"),
+    url("public/Fonts/Whyte-Regular.ttf") format("truetype");
   font-weight: 100;
   font-weight: 200;
   font-weight: 300;
@@ -26,14 +26,14 @@
 
 @font-face {
   font-family: "WhyteBold";
-  src: url("src/Assets/fonts/whyte/Whyte-Bold.eot");
-  src: local("src/Assets/fonts/whyte/Whyte Bold"),
-    local("src/Assets/fonts/whyte/Whyte-Bold"),
-    url("src/Assets/fonts/whyte/Whyte-Bold.eot?#iefix")
+  src: url("public/Fonts/Whyte-Bold.eot");
+  src: local("public/Fonts/Whyte Bold"),
+    local("public/Fonts/Whyte-Bold"),
+    url("public/Fonts/Whyte-Bold.eot?#iefix")
       format("embedded-opentype"),
-    url("src/Assets/fonts/whyte/Whyte-Bold.woff2") format("woff2"),
-    url("src/Assets/fonts/whyte/Whyte-Bold.woff") format("woff"),
-    url("src/Assets/fonts/whyte/Whyte-Bold.ttf") format("truetype");
+    url("public/Fonts/Whyte-Bold.woff2") format("woff2"),
+    url("public/Fonts/Whyte-Bold.woff") format("woff"),
+    url("public/Fonts/Whyte-Bold.ttf") format("truetype");
   font-weight: 100;
   font-weight: 200;
   font-weight: 300;
@@ -48,15 +48,15 @@
 
 @font-face {
   font-family: "WhyteInktrapBold";
-  src: url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.eot");
-  src: local("src/Assets/fonts/whyte-inktrap/Whyte Inktrap Bold"),
-    local("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.eot?#iefix")
+  src: url("public/Fonts/WhyteInktrap-Bold.eot");
+  src: local("public/Fonts/Whyte Inktrap Bold"),
+    local("public/Fonts/WhyteInktrap-Bold"),
+    url("public/Fonts/WhyteInktrap-Bold.eot?#iefix")
       format("embedded-opentype"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.woff2")
+    url("public/Fonts/WhyteInktrap-Bold.woff2")
       format("woff2"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.woff") format("woff"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Bold.ttf")
+    url("public/Fonts/WhyteInktrap-Bold.woff") format("woff"),
+    url("public/Fonts/WhyteInktrap-Bold.ttf")
       format("truetype");
   font-weight: 100;
   font-weight: 200;
@@ -72,16 +72,16 @@
 
 @font-face {
   font-family: "WhyteInktrap";
-  src: url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.eot");
-  src: local("src/Assets/fonts/whyte-inktrap/Whyte Inktrap Regular"),
-    local("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.eot?#iefix")
+  src: url("public/Fonts/WhyteInktrap-Regular.eot");
+  src: local("public/Fonts/Whyte-Inktrap-Regular"),
+    local("public/Fonts/WhyteInktrap-Regular"),
+    url("public/Fonts/WhyteInktrap-Regular.eot?#iefix")
       format("embedded-opentype"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.woff2")
+    url("public/Fonts/WhyteInktrap-Regular.woff2")
       format("woff2"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.woff")
+    url("public/Fonts/WhyteInktrap-Regular.woff")
       format("woff"),
-    url("src/Assets/fonts/whyte-inktrap/WhyteInktrap-Regular.ttf")
+    url("public/Fonts/WhyteInktrap-Regular.ttf")
       format("truetype");
   font-weight: 100;
   font-weight: 200;

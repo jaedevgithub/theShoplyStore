@@ -112,21 +112,11 @@ const Navbar = () => {
         <ul className="flex items-center gap-3">
           {/* Shop NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
-            <NavLink
-              to="/shop"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              Shop
-            </NavLink>
+            <NavLink to="/shop">Shop</NavLink>
           </li>
           {/* About NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
-            <NavLink
-              to="/about"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              About
-            </NavLink>
+            <NavLink to="/about">About</NavLink>
           </li>
           {/* Search Button */}
           <button onClick={handleSearchButtonClick}>
@@ -158,12 +148,8 @@ const Navbar = () => {
         <ul className="flex items-center">
           {/* Logo NavLink */}
           <div>
-            <NavLink
-              onClick={handleNavLinkClick}
-              to="/"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              <img src="public/Images/logo-full.static.svg" alt="Logo" />
+            <NavLink onClick={handleNavLinkClick} to="/">
+              <img src="shoply-logo-full.static.svg" alt="logo" />
             </NavLink>
           </div>
         </ul>
@@ -171,21 +157,11 @@ const Navbar = () => {
         <ul className="flex items-center gap-3">
           {/* Sign In NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
-            <NavLink
-              to="/sign-in"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              Sign In
-            </NavLink>
+            <NavLink to="/sign-in">Sign In</NavLink>
           </li>
           {/* Cart NavLink with item count */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
-            <NavLink
-              to="/cart"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
-              Cart {context.count}
-            </NavLink>
+            <NavLink to="/cart">Cart {context.count}</NavLink>
           </li>
         </ul>
       </nav>
@@ -213,7 +189,7 @@ const Navbar = () => {
               viewBox="0 0 16 16"
             >
               <path
-                fillrule="evenodd"
+                fillRule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
               />
             </svg>
@@ -260,7 +236,8 @@ const Navbar = () => {
             <Link to="/" onClick={handleNavLinkClick}>
               <img
                 className="w-full h-full object-cover relative right-2"
-                src="public/Images/logo-full.static.svg"
+                src="shoply-logo-full.static.svg"
+                alt="logo"
               />
             </Link>
           </button>
@@ -295,10 +272,7 @@ const Navbar = () => {
 
           {/* Mobile Cart Button with item count */}
           <button className="font-semibold border-2 bg-black border-black rounded-full p-2 text-md uppercase w-10 h-6 text-center flex items-center justify-center scale-150 relative left-3">
-            <NavLink
-              to="/cart"
-              className={({ isActive }) => (isActive ? activeStyle : undefined)}
-            >
+            <NavLink to="/cart">
               <p className="text-xs text-white">{context.count}</p>
             </NavLink>
           </button>
@@ -316,7 +290,7 @@ const Navbar = () => {
             Shop
           </a>
           <a
-            className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
+            className="font-medium text-black"
             href="#"
           >
             About
