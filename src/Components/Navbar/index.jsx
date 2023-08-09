@@ -51,7 +51,6 @@ const Navbar = () => {
     navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
   };
 
-  // Function to handle click on NavLink
   const handleNavLinkClick = (event) => {
     // Check if the NavLink is already active
     const isActive = event.currentTarget === document.activeElement;
@@ -70,9 +69,9 @@ const Navbar = () => {
     <header>
       {/* Search Bar */}
       <div
-        className={`search-bar-container ${
+        className={`search-bar-container z-20 ${
           isSearchVisible ? "h-20" : "h-0"
-        } overflow-hidden transition-all duration-200 ease-in-out z-2 fixed top-20 w-screen  ${
+        } overflow-hidden transition-all duration-200 ease-in-out fixed top-20 w-screen  ${
           isSearchVisible
             ? "border-b-2 border-black border-t-2 border-black"
             : ""
@@ -160,8 +159,8 @@ const Navbar = () => {
           {/* Logo NavLink */}
           <div>
             <NavLink
-              to="/"
               onClick={handleNavLinkClick}
+              to="/"
               className={({ isActive }) => (isActive ? activeStyle : undefined)}
             >
               <img src="public/Images/logo-full.static.svg" alt="Logo" />
@@ -202,8 +201,8 @@ const Navbar = () => {
           <button
             type="button"
             className="hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
-            data-hs-collapse="#navbar-image-and-text-1"
-            aria-controls="navbar-image-and-text-1"
+            data-hs-collapse="#navbar-collapse-with-animation"
+            aria-controls="navbar-collapse-with-animation"
             aria-label="Toggle navigation"
           >
             <svg
@@ -214,7 +213,7 @@ const Navbar = () => {
               viewBox="0 0 16 16"
             >
               <path
-                fillRule="evenodd"
+                fillrule="evenodd"
                 d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"
               />
             </svg>
@@ -258,7 +257,7 @@ const Navbar = () => {
 
           {/* Mobile Logo Button */}
           <button className="w-52 h-full">
-            <Link to="/">
+            <Link to="/" onClick={handleNavLinkClick}>
               <img
                 className="w-full h-full object-cover relative right-2"
                 src="public/Images/logo-full.static.svg"
@@ -307,32 +306,21 @@ const Navbar = () => {
       </section>
 
       {/* Mobile Navbar Menu */}
+
       <nav
-        id="navbar-image-and-text-1"
-        className={` sm:hidden z-10 absolute top-40 right-25 hs-collapse overflow-hidden transition-all duration-300 basis-full grow w-screen h-80 flex flex-col items-center bg-white h-screen ${
-          isNavbarVisible ? "opacity-100" : "opacity-0"
-        }`}
+        id="navbar-collapse-with-animation"
+        className="sm: hidden z-10 absolute top-20 right-25 hs-collapse hidden overflow-hidden transition-all duration-300 basis-full bg-white h-80 grow w-screen border-black border-t-2 shadow-lg"
       >
-        {/* Mobile Menu Links */}
-        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-32 ml-10 font-[Whyte]">
-          {/* Shop NavLink */}
-          <NavLink
-            href="#"
-            aria-current="page"
-            to="/shop"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
-          >
-            <p className="relative left-4 top-4">Shop</p>
-          </NavLink>
-          {/* About NavLink */}
-          <NavLink
-            to="/about"
-            className={({ isActive }) => (isActive ? activeStyle : undefined)}
+        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-0 ml-5 mt-[90px] font-[Whyte]">
+          <a className="font-medium text-black" href="#" aria-current="page">
+            Shop
+          </a>
+          <a
+            className="font-medium text-gray-600 hover:text-gray-400 dark:text-gray-400 dark:hover:text-gray-500"
             href="#"
           >
-            <p className="relative left-4 top-6">About</p>
-          </NavLink>
-          {/* More Mobile Menu Links Here */}
+            About
+          </a>
         </div>
       </nav>
     </header>

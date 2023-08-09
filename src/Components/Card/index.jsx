@@ -35,12 +35,12 @@ const Card = ({ data }) => {
     <>
       <NavLink to="/product-detail">
         <section
-          className="bg-white cursor-pointer w-[287px] h-[382px] relative"
+          className="bg-white cursor-pointer w-[287.5px] h-[467.38px]"
           onClick={() => showProduct(data)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <figure className="relative mb-2 w-full h-full">
+         <figure className="relative mb-6 w-full h-full">
             <img
               className={`w-full h-full object-cover rounded-customBorder transition-opacity ${
                 isMouseOver ? "opacity-0" : "opacity-100"
@@ -59,8 +59,8 @@ const Card = ({ data }) => {
             )}
           </figure>
           <p className="flex justify-between">
-            <span className="text-sm font-light">{displayTitle}</span>
-            <span className="text-lg font-medium">${displayPrice}</span>
+            <span className="text-[20px] font-[Whyte]">{displayTitle}</span>
+            <span className="text-[20px] font-[Whyte]">${displayPrice}</span>
           </p>
         </section>
       </NavLink>

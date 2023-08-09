@@ -24,22 +24,22 @@ function Home() {
 
         {/* Main section for desktop view */}
 
-        <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28 top-0">
+        <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative left-[-6.6rem] top-0">
           {filteredProducts.map((item, index) => (
             <Card key={index} data={item} />
           ))}
         </section>
+
+        {/* Secondary section for mobile view */}
+
+        <section className="md:hidden w-screens h-[900px] relative top-[-50px]">
+          <div className="grid grid-cols-1 gap-y-20 items-center">
+            {filteredProducts.map((item, index) => (
+              <Card key={index} data={item} />
+            ))}
+          </div>
+        </section>
       </Layout>
-
-      {/* Secondary section for mobile view */}
-
-      <section className="md:hidden w-full right-14 mx-1 relative top-[-1250px]">
-        <div className="grid grid-cols-2 gap-x-60 gap-y-20 items-center justify-center scale-50 relative">
-          {filteredProducts.map((item, index) => (
-            <Card key={index} data={item} />
-          ))}
-        </div>
-      </section>
     </>
   );
 }

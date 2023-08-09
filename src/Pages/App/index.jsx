@@ -31,7 +31,7 @@ const AppRoutes = () => {
       <Route path="/cart" element={<Cart />} />
       <Route path="/product-detail" element={<ProductDetail />} />
       <Route path="/search-results" element={<SearchResultsPage />} />
-      <Route path="/*" element={<NotFound />} />
+      <Route path="./*" element={<NotFound />} />
     </Routes>
   );
 };
