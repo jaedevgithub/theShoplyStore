@@ -27,7 +27,7 @@ const CategoryFilter = () => {
         {/* Render clickable category options */}
         <p
           onClick={() => handleCategoryClick("shoes")}
-          className={`font-Whyte font-bold relative uppercase underline underline-offset-8 right-[95px] text-[54px] cursor-pointer ${
+          className={`font-[Whyte] font-bold relative uppercase underline underline-offset-8 right-[95px] text-[54px] cursor-pointer ${
             selectedCategory === "shoes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
@@ -37,7 +37,7 @@ const CategoryFilter = () => {
         </p>
         <p
           onClick={() => handleCategoryClick("clothes")}
-          className={`font-[whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[54px] cursor-pointer  ${
+          className={`font-[Whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[54px] cursor-pointer  ${
             selectedCategory === "clothes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
@@ -61,7 +61,7 @@ const CategoryFilter = () => {
         {/* Render clickable category options */}
         <p
           onClick={() => handleCategoryClick("shoes")}
-          className={`font-[whyte] font-bold relative uppercase underline underline-offset-8 right-[-8px] text-[19px] top-[19px] cursor-pointer ${
+          className={`font-[Whyte] font-bold relative uppercase underline underline-offset-8 right-[-8px] text-[19px] top-[19px] cursor-pointer ${
             selectedCategory === "shoes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
@@ -71,7 +71,7 @@ const CategoryFilter = () => {
         </p>
         <p
           onClick={() => handleCategoryClick("clothes")}
-          className={`font-[whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[19px] top-[19px] left-[-110px]  cursor-pointer  ${
+          className={`font-[Whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[19px] top-[19px] left-[-110px]  cursor-pointer  ${
             selectedCategory === "clothes" || selectedCategory === null
               ? "text-black"
               : "text-customGray"
