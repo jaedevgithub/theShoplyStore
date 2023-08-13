@@ -24,16 +24,28 @@ function Home() {
 
         {/* Main section for desktop view */}
 
-        <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative left-[-6.6rem] top-0">
-          {filteredProducts.map((item, index) => (
-            <Card key={index} data={item} />
-          ))}
+        <section className="hidden md:hidden lg:block">
+          <div className="grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative left-[-6.6rem] top-0">
+            {filteredProducts.map((item, index) => (
+              <Card key={index} data={item} />
+            ))}
+          </div>
         </section>
 
         {/* Secondary section for mobile view */}
 
-        <section className="md:hidden w-screens h-[900px] relative top-[-50px]">
-          <div className="grid grid-cols-1 gap-y-20 items-center">
+        <section className="md:hidden w-screens relative top-[-50px]">
+          <div className="grid grid-cols-2 items-center gap-y-20 gap-x-6">
+            {filteredProducts.map((item, index) => (
+              <Card key={index} data={item} />
+            ))}
+          </div>
+        </section>
+
+        {/* Secondary section for tablet view */}
+
+        <section className="hidden md:block lg:hidden w-screens relative top-[-50px]">
+          <div className="grid grid-cols-4 items-center gap-y-40 gap-x-6">
             {filteredProducts.map((item, index) => (
               <Card key={index} data={item} />
             ))}

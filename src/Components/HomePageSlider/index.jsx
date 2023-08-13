@@ -1,15 +1,15 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
-import { useSwipeable } from "react-swipeable";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
 function HomePageSlider() {
   return (
     <>
-      <section className="hidden sm:block relative -top-20 border-b-2 border-black cursor-pointer bg-customYellow">
-        <div className="w-screen overflow-hidden">
-          <div className="w-full h-auto overflow-hidden">
+      {/* Desktop carousel */}
+      <section className="hidden sm:block relative -top-40 border-b-2 border-black cursor-pointer bg-customYellow w-screen">
+        <div className="w-screen">
+          <div className="w-screen h-full overflow-hidden">
             <Carousel
               swipeable={true}
               emulateTouch={true}
@@ -28,7 +28,7 @@ function HomePageSlider() {
                   <img
                     src="/carousel-image.png"
                     alt="Image for the Carousel"
-                    className="w-full h-full inline-block cursor-pointer"
+                    className="w-full h-full inline-block cursor-pointer mt-20"
                   />
                   {/* Overlay */}
                   <button className="absolute -top-10 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[15%]">
@@ -57,7 +57,7 @@ function HomePageSlider() {
                     <img
                       src="/carousel-image.png"
                       alt="Image for the Carousel"
-                      className="w-full h-full inline-block cursor-pointer"
+                      className="w-full h-full inline-block cursor-pointer mt-20"
                     />
                     {/* Overlay */}
                     <button className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[15%]">

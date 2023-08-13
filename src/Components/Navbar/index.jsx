@@ -6,7 +6,6 @@ import "preline";
 const Navbar = () => {
   // Get the shopping cart context using useContext hook
   const context = useContext(ShoppingCartContext);
-  const activeStyle = "underline underline-offset-4";
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
@@ -66,7 +65,7 @@ const Navbar = () => {
   };
 
   return (
-    <header>
+    <header className="w-screen">
       {/* Search Bar */}
       <div
         className={`search-bar-container z-20 ${
@@ -83,7 +82,7 @@ const Navbar = () => {
       >
         <div className="flex items-center justify-center h-20 w-full bg-white">
           <div className="flex items-center w-full mx-auto rounded-lg">
-            <div className="w-full">
+            <div className="w-screen">
               <form onSubmit={handleSearch}>
                 <input
                   type="text"
@@ -105,17 +104,17 @@ const Navbar = () => {
 
       {/* Desktop Navbar */}
       <nav
-        className={`hidden md:flex justify-between top-0 font-[Whyte] text-[14px] items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
+        className={`hidden md:hidden lg:flex justify-between top-0 font-[Whyte] text-[14px] items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
           isNavbarVisible ? "opacity-100" : "opacity-0"
         }`}
       >
         <ul className="flex items-center gap-3">
           {/* Shop NavLink */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center hover:bg-black hover:text-white">
             <NavLink to="/shop">Shop</NavLink>
           </li>
           {/* About NavLink */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
             <NavLink to="/about">About</NavLink>
           </li>
           {/* Search Button */}
@@ -156,11 +155,11 @@ const Navbar = () => {
         <ul />
         <ul className="flex items-center gap-3">
           {/* Sign In NavLink */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
             <NavLink to="/sign-in">Sign In</NavLink>
           </li>
           {/* Cart NavLink with item count */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center">
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
             <NavLink to="/cart">Cart {context.count}</NavLink>
           </li>
         </ul>
@@ -169,7 +168,7 @@ const Navbar = () => {
       {/* Mobile Navbar */}
       <section aria-label="Global">
         <div
-          className={`md:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 ${
+          className={`lg:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 ${
             isNavbarVisible ? "opacity-100" : "opacity-0"
           }`}
         >
@@ -283,18 +282,31 @@ const Navbar = () => {
 
       <nav
         id="navbar-collapse-with-animation"
-        className="sm: hidden z-10 absolute top-20 right-25 hs-collapse hidden overflow-hidden transition-all duration-300 basis-full bg-white h-80 grow w-screen border-black border-t-2 shadow-lg"
+        className="sm: hidden z-10 absolute top-20 flex items-left hs-collapse hidden overflow-hidden transition-all duration-300 basis-full bg-white h-full grow w-screen border-black border-t-2 shadow-lg"
       >
-        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative right-0 ml-5 mt-[90px] font-[Whyte]">
-          <a className="font-medium text-black" href="#" aria-current="page">
-            Shop
-          </a>
-          <a
-            className="font-medium text-black"
-            href="#"
-          >
-            About
-          </a>
+        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative ml-5 mt-[90px] font-[Whyte]">
+          <div>
+            <div className="flex flex-col relative md:-top-[390px]">
+              <a
+                className="font-medium text-black "
+                href="#"
+                aria-current="page"
+              >
+                Shop
+              </a>
+              <a className="font-medium text-black mt-10" href="#">
+                About
+              </a>
+            </div>
+          </div>
+          <div className="flex flex-col relative md:-top-60 md:-left-[180px]">
+            <a className="font-medium text-black text-[16px] mt-20" href="#">
+              Privacy Terms
+            </a>
+            <a className="font-medium text-black text-[16px] mt-10" href="#">
+              Contact Us
+            </a>
+          </div>
         </div>
       </nav>
     </header>

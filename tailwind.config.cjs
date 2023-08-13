@@ -7,6 +7,7 @@ module.exports = {
       colors: {
         customYellow: "#FFC700",
         customGray: "#a3a3a3",
+        customOrange: "#f24e1e",
         scale: {
           175: "1.75",
         },

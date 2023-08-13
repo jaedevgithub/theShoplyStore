@@ -23,8 +23,20 @@ const SearchResultsPage = () => {
 
   return (
     <Layout>
-      <h2>Search Results</h2>
-      <section className="grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28">
+      {/* Search results desktop*/}
+      <h2 className="hidden md:block">Search Results</h2>
+      <section className="hidden md:block grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28">
+        {filteredItems.length > 0 ? (
+          filteredItems.map((item, index) => (
+            <Card key={index} data={item} /> // Use the index as a unique key
+          ))
+        ) : (
+          <p>No results found</p>
+        )}
+      </section>
+      {/* Search results mobile*/}
+      <h2 className="md:hidden">Search Results</h2>
+      <section className="md:hidden flex justify-center flex-col items-center gap-y-20 w-screen ">
         {filteredItems.length > 0 ? (
           filteredItems.map((item, index) => (
             <Card key={index} data={item} /> // Use the index as a unique key

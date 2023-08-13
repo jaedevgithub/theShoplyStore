@@ -15,7 +15,7 @@ const CategoryFilter = () => {
   return (
     <>
       {/* Category filter for desktop*/}
-      <figure className="hidden md:flex items-center justify-center">
+      <figure className="hidden md:hidden lg:flex items-center justify-center">
         <img
           src="categoryfilter-desktop.png"
           alt="category-image"
@@ -23,7 +23,7 @@ const CategoryFilter = () => {
         />
       </figure>
 
-      <section className="hidden md:grid gap-x-60 gap-y-20 grid-cols-2 w-full max-w-screen-lg relative -top-[210px] left-[40px] text-[54px]">
+      <section className="hidden md:hidden lg:grid gap-x-60 gap-y-20 grid-cols-2 w-full max-w-screen-lg relative -top-[210px] left-[40px] text-[54px]">
         {/* Render clickable category options */}
         <p
           onClick={() => handleCategoryClick("shoes")}

@@ -35,14 +35,14 @@ const Card = ({ data }) => {
     <>
       <NavLink to="/product-detail">
         <section
-          className="bg-white cursor-pointer w-[287.5px] h-[467.38px]"
+          className="bg-white cursor-pointer w-[160.5px] h-[210.38px] md:w-[169.5px] md:h-[227.13px] lg:w-[287.5px] lg:h-[467.38px] "
           onClick={() => showProduct(data)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-         <figure className="relative mb-6 w-full h-full">
+          <figure className="relative mb-6 w-full h-full">
             <img
-              className={`w-full h-full object-cover rounded-customBorder transition-opacity ${
+              className={`w-full h-full object-cover rounded-customBorder transition-opacity  ${
                 isMouseOver ? "opacity-0" : "opacity-100"
               }`}
               src={image}
