@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 
+
 function HomePageSlider() {
   return (
     <>
@@ -10,6 +11,7 @@ function HomePageSlider() {
       <section className="hidden sm:block relative -top-40 border-b-2 border-black cursor-pointer bg-customYellow w-screen">
         <div className="w-screen">
           <div className="w-screen h-full overflow-hidden">
+
             <Carousel
               swipeable={true}
               emulateTouch={true}

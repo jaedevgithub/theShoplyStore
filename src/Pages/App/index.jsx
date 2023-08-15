@@ -7,7 +7,6 @@ import MyOrder from "../MyOrder";
 import MyOrders from "../MyOrders";
 import NotFound from "../NotFound";
 import SignIn from "../SignIn";
-import Shop from "../Shop";
 import About from "../About";
 import Cart from "../../Components/Cart";
 import ProductDetail from "../../Components/ProductDetail";
@@ -26,7 +25,6 @@ const AppRoutes = () => {
       <Route path="/my-orders/last" element={<MyOrder />} />
       <Route path="/my-orders/:id" element={<MyOrder />} />
       <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/shop" element={<Shop />} />
       <Route path="/about" element={<About />} />
       <Route path="/cart" element={<Cart />} />
       <Route path="/product-detail" element={<ProductDetail />} />

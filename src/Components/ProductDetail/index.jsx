@@ -2,6 +2,7 @@ import React, { useContext, useState } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ShoppingCartContext } from "../../Context";
+import Layout from "../Layout";
 
 const ProductDetail = () => {
   // Get the shopping cart context using useContext hook
@@ -45,7 +46,7 @@ const ProductDetail = () => {
     <>
       {/* Desktop product detail page */}
 
-      <section className="flex items-center justify-center">
+      <section className="hidden sm:hidden md:hidden lg:flex items-center justify-center -mb-[900px] mt-20">
         <div className="hidden md:flex flex-row-3 items-center justify-between mb-60 relative mt-80">
           <aside>
             {/* Display product images */}
@@ -77,7 +78,11 @@ const ProductDetail = () => {
             <div className="flex flex-col items-left">
               {/* Display product details */}
               <p className="text-xl">{category}</p>
-              <h2 className="text-4xl mb-5">{productToShow.title}</h2>
+              <span>
+                <h2 className="text-4xl mb-5 font-[WhyteInktrap] font-semibold text-[48px] w-[300px]">
+                  {productToShow.title}
+                </h2>
+              </span>
               <p className="text-xl mb-5">{productToShow.description}</p>
             </div>
             <div>
@@ -109,7 +114,7 @@ const ProductDetail = () => {
       </section>
 
       {/* Mobile product detail page */}
-      <section className="md:hidden mx-auto  mt-40 mb-60 top-10">
+      <section className="sm:block md:hidden mt-[180px]  -mb-[940px] top-10">
         <div className="flex flex-col items-left">
           {/* Display product details on mobile */}
           <p className="text-xl relative ml-10">{category}</p>
@@ -172,6 +177,7 @@ const ProductDetail = () => {
           </button>
         </div>
       </section>
+      <Layout></Layout>
     </>
   );
 };

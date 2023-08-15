@@ -2,6 +2,9 @@ import React, { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
 import { Link } from "react-router-dom";
+import { IoIosCloseCircleOutline } from "react-icons/io";
+import { AiOutlineMinusCircle } from "react-icons/ai";
+import { AiOutlinePlusCircle } from "react-icons/ai";
 
 function Cart() {
   // Get the shopping cart context and extract cartProducts, count, and order
@@ -95,62 +98,195 @@ function Cart() {
   };
 
   return (
-    <Layout>
-      <div className="container mx-auto px-4">
-        <h1 className="text-3xl font-bold mt-8 mb-4">Cart</h1>
+    <>
+      {/* Desktop shopping cart*/}
+
+      <section className="hidden md:block lg:block container mx-auto px-4 relative mt-60 w-screen -mb-[800px]">
+        <h1 className="text-3xl font-bold mt-8 mb-4 pb-6 border-b-2 border-black">
+          {context.count} items in Cart
+        </h1>
         {cartProducts.length > 0 ? (
           <div>
-            <ul>
-              {cartProducts.map((product, index) => {
-                const count = product.quantity || 0;
-                const subtotal = product.price * count; // Calculate subtotal for each product
+            <table className="border-collapse w-full bg-white">
+              <thead className="text-[24px] border-b-2 border-black">
+                <tr className="bg-white ">
+                  <th className="px-4 py-2 text-left">Item</th>
+                  <th className="px-4 py-2">Price</th>
+                  <th className="px-4 py-2">Qty</th>
+                  <th className="px-4 py-2">Subtotal</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartProducts.map((product, index) => {
+                  const count = product.quantity || 0;
+                  const subtotal = product.price * count; // Calculate subtotal for each product
 
-                return (
-                  <li key={index} className="flex items-center space-x-4">
-                    <img
-                      src={product.images[0]}
-                      alt={product.title}
-                      className="w-16 h-16 object-cover rounded-lg"
-                    />
-                    <div>
-                      <p>{product.title}</p>
-                      <p>${product.price}</p>
-                      <p>
-                        Size:{" "}
-                        {typeof product.size === "object"
-                          ? Object.keys(product.size).join(", ")
-                          : product.size}
-                      </p>{" "}
-                      {/* Show the selected size */}
-                      <p>Subtotal: ${subtotal.toFixed(2)}</p>
-                      <div className="flex items-center space-x-2">
-                        <button
-                          onClick={() => handleReduceQuantity(product)}
-                          className="text-red-500"
-                        >
-                          -
-                        </button>
-                        <p>{count}</p>
-                        <button
-                          onClick={() => handleAddQuantity(product)}
-                          className="text-green-500"
-                        >
-                          +
-                        </button>
-                      </div>
-                    </div>
-                    <button
-                      onClick={() => handleRemoveProduct(product)}
-                      className="text-red-500"
+                  return (
+                    <tr
+                      key={index}
+                      className={
+                        index % 2 === 0
+                          ? " border-t-2 border-b-2 border-black"
+                          : ""
+                      }
                     >
-                      Remove
-                    </button>
-                  </li>
-                );
-              })}
-            </ul>
-            <p>Total Items: {context.count}</p>
-            <p>Total Price: ${total}</p>
+                      <td className="bg-white px-4 py-2">
+                        <div className="flex items-center space-x-4">
+                          <button
+                            onClick={() => handleRemoveProduct(product)}
+                            className="text-black text-[46px]"
+                          >
+                            <IoIosCloseCircleOutline />
+                          </button>
+                          <img
+                            src={product.images[0]}
+                            alt={product.title}
+                            className="w-[120px] h-[120px] object-cover rounded-lg"
+                          />
+                          <span>
+                            <p className="text-[26px]">{product.title}</p>
+                            <p>
+                              {typeof product.size === "object"
+                                ? Object.keys(product.size).join(", ")
+                                : product.size}
+                            </p>{" "}
+                          </span>
+                        </div>
+                      </td>
+                      <td className="bg-white px-4 py-2 text-center">
+                        ${product.price}
+                      </td>
+                      <td className="bg-white px-4 py-2 text-center">
+                        <span className="flex justify-center">
+                          <button
+                            onClick={() => handleReduceQuantity(product)}
+                            className="text-black text-[46px]"
+                          >
+                            <AiOutlineMinusCircle />
+                          </button>
+                          <p className="mt-3 ml-4 mr-4 text-[16px]">{count}</p>
+                          <button
+                            onClick={() => handleAddQuantity(product)}
+                            className="text-black text-[46px]"
+                          >
+                            <AiOutlinePlusCircle />
+                          </button>
+                        </span>
+                      </td>
+                      <td className="bg-white px-4 py-2 text-center">
+                        ${subtotal.toFixed(2)}
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <p className="text-right mt-4 mb-4 text-[26px]">
+              <span className="font-bold">Total*</span> ${total}
+            </p>
+            <Link to="/my-orders/last">
+              <button
+                className="bg-black py-3 text-white w-[200px] rounded-lg relative left-[1050px]"
+                onClick={handleCheckout}
+              >
+                Checkout
+              </button>
+            </Link>
+          </div>
+        ) : (
+          <div className="text-center mt-8">
+            <p className="text-2xl font-semibold mb-40 mt-40 text-[48px]">
+              EMPTY CART, AAACKKK
+            </p>
+            <Link to="/">
+              <button
+                className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline"
+                onClick={handleCheckout}
+              >
+                See all products
+              </button>
+            </Link>
+          </div>
+        )}
+      </section>
+
+      {/* Mobile shopping cart*/}
+
+      <section className="md:hidden container mx-auto px-4 relative mt-[200px] -mb-[1000px] w-screen">
+        <h1 className="text-3xl font-bold mt-8 mb-4">
+          {context.count} items in Cart
+        </h1>
+        {cartProducts.length > 0 ? (
+          <div>
+            <table className="border-collapse w-full bg-white">
+              <thead className="text-[24px] border-t-2 border-b-2 border-black">
+                <tr className="bg-white">
+                  <th className="px-4 py-2 text-left">Item</th>
+                </tr>
+              </thead>
+              <tbody>
+                {cartProducts.map((product, index) => {
+                  const count = product.quantity || 0;
+                  const subtotal = product.price * count; // Calculate subtotal for each product
+
+                  return (
+                    <tr
+                      key={index}
+                      className={
+                        index % 2 === 0
+                          ? " border-t-2 border-b-2 border-black"
+                          : ""
+                      }
+                    >
+                      <td className="bg-white px-4 py-2">
+                        <div className="flex items-center space-x-4 justify-between">
+                          <img
+                            src={product.images[0]}
+                            alt={product.title}
+                            className="w-[80px] h-[80px] object-cover rounded-lg"
+                          />
+                          <span>
+                            <p className="text-[16px]">{product.title}</p>
+                          </span>
+                          <button
+                            onClick={() => handleRemoveProduct(product)}
+                            className="text-black text-[46px]"
+                          >
+                            <IoIosCloseCircleOutline />
+                          </button>
+                        </div>
+                        <div className="flex items-center space-x-4 justify-between mt-6 mb-6">
+                          <span className="flex justify-center">
+                            <button
+                              onClick={() => handleReduceQuantity(product)}
+                              className="text-black text-[46px]"
+                            >
+                              <AiOutlineMinusCircle />
+                            </button>
+                            <p className="mt-3 ml-4 mr-4 text-[16px]">
+                              {count}
+                            </p>
+                            <button
+                              onClick={() => handleAddQuantity(product)}
+                              className="text-black text-[46px]"
+                            >
+                              <AiOutlinePlusCircle />
+                            </button>
+                          </span>
+                          <span className="flex">
+                            <p className="mr-5"> ${product.price}</p>
+                            <p> ${subtotal.toFixed(2)}</p>
+                          </span>
+                        </div>
+                      </td>
+                    </tr>
+                  );
+                })}
+              </tbody>
+            </table>
+            <p className="text-right mt-4 mb-4 text-[26px]">
+              <span className="font-bold">Total*</span> ${total}
+            </p>
             <Link to="/my-orders/last">
               <button
                 className="bg-black py-3 text-white w-full rounded-lg"
@@ -161,10 +297,23 @@ function Cart() {
             </Link>
           </div>
         ) : (
-          <p>{context.count > 0 ? "Order Placed" : "Your cart is empty"}</p>
+          <div className="text-center mt-8">
+            <p className="text-2xl font-semibold mb-40 mt-40 text-[38px]">
+              EMPTY CART, AAACKKK
+            </p>
+            <Link to="/">
+              <button
+                className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline"
+                onClick={handleCheckout}
+              >
+                See all products
+              </button>
+            </Link>
+          </div>
         )}
-      </div>
-    </Layout>
+      </section>
+      <Layout></Layout>
+    </>
   );
 }
 

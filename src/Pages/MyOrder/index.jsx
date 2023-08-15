@@ -1,62 +1,82 @@
 import React, { useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
-import { ChevronLeftIcon } from "@heroicons/react/24/solid";
 import { Link } from "react-router-dom";
+import { BsArrowLeftCircle } from "react-icons/bs";
 
 const MyOrder = () => {
-  // Get the shopping cart context
   const context = useContext(ShoppingCartContext);
-
-  // Destructure the order from the context
   const { order } = context;
-
-  // Get the current path from the window location
   const currentPath = window.location.pathname;
-
-  // Extract the index from the URL path
   let index = currentPath.substring(currentPath.lastIndexOf("/") + 1);
 
-  // If "last" is present in the URL, set the index to the last order
   if (index === "last") {
-    // If the context has at least one order, get the index of the last order
     index = context.order?.length > 0 ? context.order.length - 1 : 14;
   }
 
-  console.log(index);
-
-  // If no order is found in the context, display a message
   if (!order) {
     return <p>No orders found.</p>;
   }
 
+  const orderDetails = order[index]; // Get the specific order details
+
   return (
-    <div className="bg-white shadow-md rounded-lg p-4 mt-20">
-      <Link to="/my-orders" className="absolute left-0">
-        {/* Navigate back to MyOrders page using the link */}
-        <ChevronLeftIcon className="h-6 w-6 text-black cursor-pointer" />
-      </Link>
+    <div className="bg-white rounded-lg p-4 mt-40 flex flex-col items-center">
       <h2 className="text-2xl font-bold mb-4">My Order</h2>
-      {/* Map through the products of the specified order */}
-      {order[index].products.map((product, index) => (
-        <div
-          key={index}
-          className="flex items-center border-b border-gray-300 pb-4 mb-4"
-        >
-          <img
-            src={product.images[0]}
-            alt={product.title}
-            className="w-16 h-16 object-cover rounded"
-          />
-          <div className="ml-4">
-            <p className="font-semibold">{product.title}</p>
-            <p>Size: {product.size}</p>
-            {/* Calculate the subtotal for each product */}
-            <p>Subtotal: ${product.price * product.quantity}</p>
-          </div>
-        </div>
-      ))}
-      {/* Display the total price of the specified order */}
-      <p className="text-xl font-bold">Total: ${order[index].total}</p>
+      <table className="border-collapse w-[90%] md:w-[80%] bg-white">
+        <thead className="text-[24px] border-b-2 border-black">
+          <tr className="bg-white ">
+            <th className="px-4 py-2 text-left">Item</th>
+            <th className="px-4 py-2">Size</th>
+            <th className="px-4 py-2">Price</th>
+            <th className="px-4 py-2">Qty</th>
+            <th className="px-4 py-2">Subtotal</th>
+          </tr>
+        </thead>
+        <tbody>
+          {orderDetails.products.map((product, index) => (
+            <tr
+              key={index}
+              className={index % 2 === 0 ? "border-b border-black" : ""}
+            >
+              <td className="bg-white px-4 py-2">
+                <div className="flex items-center space-x-4">
+                  <img
+                    src={product.images[0]}
+                    alt={product.title}
+                    className="w-16 h-16 object-cover rounded"
+                  />
+                  <p>{product.title}</p>
+                </div>
+              </td>
+              <td className="bg-white px-4 py-2 text-center">{product.size}</td>
+              <td className="bg-white px-4 py-2 text-center">
+                ${product.price}
+              </td>
+              <td className="bg-white px-4 py-2 text-center">
+                {product.quantity}
+              </td>
+              <td className="bg-white px-4 py-2 text-center">
+                ${(product.price * product.quantity).toFixed(2)}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colSpan="4" className="bg-white px-4 py-2 text-right font-bold">
+              Total*
+            </td>
+            <td className="bg-white px-4 py-2 text-center font-bold">
+              ${orderDetails.total}
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+      <Link to="/my-orders">
+        <button className="bg-black py-3 text-white w-[200px] rounded-lg relative mt-6">
+          See all orders
+        </button>
+      </Link>
     </div>
   );
 };

@@ -10,7 +10,7 @@ const Layout = ({ children }) => {
         {children}
       </main>
       {/* Desktop footer */}
-      <footer className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-[424px]`}>
+      <footer className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-[424px] mt-60`}>
         <div className="text-center grid">
           <div className="relative left-[-450px] top-20">
             <img
@@ -60,7 +60,7 @@ const Layout = ({ children }) => {
               className="relative top-4 left-60"
             >
               <svg
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink="http://www.w3.org/1999/xlink"
                 width="50"
                 height="50"
                 viewBox="0 0 50 50"
@@ -101,7 +101,7 @@ const Layout = ({ children }) => {
               className="relative -top-40 left-40"
             >
               <svg
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink="http://www.w3.org/1999/xlink"
                 width="50"
                 height="50"
                 viewBox="0 0 50 50"
@@ -118,12 +118,12 @@ const Layout = ({ children }) => {
               </svg>
             </button>
           </div>
-          <div className="mt-3 text-[18px] relative top-60 flex flex-col items-center justify-evenly">
-            <div className="flex flex-col items-right justify-right text-left relative -top-[590px] left-72">
+          <div className="mt-3 text-[18px] relative top-0 flex flex-col items-center justify-evenly">
+            <div className="flex flex-col items-right justify-right text-left relative -top-[350px] left-72">
               <a className="hover:underline">Privacy & Terms</a>{" "}
               <a className="hover:underline mt-4">Contact Us</a>
             </div>
-            <div className="flex flex-col text-left justify-left w-[40px] relative -top-[450px] left-[60px]">
+            <div className="flex flex-col text-left justify-left w-[40px] relative -top-[190px] left-[60px]">
               <a
                 className="inline-flex text-center relative hover:underline"
                 href="#"
@@ -174,7 +174,7 @@ const Layout = ({ children }) => {
               className="relative -top-2 left-5"
             >
               <svg
-                xmlns:xlink="http://www.w3.org/1999/xlink"
+                xlink="http://www.w3.org/1999/xlink"
                 width="50"
                 height="50"
                 viewBox="0 0 50 50"
