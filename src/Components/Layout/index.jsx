@@ -10,7 +10,9 @@ const Layout = ({ children }) => {
         {children}
       </main>
       {/* Desktop footer */}
-      <footer className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-[424px] mt-60`}>
+      <footer
+        className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-[424px] mt-60`}
+      >
         <div className="text-center grid">
           <div className="relative left-[-450px] top-20">
             <img
