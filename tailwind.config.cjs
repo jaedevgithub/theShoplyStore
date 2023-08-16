@@ -4,6 +4,12 @@ module.exports = {
 
   theme: {
     extend: {
+      screens: {
+        'hd': '1280px',
+        'fullhd': '1920px',
+        'qhd': '2560px',
+        '4k': '3840px',
+      },
       colors: {
         customYellow: "#FFC700",
         customGray: "#a3a3a3",

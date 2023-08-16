@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
         <div className="text-center grid">
           <div className="relative left-[-450px] top-20">
             <img
-              src="public/footer-logo.png"
+              src="/footer-logo.png"
               alt="alt-footer-logo"
               className="w-[250px] h-[273px] inline-block cursor-pointer"
             />
@@ -26,8 +26,8 @@ const Layout = ({ children }) => {
               Objects that inspire
             </p>
             <div className="flex flex-col items-right justify-right text-left relative w-[300px] left-[200px]">
-              <a className="hover:underline">Privacy & Terms</a>{" "}
-              <a className="hover:underline">Contact Us</a>
+              <a className="hover:underline">Repository</a>{" "}
+              <a className="hover:underline">Original website</a>
             </div>
           </div>
           <div className="mt-3 space-x-[100px] text-[26px] relative -top-20 ">
@@ -87,7 +87,7 @@ const Layout = ({ children }) => {
         <div className="text-center">
           <div className="relative top-20">
             <img
-              src="public/footer-logo.png"
+              src="/footer-logo.png"
               alt="alt-footer-logo"
               className="w-[250px] h-[273px] inline-block cursor-pointer relative right-[200px]"
             />
@@ -122,8 +122,8 @@ const Layout = ({ children }) => {
           </div>
           <div className="mt-3 text-[18px] relative top-0 flex flex-col items-center justify-evenly">
             <div className="flex flex-col items-right justify-right text-left relative -top-[350px] left-72">
-              <a className="hover:underline">Privacy & Terms</a>{" "}
-              <a className="hover:underline mt-4">Contact Us</a>
+              <a className="hover:underline">Repository of this project</a>
+              <a className="hover:underline mt-4">Original website</a>
             </div>
             <div className="flex flex-col text-left justify-left w-[40px] relative -top-[190px] left-[60px]">
               <a
@@ -160,7 +160,7 @@ const Layout = ({ children }) => {
         <div className="text-center">
           <div className="relative top-20">
             <img
-              src="public/footer-logo.png"
+              src="/footer-logo.png"
               alt="alt-footer-logo"
               className="w-[250px] h-[273px] inline-block cursor-pointer"
             />
@@ -195,8 +195,8 @@ const Layout = ({ children }) => {
           </div>
           <div className="mt-3 text-[18px] relative top-60 flex flex-col items-center justify-evenly">
             <div className="flex flex-col items-right justify-right text-left relative -top-2 right-20">
-              <a className="hover:underline">Privacy & Terms</a>{" "}
-              <a className="hover:underline mt-4">Contact Us</a>
+              <a className="hover:underline">Repository</a>
+              <a className="hover:underline mt-4">Original website</a>
             </div>
             <div className="flex flex-col text-left justify-left w-[40px] relative -top-20 left-20">
               <a

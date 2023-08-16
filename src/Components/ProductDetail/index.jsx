@@ -1,27 +1,26 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ShoppingCartContext } from "../../Context";
 import Layout from "../Layout";
 
 const ProductDetail = () => {
-  // Get the shopping cart context using useContext hook
   const context = useContext(ShoppingCartContext);
-
-  // State variables
   const { productToShow } = context;
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
 
-  // If there's no product to show, return null to render nothing
+  // Save selected size to local storage when it changes
+  useEffect(() => {
+    localStorage.setItem("selectedSize", selectedSize);
+  }, [selectedSize]);
+
   if (!productToShow) {
     return null;
   }
 
-  // Extract category from the product, or set it to an empty string if not available
   const category = productToShow.category ? productToShow.category.name : "";
 
-  // Event handlers
   const handleImageClick = (image) => {
     setSelectedImage(image);
   };
@@ -30,17 +29,15 @@ const ProductDetail = () => {
     setSelectedSize(size);
   };
 
-  // Function to add products to the cart
   const addProductsToCart = () => {
     if (selectedSize) {
-      // If a size is selected, add the product to the cart using the context function
       context.addProductToCart(productToShow, selectedSize);
-      // Update the counter directly in the context
       context.setCount(context.count + 1);
     } else {
       console.error("Please select a size before adding to the cart.");
     }
   };
+  
 
   return (
     <>

@@ -33,7 +33,9 @@ const Card = ({ data }) => {
 
   return (
     <>
-      <NavLink to="/product-detail">
+      <NavLink to={`/product-detail/${data.id}`}>
+        {" "}
+        {/* Asegúrate de usar data.id */}
         <section
           className="bg-white cursor-pointer w-[160.5px] h-[210.38px] md:w-[169.5px] md:h-[227.13px] lg:w-[287.5px] lg:h-[467.38px] "
           onClick={() => showProduct(data)}

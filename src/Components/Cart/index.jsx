@@ -7,12 +7,10 @@ import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 function Cart() {
-  // Get the shopping cart context and extract cartProducts, count, and order
   const context = useContext(ShoppingCartContext);
   const cartProducts = context.cartProducts || [];
   const [total, setTotal] = useState(0);
 
-  // Calculate the total price of all products in the cart when cartProducts change
   useEffect(() => {
     const calculateTotal = () => {
       let total = 0;
@@ -27,72 +25,58 @@ function Cart() {
     setTotal(newTotal);
   }, [cartProducts]);
 
-  // Function to handle removing a product from the cart
   const handleRemoveProduct = (product) => {
     const updatedCartProducts = cartProducts.filter(
       (p) => !(p.id === product.id && p.size === product.size)
     );
     context.setCartProducts(updatedCartProducts);
-    context.setCount(context.count - product.quantity); // Subtract the quantity of the removed product from the counter
+    context.setCount(context.count - product.quantity);
   };
 
-  // Function to handle adding the quantity of a product in the cart by 1
   const handleAddQuantity = (product) => {
     context.addProductToCart(product, product.size);
-    context.setCount(context.count + 1); // Update the counter directly
+    context.setCount(context.count + 1);
   };
 
-  // Function to handle reducing the quantity of a product in the cart by 1
   const handleReduceQuantity = (product) => {
     const quantity = product.quantity || 0;
     if (quantity > 1) {
-      // Reduce the quantity of the product in the cart by 1
       const updatedCartProducts = cartProducts.map((p) =>
         p.id === product.id && p.size === product.size
           ? { ...p, quantity: p.quantity - 1 }
           : p
       );
       context.setCartProducts(updatedCartProducts);
-      context.setCount(context.count - 1); // Subtract 1 from the counter
+      context.setCount(context.count - 1);
     } else {
-      // Find all the product sizes with quantity greater than 0
       const sizesWithQuantity = productSizes
         .find((p) => p.id === product.id)
         .sizes.filter((size) => product.quantityBySize[size] > 0);
 
-      // Check if there are other sizes available with quantity greater than 0
       if (sizesWithQuantity.length > 1) {
-        // Remove only the specific product size from the cart
         const updatedCartProducts = cartProducts.filter(
           (p) => !(p.id === product.id && p.size === product.size)
         );
         context.setCartProducts(updatedCartProducts);
-        context.setCount(context.count - 1); // Subtract 1 from the counter
+        context.setCount(context.count - 1);
       } else {
-        // Remove the entire product from the cart if no other sizes are available
         context.removeProductFromCart(product);
-        context.setCount(context.count - 1); // Subtract 1 from the counter
+        context.setCount(context.count - 1);
       }
     }
   };
 
-  // Function to handle the checkout process
   const handleCheckout = () => {
-    // Get the current date
     const currentDate = new Date().toLocaleDateString();
-
-    // Create the order with the necessary data
     const orderToAdd = {
       date: currentDate,
       products: cartProducts,
       total: total,
     };
 
-    // Store the order in the global cart state
     context.setOrder([...context.order, orderToAdd]);
     console.log("Order Created:", orderToAdd);
 
-    // Clear the cart and reset the counter
     context.setCartProducts([]);
     context.setCount(0);
   };

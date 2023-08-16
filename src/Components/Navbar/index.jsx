@@ -111,11 +111,7 @@ const Navbar = () => {
         <ul className="flex items-center gap-3">
           {/* Shop NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center hover:bg-black hover:text-white">
-            <NavLink to="/shop">Shop</NavLink>
-          </li>
-          {/* About NavLink */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
-            <NavLink to="/about">About</NavLink>
+            <NavLink to="/">Shop</NavLink>
           </li>
           {/* Search Button */}
           <button onClick={handleSearchButtonClick}>

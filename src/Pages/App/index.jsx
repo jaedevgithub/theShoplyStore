@@ -7,7 +7,6 @@ import MyOrder from "../MyOrder";
 import MyOrders from "../MyOrders";
 import NotFound from "../NotFound";
 import SignIn from "../SignIn";
-import About from "../About";
 import Cart from "../../Components/Cart";
 import ProductDetail from "../../Components/ProductDetail";
 import Navbar from "../../Components/Navbar";
@@ -25,9 +24,8 @@ const AppRoutes = () => {
       <Route path="/my-orders/last" element={<MyOrder />} />
       <Route path="/my-orders/:id" element={<MyOrder />} />
       <Route path="/sign-in" element={<SignIn />} />
-      <Route path="/about" element={<About />} />
       <Route path="/cart" element={<Cart />} />
-      <Route path="/product-detail" element={<ProductDetail />} />
+      <Route path="/product-detail/:productId" element={<ProductDetail />} />
       <Route path="/search-results" element={<SearchResultsPage />} />
       <Route path="./*" element={<NotFound />} />
     </Routes>
