@@ -7,19 +7,14 @@ import Layout from "../Layout";
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
   const { productToShow } = context;
-  const [selectedImage, setSelectedImage] = useState("");
-  const [selectedSize, setSelectedSize] = useState("");
-
-  // Save selected size to local storage when it changes
-  useEffect(() => {
-    localStorage.setItem("selectedSize", selectedSize);
-  }, [selectedSize]);
 
   if (!productToShow) {
-    return null;
+    return <p>Loading...</p>; // Handle the case where productToShow is null or undefined.
   }
 
-  const category = productToShow.category ? productToShow.category.name : "";
+  const [selectedImage, setSelectedImage] = useState("");
+  const [selectedSize, setSelectedSize] = useState("");
+  const category = productToShow?.category?.name || "";
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -37,12 +32,10 @@ const ProductDetail = () => {
       console.error("Please select a size before adding to the cart.");
     }
   };
-  
 
   return (
     <>
       {/* Desktop product detail page */}
-
       <section className="hidden sm:hidden md:hidden lg:flex items-center justify-center -mb-[900px] mt-20">
         <div className="hidden md:flex flex-row-3 items-center justify-between mb-60 relative mt-80">
           <aside>
@@ -110,8 +103,8 @@ const ProductDetail = () => {
         </div>
       </section>
 
-      {/* Mobile product detail page */}
-      <section className="sm:block md:hidden mt-[180px]  -mb-[940px] top-10">
+      {/* Mobile and tablet product detail page */}
+      <section className="sm:block md:block xl:hidden mt-[180px]  -mb-[940px] top-10">
         <div className="flex flex-col items-left">
           {/* Display product details on mobile */}
           <p className="text-xl relative ml-10">{category}</p>

@@ -7,7 +7,7 @@ module.exports = {
       screens: {
         'hd': '1280px',
         'fullhd': '1920px',
-        'qhd': '2560px',
+        'qhd': '2048px',
         '4k': '3840px',
       },
       colors: {

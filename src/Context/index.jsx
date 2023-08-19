@@ -12,7 +12,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [cartProducts, setCartProducts] = useState([]); // Array containing products added to the cart
   const [order, setOrder] = useState([]); // Array containing the orders
   const [items, setItems] = useState([]); // Array containing the items
-  const [searchByTitle, setSearchByTitle] = useState(""); // Get products by title (changed to an empty string)
+  const [searchByTitle, setSearchByTitle] = useState(""); // Get products by title (initialized to an empty string)
   const [searchByCategory, setSearchByCategory] = useState(null); // Search products by category (initially null)
   const [filteredItems, setFilteredItems] = useState(null); // Filtered items based on searchByTitle or searchByCategory
 
@@ -30,6 +30,31 @@ export const ShoppingCartProvider = ({ children }) => {
         setItems([]);
       });
   }, []);
+
+  useEffect(() => {
+    // Load cart data from localStorage
+    const savedCart = localStorage.getItem("cart");
+    if (savedCart) {
+      setCartProducts(JSON.parse(savedCart));
+    }
+
+    // Load order data from localStorage
+    const savedOrder = localStorage.getItem("order");
+    if (savedOrder) {
+      setOrder(JSON.parse(savedOrder));
+    }
+    // Other variables you may save in localStorage
+  }, []);
+
+  // Function to save the cart to localStorage
+  const saveCartToLocalStorage = (cart) => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  };
+
+  // Function to save the order to localStorage
+  const saveOrderToLocalStorage = (orderData) => {
+    localStorage.setItem("order", JSON.stringify(orderData));
+  };
 
   // Function to filter items based on the searchByTitle state
   const filteredItemsByTitle = (items, searchByTitle) => {
@@ -86,18 +111,49 @@ export const ShoppingCartProvider = ({ children }) => {
           : p
       );
       setCartProducts(updatedCartProducts);
+      saveCartToLocalStorage(updatedCartProducts);
     } else {
       // If the product with the selected size doesn't exist in the cart, add it with quantity 1
-      setCartProducts((prevCartProducts) => [
-        ...prevCartProducts,
+      const updatedCartProducts = [
+        ...cartProducts,
         { ...product, size: selectedSize, quantity: 1 },
-      ]);
+      ];
+      setCartProducts(updatedCartProducts);
+      saveCartToLocalStorage(updatedCartProducts);
     }
   };
 
   // Function to remove a product from the cart
   const removeProductFromCart = (product) => {
-    setCartProducts(cartProducts.filter((item) => item.id !== product.id));
+    const updatedCartProducts = cartProducts.filter((item) => item.id !== product.id);
+    setCartProducts(updatedCartProducts);
+    saveCartToLocalStorage(updatedCartProducts);
+  };
+
+  // Function to place an order
+  const placeOrder = () => {
+    // Implement your logic to place an order here
+
+    // For example, you can save the current cart as an order
+    const newOrder = {
+      date: new Date().toISOString(), // You can set the order date to the current date
+      total: cartProducts.reduce((total, product) => total + (product.quantity || 0), 0),
+      products: cartProducts,
+    };
+
+    // Clear the cart
+    const updatedCartProducts = [];
+    
+    // Save the updated order to localStorage
+    const updatedOrders = [...order, newOrder];
+    saveOrderToLocalStorage(updatedOrders);
+    
+    // Clear the cart data from localStorage
+    localStorage.removeItem("cart");
+
+    // Update the state with the new order and cleared cart
+    setOrder(updatedOrders);
+    setCartProducts(updatedCartProducts);
   };
 
   // Context value containing all the data and functions to be shared with child components
@@ -113,6 +169,7 @@ export const ShoppingCartProvider = ({ children }) => {
     setCartProducts,
     addProductToCart,
     removeProductFromCart,
+    placeOrder,
     order,
     setOrder,
     items,

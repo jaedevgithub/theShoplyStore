@@ -37,7 +37,7 @@ const Card = ({ data }) => {
         {" "}
         {/* Asegúrate de usar data.id */}
         <section
-          className="bg-white cursor-pointer w-[160.5px] h-[210.38px] md:w-[169.5px] md:h-[227.13px] lg:w-[287.5px] lg:h-[382.38px] "
+          className="bg-white cursor-pointer w-[160.5px] h-[210.38px] md:w-[169.5px] md:h-[227.13px] lg:w-[287.5px] lg:h-[467.38px] "
           onClick={() => showProduct(data)}
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}

@@ -1,11 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import Layout from "../../Components/Layout";
 import { ShoppingCartContext } from "../../Context";
 import OrdersCard from "../../Components/OrdersCard";
 
 function MyOrders() {
-  // Get the shopping cart context using useContext hook
   const context = useContext(ShoppingCartContext);
 
   // Check if there are no orders or the orders array is empty
