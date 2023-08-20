@@ -9,11 +9,22 @@ function MyOrders() {
 
   // Check if there are no orders or the orders array is empty
   if (!context.order || context.order.length === 0) {
-    return <p>No orders found.</p>;
+    return (
+      <div className="flex flex-col items-center justify-center min-h-screen pt-20 mt-20">
+        <p className="text-2xl font-semibold mb-40 mt-40 text-[48px]">
+          NO ORDERS HERE, AAACKKK
+        </p>
+        <Link to="/">
+          <button className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline">
+            See all products
+          </button>
+        </Link>
+      </div>
+    );
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen pt-20 mt-20 ">
+    <div className="flex flex-col items-center justify-center min-h-screen pt-20 mt-20">
       {/* Container for the "My Orders" heading */}
       <div className="container mx-auto px-4 text-left mb-8">
         <h2 className="text-3xl font-bold mt-8 mb-4">My orders</h2>
@@ -30,7 +41,12 @@ function MyOrders() {
                   key={index}
                   date={order.date}
                   totalPrice={order.total}
-                  totalProducts={order.products.length}
+                  totalProducts={
+                    order.products.reduce(
+                      (total, product) => total + (product.quantity || 0),
+                      0
+                    )
+                  }
                 />
               </Link>
             );

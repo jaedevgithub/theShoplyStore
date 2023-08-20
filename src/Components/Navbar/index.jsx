@@ -11,6 +11,7 @@ const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate(); // Use the useNavigate hook here
+  const isLoggedIn = context.isLoggedIn; // Supongamos que tienes una variable isLoggedIn en tu contexto
 
   // Function to handle click on the search button
   const handleSearchButtonClick = () => {
@@ -105,7 +106,7 @@ const Navbar = () => {
       {/* Desktop Navbar */}
       <nav
         className={`hidden md:hidden lg:flex justify-between top-0 font-[Whyte] text-[14px] items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
-          isNavbarVisible ? "opacity-100" : "opacity-0"
+          isNavbarVisible && isLoggedIn ? "opacity-100" : "opacity-0"
         }`}
       >
         <ul className="flex items-center gap-3">
@@ -152,7 +153,7 @@ const Navbar = () => {
         <ul className="flex items-center gap-3">
           {/* Sign In NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
-            <NavLink to="/sign-in">Sign In</NavLink>
+            <NavLink to="/my-account">My account</NavLink>
           </li>
           {/* Cart NavLink with item count */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">

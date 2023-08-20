@@ -1,20 +1,17 @@
 import React, { createContext, useState, useEffect } from "react";
 
-// Create a new context called ShoppingCartContext
 export const ShoppingCartContext = createContext();
 
-// ShoppingCartProvider is a wrapper component that provides the shopping cart context to its children
 export const ShoppingCartProvider = ({ children }) => {
-  // State variables using useState hooks
-  const [count, setCount] = useState(0); // Total count of items in the cart
-  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false); // Whether the product detail modal is open or not
-  const [productToShow, setProductToShow] = useState(null); // The product to show details for in the modal
-  const [cartProducts, setCartProducts] = useState([]); // Array containing products added to the cart
-  const [order, setOrder] = useState([]); // Array containing the orders
-  const [items, setItems] = useState([]); // Array containing the items
-  const [searchByTitle, setSearchByTitle] = useState(""); // Get products by title (initialized to an empty string)
-  const [searchByCategory, setSearchByCategory] = useState(null); // Search products by category (initially null)
-  const [filteredItems, setFilteredItems] = useState(null); // Filtered items based on searchByTitle or searchByCategory
+  const [count, setCount] = useState(0);
+  const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
+  const [productToShow, setProductToShow] = useState(null);
+  const [cartProducts, setCartProducts] = useState([]);
+  const [order, setOrder] = useState([]);
+  const [items, setItems] = useState([]);
+  const [searchByTitle, setSearchByTitle] = useState("");
+  const [searchByCategory, setSearchByCategory] = useState(null);
+  const [filteredItems, setFilteredItems] = useState(null);
 
   console.log("searchByTitle", searchByTitle);
   console.log("searchByCategory:", searchByCategory);
@@ -125,7 +122,9 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Function to remove a product from the cart
   const removeProductFromCart = (product) => {
-    const updatedCartProducts = cartProducts.filter((item) => item.id !== product.id);
+    const updatedCartProducts = cartProducts.filter(
+      (item) => item.id !== product.id
+    );
     setCartProducts(updatedCartProducts);
     saveCartToLocalStorage(updatedCartProducts);
   };
@@ -137,17 +136,20 @@ export const ShoppingCartProvider = ({ children }) => {
     // For example, you can save the current cart as an order
     const newOrder = {
       date: new Date().toISOString(), // You can set the order date to the current date
-      total: cartProducts.reduce((total, product) => total + (product.quantity || 0), 0),
+      total: cartProducts.reduce(
+        (total, product) => total + (product.quantity || 0),
+        0
+      ),
       products: cartProducts,
     };
 
     // Clear the cart
     const updatedCartProducts = [];
-    
+
     // Save the updated order to localStorage
     const updatedOrders = [...order, newOrder];
     saveOrderToLocalStorage(updatedOrders);
-    
+
     // Clear the cart data from localStorage
     localStorage.removeItem("cart");
 
@@ -156,7 +158,27 @@ export const ShoppingCartProvider = ({ children }) => {
     setCartProducts(updatedCartProducts);
   };
 
-  // Context value containing all the data and functions to be shared with child components
+  // Estados y funciones relacionados con el inicio de sesión
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  // En el contexto global
+  const login = (email, password) => {
+    if (email.includes("@") && password.trim() !== "") {
+      setIsLoggedIn(true);
+    } else {
+      alert(
+        "Por favor, ingresa un correo electrónico válido y una contraseña."
+      );
+    }
+  };
+
+  const logout = () => {
+    // Realiza aquí tu lógica de cierre de sesión
+    setIsLoggedIn(false);
+  };
+
   const contextValue = {
     count,
     setCount,
@@ -180,9 +202,16 @@ export const ShoppingCartProvider = ({ children }) => {
     setFilteredItems,
     searchByCategory,
     setSearchByCategory,
+    // Estados y funciones relacionados con el inicio de sesión
+    isLoggedIn,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    login,
+    logout,
   };
 
-  // Render the ShoppingCartContext.Provider component to provide the context to all children
   return (
     <ShoppingCartContext.Provider value={contextValue}>
       {children}

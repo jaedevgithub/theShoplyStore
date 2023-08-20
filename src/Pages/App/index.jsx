@@ -6,7 +6,7 @@ import MyAccount from "../MyAccount";
 import MyOrder from "../MyOrder";
 import MyOrders from "../MyOrders";
 import NotFound from "../NotFound";
-import SignIn from "../SignIn";
+import SignIn from "../../Components/SignIn";
 import Cart from "../../Components/Cart";
 import ProductDetail from "../../Components/ProductDetail";
 import Navbar from "../../Components/Navbar";
