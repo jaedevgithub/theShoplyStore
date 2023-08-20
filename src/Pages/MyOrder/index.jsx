@@ -35,35 +35,37 @@ const MyOrder = () => {
             </tr>
           </thead>
           <tbody>
-            {orderDetails.products.map((product, index) => (
-              <tr
-                key={index}
-                className={index % 2 === 0 ? "border-b border-black" : ""}
-              >
-                <td className="bg-white px-2 md:px-4 py-2">
-                  <div className="flex items-center space-x-2 md:space-x-4">
-                    <img
-                      src={product.images[0]}
-                      alt={product.title}
-                      className="w-10 h-10 md:w-16 md:h-16 object-cover rounded"
-                    />
-                    <p className="text-sm md:text-base">{product.title}</p>
-                  </div>
-                </td>
-                <td className="bg-white px-2 md:px-4 py-2 text-center">
-                  {product.size}
-                </td>
-                <td className="bg-white px-2 md:px-4 py-2 text-center">
-                  ${product.price}
-                </td>
-                <td className="bg-white px-2 md:px-4 py-2 text-center">
-                  {product.quantity}
-                </td>
-                <td className="bg-white px-2 md:px-4 py-2 text-center">
-                  ${(product.price * product.quantity).toFixed(2)}
-                </td>
-              </tr>
-            ))}
+            {orderDetails &&
+              orderDetails.products &&
+              orderDetails.products.map((product, index) => (
+                <tr
+                  key={index}
+                  className={index % 2 === 0 ? "border-b border-black" : ""}
+                >
+                  <td className="bg-white px-2 md:px-4 py-2">
+                    <div className="flex items-center space-x-2 md:space-x-4">
+                      <img
+                        src={product.images[0]}
+                        alt={product.title}
+                        className="w-10 h-10 md:w-16 md:h-16 object-cover rounded"
+                      />
+                      <p className="text-sm md:text-base">{product.title}</p>
+                    </div>
+                  </td>
+                  <td className="bg-white px-2 md:px-4 py-2 text-center">
+                    {product.size}
+                  </td>
+                  <td className="bg-white px-2 md:px-4 py-2 text-center">
+                    ${product.price}
+                  </td>
+                  <td className="bg-white px-2 md:px-4 py-2 text-center">
+                    {product.quantity}
+                  </td>
+                  <td className="bg-white px-2 md:px-4 py-2 text-center">
+                    ${(product.price * product.quantity).toFixed(2)}
+                  </td>
+                </tr>
+              ))}
           </tbody>
           <tfoot>
             <tr>
@@ -74,7 +76,9 @@ const MyOrder = () => {
                 Total*
               </td>
               <td className="bg-white px-2 md:px-4 py-2 text-center font-bold">
-                ${orderDetails.total}
+                {orderDetails && orderDetails.total && (
+                  <span>${orderDetails.total}</span>
+                )}
               </td>
             </tr>
           </tfoot>

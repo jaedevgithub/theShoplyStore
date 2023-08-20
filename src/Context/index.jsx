@@ -156,6 +156,11 @@ export const ShoppingCartProvider = ({ children }) => {
     // Update the state with the new order and cleared cart
     setOrder(updatedOrders);
     setCartProducts(updatedCartProducts);
+    setCount(0); // Reset the count to 0
+
+    // You might want to do other things related to order placement here
+
+    setIsProductDetailOpen(false); // Close the product detail modal
   };
 
   // Estados y funciones relacionados con el inicio de sesión

@@ -166,7 +166,7 @@ const Navbar = () => {
       <section aria-label="Global">
         <div
           className={`lg:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 ${
-            isNavbarVisible ? "opacity-100" : "opacity-0"
+            isNavbarVisible && isLoggedIn ? "opacity-100" : "opacity-0"
           }`}
         >
           {/* Mobile Menu Toggle Button */}

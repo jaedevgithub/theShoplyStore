@@ -344,16 +344,11 @@ function HomePageSlider() {
                   className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />
                 {productDetails.map((product) => (
-                  <button className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-100 transition-opacity left-[20px] md:left-[-60px] z-10">
-                    <Link
-                      to={`/product-detail/${product.id}`}
-                      className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
-                        product.id === 14 ? "special-style" : ""
-                      }`}
-                      onClick={() => showProduct(product)}
-                    >
-                      {hasFetched ? product.title : "Loading..."}
-                    </Link>
+                  <button
+                    key={product.id}
+                    className={`absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[15%] hd:left-[13%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100`}
+                  >
+                    {/* ... */}
                   </button>
                 ))}
               </div>

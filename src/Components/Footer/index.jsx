@@ -6,7 +6,7 @@ function Footer() {
   return (
     <>
       <footer
-        className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-[424px] mt-60`}
+        className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-full 4k:mt-[-800px] 4k:h-[800px]`}
       >
         <div className="text-center grid">
           <div className="relative left-[-450px] top-20">

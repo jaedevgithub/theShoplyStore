@@ -74,11 +74,21 @@ function Cart() {
       total: total,
     };
 
+    // Agrega la orden al contexto global
     context.setOrder([...context.order, orderToAdd]);
-    console.log("Order Created:", orderToAdd);
 
+    // Limpia el carrito
     context.setCartProducts([]);
     context.setCount(0);
+
+    // Guarda la orden en el almacenamiento local (opcional)
+    const ordersInLocalStorage = localStorage.getItem("orders");
+    const orders = ordersInLocalStorage ? JSON.parse(ordersInLocalStorage) : [];
+    orders.push(orderToAdd);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    // Limpia el carrito en el almacenamiento local
+    localStorage.removeItem("cart");
   };
 
   return (
@@ -123,10 +133,11 @@ function Cart() {
                             <IoIosCloseCircleOutline />
                           </button>
                           <img
-                            src={product.images[0]}
+                            src={product.images && product.images[0]}
                             alt={product.title}
                             className="w-[120px] h-[120px] object-cover rounded-lg"
                           />
+
                           <span>
                             <p className="text-[26px]">{product.title}</p>
                             <p>
@@ -225,10 +236,11 @@ function Cart() {
                       <td className="bg-white px-4 py-2">
                         <div className="flex items-center space-x-4 justify-between">
                           <img
-                            src={product.images[0]}
+                            src={product.images && product.images[0]}
                             alt={product.title}
-                            className="w-[80px] h-[80px] object-cover rounded-lg"
+                            className="w-[120px] h-[120px] object-cover rounded-lg"
                           />
+
                           <span>
                             <p className="text-[16px]">{product.title}</p>
                           </span>

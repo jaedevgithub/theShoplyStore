@@ -12,15 +12,6 @@
     url("/Fonts/Whyte-Regular.woff2") format("woff2"),
     url("/Fonts/Whyte-Regular.woff") format("woff"),
     url("/Fonts/Whyte-Regular.ttf") format("truetype");
-  font-weight: 100;
-  font-weight: 200;
-  font-weight: 300;
-  font-weight: 400;
-  font-weight: 500;
-  font-weight: 600;
-  font-weight: 700;
-  font-weight: 800;
-  font-weight: 900;
   font-style: normal;
 }
 
@@ -34,15 +25,6 @@
     url("/Fonts/Whyte-Bold.woff2") format("woff2"),
     url("/Fonts/Whyte-Bold.woff") format("woff"),
     url("/Fonts/Whyte-Bold.ttf") format("truetype");
-  font-weight: 100;
-  font-weight: 200;
-  font-weight: 300;
-  font-weight: 400;
-  font-weight: 500;
-  font-weight: 600;
-  font-weight: 700;
-  font-weight: 800;
-  font-weight: 900;
   font-style: normal;
 }
 
@@ -58,15 +40,6 @@
     url("/Fonts/WhyteInktrap-Bold.woff") format("woff"),
     url("/Fonts/WhyteInktrap-Bold.ttf")
       format("truetype");
-  font-weight: 100;
-  font-weight: 200;
-  font-weight: 300;
-  font-weight: 400;
-  font-weight: 500;
-  font-weight: 600;
-  font-weight: 700;
-  font-weight: 800;
-  font-weight: 900;
   font-style: normal;
 }
 
@@ -83,15 +56,6 @@
       format("woff"),
     url("/Fonts/WhyteInktrap-Regular.ttf")
       format("truetype");
-  font-weight: 100;
-  font-weight: 200;
-  font-weight: 300;
-  font-weight: 400;
-  font-weight: 500;
-  font-weight: 600;
-  font-weight: 700;
-  font-weight: 800;
-  font-weight: 900;
   font-style: normal;
 }
 

@@ -7,6 +7,14 @@ import OrdersCard from "../../Components/OrdersCard";
 function MyOrders() {
   const context = useContext(ShoppingCartContext);
 
+  // Use useEffect to fetch orders from localStorage when the component mounts
+  useEffect(() => {
+    const savedOrders = localStorage.getItem("orders");
+    if (savedOrders) {
+      context.setOrder(JSON.parse(savedOrders));
+    }
+  }, []);
+
   // Check if there are no orders or the orders array is empty
   if (!context.order || context.order.length === 0) {
     return (
@@ -41,12 +49,10 @@ function MyOrders() {
                   key={index}
                   date={order.date}
                   totalPrice={order.total}
-                  totalProducts={
-                    order.products.reduce(
-                      (total, product) => total + (product.quantity || 0),
-                      0
-                    )
-                  }
+                  totalProducts={order.products.reduce(
+                    (total, product) => total + (product.quantity || 0),
+                    0
+                  )}
                 />
               </Link>
             );
@@ -55,7 +61,7 @@ function MyOrders() {
           }
         })}
       </section>
-      <Layout></Layout>
+      <Layout />
     </div>
   );
 }
