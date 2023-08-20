@@ -1,6 +1,7 @@
 import React, { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import "/src/index.css";
+import Layout from "../Layout";
 
 const CategoryFilter = () => {
   const context = useContext(ShoppingCartContext);

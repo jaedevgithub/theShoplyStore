@@ -1,12 +1,10 @@
 import React from "react";
-import { ShoppingCartContext } from "../../Context";
-
 
 function Footer() {
   return (
     <>
       <footer
-        className={`hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-full 4k:mt-[-800px] 4k:h-[800px]`}
+        className="sm:hidden md:hidden lg:block mt-60 w-screen bg-customOrange h-full 4k:mt-[-800px] 4k:h-[800px]"
       >
         <div className="text-center grid">
           <div className="relative left-[-450px] top-20">
@@ -151,7 +149,7 @@ function Footer() {
       </footer>
 
       {/* Mobile footer */}
-      <footer className="md:hidden mt-[2320px] w-screen bg-customOrange h-[924px] flex flex-col">
+      <footer className="md:hidden mt-[100px] w-screen bg-customOrange h-[924px] flex flex-col">
         <div className="text-center">
           <div className="relative top-20">
             <img
@@ -222,7 +220,6 @@ function Footer() {
           </div>
         </div>
       </footer>
-      
     </>
   );
 }

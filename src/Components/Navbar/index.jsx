@@ -4,21 +4,25 @@ import { ShoppingCartContext } from "../../Context";
 import "preline";
 
 const Navbar = () => {
-  // Get the shopping cart context using useContext hook
   const context = useContext(ShoppingCartContext);
   const [isSearchVisible, setIsSearchVisible] = useState(false);
   const [isNavbarVisible, setIsNavbarVisible] = useState(true);
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
-  const navigate = useNavigate(); // Use the useNavigate hook here
-  const isLoggedIn = context.isLoggedIn; // Supongamos que tienes una variable isLoggedIn en tu contexto
+  const navigate = useNavigate();
+  const isLoggedIn = context.isLoggedIn;
 
-  // Function to handle click on the search button
+  const { isAuthenticated, logout } = useContext(ShoppingCartContext);
+
+  const handleLogout = () => {
+    // Realiza cualquier lógica necesaria para el cierre de sesión aquí
+    logout();
+  };
+
   const handleSearchButtonClick = () => {
     setIsSearchVisible(!isSearchVisible);
   };
 
-  // Function to handle scroll and show/hide Navbar and Search Bar
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const isScrollingDown = prevScrollPos < currentScrollPos;
@@ -26,40 +30,31 @@ const Navbar = () => {
     setPrevScrollPos(currentScrollPos);
 
     if (isSearchVisible && isScrollingDown) {
-      // If the Search Bar is open and scrolling down, close it
       setIsSearchVisible(false);
     }
 
-    // Hide Navbar when scrolling down and show it when scrolling up
     setIsNavbarVisible(!isScrollingDown || currentScrollPos === 0);
   };
 
   useEffect(() => {
-    // Add scroll event when component mounts
     window.addEventListener("scroll", handleScroll);
 
-    // Clean up the event when component unmounts
     return () => {
       window.removeEventListener("scroll", handleScroll);
     };
   }, [isSearchVisible]);
 
-  // Function to handle search form submission
   const handleSearch = (event) => {
     event.preventDefault();
-    // Redirect to the search results page with the search query as a URL parameter
     navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
   };
 
   const handleNavLinkClick = (event) => {
-    // Check if the NavLink is already active
     const isActive = event.currentTarget === document.activeElement;
     if (isActive) {
-      // If it's on the Home page, refresh the page
       if (window.location.pathname === "/") {
         window.location.reload();
       } else {
-        // If it's not on the Home page, navigate to the root path "/"
         navigate("/");
       }
     }
@@ -67,7 +62,6 @@ const Navbar = () => {
 
   return (
     <header className="w-screen">
-      {/* Search Bar */}
       <div
         className={`search-bar-container z-20 ${
           isSearchVisible ? "h-20" : "h-0"
@@ -103,18 +97,15 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Desktop Navbar */}
       <nav
         className={`hidden md:hidden lg:flex justify-between top-0 font-[Whyte] text-[14px] items-center md:fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
-          isNavbarVisible && isLoggedIn ? "opacity-100" : "opacity-0"
+          isNavbarVisible ? "opacity-100" : "opacity-0"
         }`}
       >
         <ul className="flex items-center gap-3">
-          {/* Shop NavLink */}
           <li className="font-semibold border-2 border-black rounded-full p-2 text-[16px] uppercase w-24 h-[38px] text-center flex items-center justify-center hover:bg-black hover:text-white">
             <NavLink to="/">Shop</NavLink>
           </li>
-          {/* Search Button */}
           <button onClick={handleSearchButtonClick}>
             <svg
               className="relative left-5"
@@ -142,7 +133,6 @@ const Navbar = () => {
           </button>
         </ul>
         <ul className="flex items-center">
-          {/* Logo NavLink */}
           <div>
             <NavLink onClick={handleNavLinkClick} to="/">
               <img src="/shoply-logo-full.static.svg" alt="logo" />
@@ -151,27 +141,27 @@ const Navbar = () => {
         </ul>
         <ul />
         <ul className="flex items-center gap-3">
-          {/* Sign In NavLink */}
           <li className="w-[214px] h-[38px] text-[16px] border-2 font-semibold border-black rounded-full p-2 text-md uppercase text-center flex items-center justify-center hover:bg-black hover:text-white">
-            <NavLink to="/my-account">
-              {" "}
-              <span className="relative top-[1.5px]">My account</span>
-            </NavLink>
+            {isAuthenticated ? (
+              <NavLink to="/my-account">
+                <span className="relative top-[1.5px]">My Account</span>
+              </NavLink>
+            ) : (
+              <NavLink to="/sign-in">
+                <span className="relative top-[1.5px]">Sign In</span>
+              </NavLink>
+            )}
           </li>
-          {/* Cart NavLink with item count */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-[16px] uppercase w-24 h-[38px] text-center flex items-center justify-center hover:bg-black hover:text-white">
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-[16px] uppercase w-24 h-[38px] text-center flex items-center justify-center hover-bg-black hover:text-white">
             <NavLink to="/cart">
-              {" "}
               <span className="relative top-[1.5px]">Cart {context.count}</span>
             </NavLink>
           </li>
         </ul>
       </nav>
 
-      {/* Mobile Navbar */}
       <section aria-label="Global">
         <div className="lg:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 opacity-100">
-          {/* Mobile Menu Toggle Button */}
           <button
             type="button"
             className="hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
@@ -201,8 +191,6 @@ const Navbar = () => {
               <path d="M4.646 4.646a.5.5 0 0 1 .708 0L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 0 1 0-.708z" />
             </svg>
           </button>
-
-          {/* Mobile Search Button */}
           <button onClick={handleSearchButtonClick}>
             <svg
               className="relative right-2"
@@ -228,8 +216,6 @@ const Navbar = () => {
               />
             </svg>
           </button>
-
-          {/* Mobile Logo Button */}
           <button className="w-52 h-full">
             <Link to="/" onClick={handleNavLinkClick}>
               <img
@@ -239,8 +225,6 @@ const Navbar = () => {
               />
             </Link>
           </button>
-
-          {/* Mobile Cart Button with item count */}
           <button className="font-semibold border-2 bg-black border-black rounded-full p-2 text-md uppercase w-10 h-6 text-center flex items-center justify-center scale-150 relative left-3">
             <NavLink to="/cart">
               <p className="text-xs text-white">{context.count}</p>
@@ -267,8 +251,6 @@ const Navbar = () => {
           </nav>
         </div>
       </section>
-
-      {/* Mobile Navbar Menu */}
     </header>
   );
 };

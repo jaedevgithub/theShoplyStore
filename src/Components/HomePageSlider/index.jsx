@@ -343,12 +343,21 @@ function HomePageSlider() {
                   alt="Image for the Carousel"
                   className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />
+
                 {productDetails.map((product) => (
                   <button
                     key={product.id}
-                    className={`absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[15%] hd:left-[13%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100`}
+                    className={`absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[15%] hd:left-[23%] flex items-center justify-center opacity-100 transition-opacity group-hover:opacity-100`}
                   >
-                    {/* ... */}
+                    <Link
+                      to={`/product-detail/${product.id}`}
+                      className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
+                        product.id === 14 ? "special-style" : ""
+                      }`}
+                      onClick={() => showProduct(product)}
+                    >
+                      {hasFetched ? product.title : "Loading..."}
+                    </Link>
                   </button>
                 ))}
               </div>
@@ -360,20 +369,22 @@ function HomePageSlider() {
                   alt="Image for the Carousel"
                   className="w-screen h-auto inline-block cursor-pointer object-cover"
                 />
-                <button className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-100 transition-opacity left-[90px] md:left-[150px] z-10">
+
+                <button className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-100 transition-opacity left-[90px] opacity-0 md:left-[150px] z-10">
                   <Link
-                    to={`/product-detail/${7}`}
-                    className={`text-black text-sm bg-zinc-50 px-4 py-2 rounded-full md:text-lg  ${
-                      productIdsToShow.includes(7) ? "special-style" : ""
+                    to={`/product-detail/${17}`}
+                    className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
+                      productIdsToShow.includes(17) ? "special-style" : ""
                     }`}
                     onClick={() =>
                       showProduct(
-                        productDetails.find((product) => product.id === 7)
+                        productDetails.find((product) => product.id === 17)
                       )
                     }
                   >
                     {hasFetched
-                      ? productDetails.find((product) => product.id === 7).title
+                      ? productDetails.find((product) => product.id === 17)
+                          .title
                       : "Loading..."}
                   </Link>
                 </button>

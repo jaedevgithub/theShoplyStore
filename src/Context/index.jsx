@@ -12,6 +12,7 @@ export const ShoppingCartProvider = ({ children }) => {
   const [searchByTitle, setSearchByTitle] = useState("");
   const [searchByCategory, setSearchByCategory] = useState(null);
   const [filteredItems, setFilteredItems] = useState(null);
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
 
   console.log("searchByTitle", searchByTitle);
   console.log("searchByCategory:", searchByCategory);
@@ -27,6 +28,22 @@ export const ShoppingCartProvider = ({ children }) => {
         setItems([]);
       });
   }, []);
+
+  useEffect(() => {
+    loadDataFromAPI();
+  }, []);
+
+  // Función para cargar datos desde la API
+  const loadDataFromAPI = () => {
+    fetch("https://testing-api-cghc.onrender.com/products")
+      .then((res) => res.json())
+      .then((data) => {
+        setItems(data);
+      })
+      .catch((error) => {
+        console.error("Error fetching data:", error);
+      });
+  };
 
   useEffect(() => {
     // Load cart data from localStorage
@@ -170,19 +187,19 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // En el contexto global
   const login = (email, password) => {
+    // Realiza la lógica de autenticación aquí
     if (email.includes("@") && password.trim() !== "") {
-      setIsLoggedIn(true);
+      setIsAuthenticated(true); // Establece isAuthenticated en true después de la autenticación exitosa
     } else {
-      alert(
-        "Por favor, ingresa un correo electrónico válido y una contraseña."
-      );
+      alert("Credenciales incorrectas.");
     }
   };
 
   const logout = () => {
-    // Realiza aquí tu lógica de cierre de sesión
-    setIsLoggedIn(false);
+    // Establece isAuthenticated en false para cerrar la sesión
+    setIsAuthenticated(false);
   };
+  
 
   const contextValue = {
     count,
@@ -193,6 +210,8 @@ export const ShoppingCartProvider = ({ children }) => {
     productToShow,
     setProductToShow,
     cartProducts,
+    isAuthenticated,
+    setIsAuthenticated,
     setCartProducts,
     addProductToCart,
     removeProductFromCart,
@@ -207,7 +226,7 @@ export const ShoppingCartProvider = ({ children }) => {
     setFilteredItems,
     searchByCategory,
     setSearchByCategory,
-    // Estados y funciones relacionados con el inicio de sesión
+    loadDataFromAPI,
     isLoggedIn,
     email,
     setEmail,

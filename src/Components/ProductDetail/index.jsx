@@ -1,4 +1,5 @@
 import React, { useContext, useState, useEffect } from "react";
+import { useParams, useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ShoppingCartContext } from "../../Context";
@@ -6,11 +7,33 @@ import Layout from "../../Components/Layout";
 
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
-  const { productToShow } = context;
+  const { items, loadDataFromAPI } = context;
+  const { id } = useParams();
+  const navigate = useNavigate();
+  const { productId } = useParams(); // Desestructura productId
+  const productToShow = items.find(
+    (product) => product.id === parseInt(productId)
+  );
+  const category = productToShow?.category?.name || "";
 
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
-  const category = productToShow?.category?.name || "";
+
+  // Cargar datos si no hay productos
+  useEffect(() => {
+    if (items.length === 0) {
+      loadDataFromAPI();
+    }
+  }, [items, loadDataFromAPI]);
+
+// Manejar el caso de producto no encontrado
+useEffect(() => {
+  if (!productToShow) {
+    // Redirigir a la página de detalle de producto actual
+    navigate(`/product-detail/${productId}`); // Utiliza el productId actual
+  }
+}, [productToShow, navigate, productId]);
+
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -31,6 +54,7 @@ const ProductDetail = () => {
 
   // Use window.innerWidth to determine screen width
   const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  console.log("Rendering Desktop View");
 
   useEffect(() => {
     // Add event listener to update screenWidth when the window is resized
@@ -51,7 +75,7 @@ const ProductDetail = () => {
     <>
       <Layout>
         {screenWidth >= 768 && ( // Render if screen width is greater than or equal to 768px
-          <section className="hidden lg:flex items-center justify-center hd:-mb-[350px] hd:-mt-60 fullhd:mb-[-1550px] fullhd:mt-[-1540px] hd:-mt-20 hd:scale-75 fullhd:scale-100 4k:mb-[-2500px] 4k:mt-[-3700px]">
+          <section className="hidden lg:flex items-center justify-center hd:-mb-[350px] hd:-mt-60 fullhd:mb-[-1550px] fullhd:mt-[-1540px] hd:-mt-20 hd:ml-40 fullhd:scale-100 4k:mb-[-2500px] 4k:mt-[-3700px]">
             {/* Desktop product detail code */}
             <div className="hidden md:flex flex-row-3 items-center justify-between mb-60 relative mt-80">
               <aside>
@@ -99,9 +123,9 @@ const ProductDetail = () => {
                   </span>
                   <span>
                     {productToShow && (
-                      <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5">
+                      <h1 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5">
                         {productToShow.title}
-                      </h2>
+                      </h1>
                     )}
                   </span>
                 </div>
@@ -155,12 +179,17 @@ const ProductDetail = () => {
                   {category}
                 </p>
               </span>
-              <h2 className="font-[WhyteInktrap] font-bold text-4xl mb-5 ml-8">
-                {productToShow.title}
-              </h2>
-              <p className="font-[Whyte] text-xl mb-5 ml-8">
-                {productToShow.description}
-              </p>
+              {productToShow && (
+                <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5">
+                  {productToShow.title}
+                </h2>
+              )}
+
+              {productToShow && productToShow.description && (
+                <p className="font-[Whyte] text-xl mb-5 ml-8">
+                  {productToShow.description}
+                </p>
+              )}
             </div>
             {/* Display carousel of product images on mobile */}
             <Carousel
@@ -174,50 +203,59 @@ const ProductDetail = () => {
               centerMode={true}
               centerSlidePercentage={100}
             >
-              {productToShow.images.map((image, index) => (
-                <div
-                  className="h-80 w-80 mx-auto flex justify-center items-center"
-                  key={index}
-                >
-                  <img
-                    src={image}
-                    alt={productToShow.title}
-                    className="h-full w-full object-cover rounded-lg"
-                    onClick={() => handleImageClick(image)}
-                  />
-                </div>
-              ))}
+              {productToShow &&
+                productToShow.images &&
+                productToShow.images.map((image, index) => (
+                  <div
+                    className="h-80 w-80 mx-auto flex justify-center items-center"
+                    key={index}
+                  >
+                    <img
+                      src={image}
+                      alt={productToShow.title}
+                      className="h-full w-full object-cover rounded-lg"
+                      onClick={() => handleImageClick(image)}
+                    />
+                  </div>
+                ))}
             </Carousel>
             {/* Add to cart button on mobile */}
             <div className="mx-12 mt-4">
               <div className="flex flex-row items-center justify-left mx-auto">
                 {/* Display product sizes */}
-                {productToShow.sizes.map((size) => (
-                  <button
-                    key={size}
-                    onClick={() => handleSizeSelect(size)}
-                    className={`font-[Whyte] w-[50px] h-[50px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
-                      selectedSize === size ? "bg-black text-white" : ""
-                    }`}
-                  >
-                    <p className="mt-[1px]">{size}</p>
-                  </button>
-                ))}
+                {productToShow &&
+                  productToShow.sizes &&
+                  productToShow.sizes.length > 0 &&
+                  productToShow.sizes.map((size) => (
+                    <button
+                      key={size}
+                      onClick={() => handleSizeSelect(size)}
+                      className={`font-[Whyte] w-[50px] h-[50px] hd:w-[60px] hd:h-[60px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
+                        selectedSize === size ? "bg-black text-white" : ""
+                      }`}
+                    >
+                      <span className="flex items-center">
+                        <p className="mt-[0px]">{size}</p>
+                      </span>
+                    </button>
+                  ))}
               </div>
               <p className="font-[Whyte] font-bold mt-2">
                 Selected Size: {selectedSize}
               </p>
             </div>
             {/* Add to cart button */}
-            <div className="flex items-center justify-center">
-              <button
-                className="font-bold font-[Whyte] border-2 border-black font-semibold rounded-customBorder p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase w-[320px] hover.bg-black hover.text-white"
-                onClick={addProductsToCart}
-                disabled={!selectedSize}
-              >
-                Add ${productToShow.price}
-              </button>
-            </div>
+            {productToShow && productToShow.price && (
+              <div className="flex items-center justify-center">
+                <button
+                  className="font-bold font-[Whyte] border-2 border-black font-semibold rounded-customBorder p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase w-[320px] hover.bg-black hover.text-white"
+                  onClick={addProductsToCart}
+                  disabled={!selectedSize}
+                >
+                  Add ${productToShow.price}
+                </button>
+              </div>
+            )}
           </section>
         )}
       </Layout>
