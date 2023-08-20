@@ -12,7 +12,7 @@ const Layout = ({ children }) => {
       {/* Resto del código del Layout */}
 
       <main
-        className="flex flex-col items-center justify-center mt-40 text-black"
+        className="flex flex-col items-center justify-center sm:mt-20 md:mt-40 text-black"
         style={{ minHeight: "100vh" }}
       >
         {children}

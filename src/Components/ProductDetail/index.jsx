@@ -128,7 +128,7 @@ const ProductDetail = () => {
         )}
 
         {screenWidth < 768 && ( // Render if screen width is less than 768px
-          <section className="sm:block md:block xl:hidden mt-[180px] md:mb-[-1320px] top-10">
+          <section className="sm:block md:block xl:hidden mt-[180px] md:mb-[-1320px]">
             {/* Mobile and tablet product detail code */}
             <div className="flex flex-col items-left">
               {/* Display product details on mobile */}

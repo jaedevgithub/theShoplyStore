@@ -151,7 +151,7 @@ function Footer() {
       </footer>
 
       {/* Mobile footer */}
-      <footer className="md:hidden mt-60 w-screen bg-customOrange h-[924px] flex flex-col">
+      <footer className="md:hidden mt-40 w-screen bg-customOrange h-[924px] flex flex-col">
         <div className="text-center">
           <div className="relative top-20">
             <img
