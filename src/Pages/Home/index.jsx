@@ -40,46 +40,45 @@ function Home() {
     <>
       {isLoggedIn ? (
         <Layout>
-          <Navbar />
+          <section className="mt-40">
+            {/* Componente del carrusel de la página de inicio para escritorio y móvil */}
+            <HomePageSlider className="animate-fadeIn" />
 
-          {/* Componente del carrusel de la página de inicio para escritorio y móvil */}
-          <HomePageSlider className="animate-fadeIn" />
+            {/* Componente de filtro de categoría de productos para escritorio y móvil */}
+            <CategoryFilter className="animate-fadeIn" />
 
-          {/* Componente de filtro de categoría de productos para escritorio y móvil */}
-          <CategoryFilter className="animate-fadeIn" />
-
-          {/* Sección principal para vista de escritorio */}
-          {isDesktopView && (
-            <section className="hidden md:hidden lg:block sm:w-screens relative top-[-50px] animate-slideInLeft">
-              <div className="grid gap-x-6 gap-y-20 grid-cols-4 w-full max-w-screen-xl relative mx-auto">
-                {filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} className="animate-fadeIn" />
-                ))}
+            {/* Sección principal para vista de escritorio */}
+            {isDesktopView && (
+              <div className="hidden md:hidden lg:block sm:w-screens relative animate-slideInLeft">
+                <div className="grid gap-x-6 gap-y-20 grid-cols-4 w-full max-w-screen-xl relative mx-auto">
+                  {filteredProducts.map((item, index) => (
+                    <Card key={index} data={item} className="animate-fadeIn" />
+                  ))}
+                </div>
               </div>
-            </section>
-          )}
+            )}
 
-          {/* Sección secundaria para vista móvil */}
-          {isMobileView && (
-            <section className="md:hidden animate-fadeIn">
-              <div className="grid grid-cols-2 items-center gap-y-20 gap-x-6">
-                {filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} className="animate-fadeIn" />
-                ))}
+            {isMobileView && (
+              <div className="md:hidden animate-fadeIn flex justify-center items-center h-screen relative top-[1000px]">
+                <div className="grid grid-cols-2 items-center gap-y-20 gap-x-5 justify-center ">
+                  {filteredProducts.map((item, index) => (
+                    <Card key={index} data={item} className="animate-fadeIn" />
+                  ))}
+                </div>
               </div>
-            </section>
-          )}
+            )}
 
-          {/* Sección secundaria para vista de tableta */}
-          {isTabletView && (
-            <section className="hidden md:block lg:hidden w-screens relative top-[-50px] animate-slideInRight">
-              <div className="grid grid-cols-4 items-center gap-y-40 gap-x-6">
-                {filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} className="animate-fadeIn" />
-                ))}
+            {/* Sección secundaria para vista de tableta */}
+            {isTabletView && (
+              <div className="hidden md:block lg:hidden w-screens relative top-[-50px] animate-slideInRight">
+                <div className="grid grid-cols-4 items-center gap-y-40 gap-x-6">
+                  {filteredProducts.map((item, index) => (
+                    <Card key={index} data={item} className="animate-fadeIn" />
+                  ))}
+                </div>
               </div>
-            </section>
-          )}
+            )}
+          </section>
         </Layout>
       ) : (
         <SignIn onLogin={handleLogin} />

@@ -105,13 +105,13 @@ const Navbar = () => {
 
       {/* Desktop Navbar */}
       <nav
-        className={`hidden md:hidden lg:flex justify-between top-0 font-[Whyte] text-[14px] items-center fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
+        className={`hidden md:hidden lg:flex justify-between top-0 font-[Whyte] text-[14px] items-center md:fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
           isNavbarVisible && isLoggedIn ? "opacity-100" : "opacity-0"
         }`}
       >
         <ul className="flex items-center gap-3">
           {/* Shop NavLink */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center hover:bg-black hover:text-white">
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-[16px] uppercase w-24 h-[38px] text-center flex items-center justify-center hover:bg-black hover:text-white">
             <NavLink to="/">Shop</NavLink>
           </li>
           {/* Search Button */}
@@ -145,30 +145,32 @@ const Navbar = () => {
           {/* Logo NavLink */}
           <div>
             <NavLink onClick={handleNavLinkClick} to="/">
-              <img src="shoply-logo-full.static.svg" alt="logo" />
+              <img src="/shoply-logo-full.static.svg" alt="logo" />
             </NavLink>
           </div>
         </ul>
         <ul />
         <ul className="flex items-center gap-3">
           {/* Sign In NavLink */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
-            <NavLink to="/my-account">My account</NavLink>
+          <li className="w-[214px] h-[38px] text-[16px] border-2 font-semibold border-black rounded-full p-2 text-md uppercase text-center flex items-center justify-center hover:bg-black hover:text-white">
+            <NavLink to="/my-account">
+              {" "}
+              <span className="relative top-[1.5px]">My account</span>
+            </NavLink>
           </li>
           {/* Cart NavLink with item count */}
-          <li className="font-semibold border-2 border-black rounded-full p-2 text-lg uppercase w-24 h-9 text-center flex items-center justify-center  hover:bg-black hover:text-white">
-            <NavLink to="/cart">Cart {context.count}</NavLink>
+          <li className="font-semibold border-2 border-black rounded-full p-2 text-[16px] uppercase w-24 h-[38px] text-center flex items-center justify-center hover:bg-black hover:text-white">
+            <NavLink to="/cart">
+              {" "}
+              <span className="relative top-[1.5px]">Cart {context.count}</span>
+            </NavLink>
           </li>
         </ul>
       </nav>
 
       {/* Mobile Navbar */}
       <section aria-label="Global">
-        <div
-          className={`lg:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 ${
-            isNavbarVisible && isLoggedIn ? "opacity-100" : "opacity-0"
-          }`}
-        >
+        <div className="lg:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 opacity-100">
           {/* Mobile Menu Toggle Button */}
           <button
             type="button"
@@ -232,38 +234,10 @@ const Navbar = () => {
             <Link to="/" onClick={handleNavLinkClick}>
               <img
                 className="w-full h-full object-cover relative right-2"
-                src="shoply-logo-full.static.svg"
+                src="/shoply-logo-full.static.svg"
                 alt="logo"
               />
             </Link>
-          </button>
-
-          {/* Mobile Map Pin Button */}
-          <button>
-            <svg
-              className="relative right-3 svg-map-pin"
-              xmlnsXlink="http://www.w3.org/1999/xlink"
-              width="16"
-              height="20"
-              viewBox="0 0 16 20"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M15 7.57027C15 12.4865 8 18 8 18C8 18 1 12.4865 1 7.57027C1 3.94161 4.13401 1 8 1C11.866 1 15 3.94161 15 7.57027Z"
-                stroke="#000000"
-                strokeWidth="2px"
-                fill="none"
-              ></path>
-              <circle
-                cx="8"
-                cy="8"
-                r="2.5"
-                stroke="#000000"
-                strokeWidth="2px"
-                fill="none"
-              ></circle>
-            </svg>
           </button>
 
           {/* Mobile Cart Button with item count */}
@@ -272,40 +246,29 @@ const Navbar = () => {
               <p className="text-xs text-white">{context.count}</p>
             </NavLink>
           </button>
+          <nav
+            id="navbar-collapse-with-animation"
+            className="sm:hidden z-10 absolute top-20 left-0 flex items-left hidden overflow-hidden transition-all duration-300 bg-white h-[190px] grow w-screen border-black border-t-2 shadow-lg"
+          >
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative ml-5 mt-[120px] font-[Whyte]">
+              <div>
+                <div className="flex flex-col relative ">
+                  <Link
+                    to="my-account"
+                    className="font-medium text-black"
+                    href="#"
+                    aria-current="page"
+                  >
+                    <p className="text-[25px]">My account</p>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </nav>
         </div>
       </section>
 
       {/* Mobile Navbar Menu */}
-
-      <nav
-        id="navbar-collapse-with-animation"
-        className="sm: hidden z-10 absolute top-20 flex items-left hs-collapse hidden overflow-hidden transition-all duration-300 basis-full bg-white h-full grow w-screen border-black border-t-2 shadow-lg"
-      >
-        <div className="flex flex-col gap-5 mt-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative ml-5 mt-[90px] font-[Whyte]">
-          <div>
-            <div className="flex flex-col relative md:-top-[390px]">
-              <a
-                className="font-medium text-black "
-                href="#"
-                aria-current="page"
-              >
-                Shop
-              </a>
-              <a className="font-medium text-black mt-10" href="#">
-                About
-              </a>
-            </div>
-          </div>
-          <div className="flex flex-col relative md:-top-60 md:-left-[180px]">
-            <a className="font-medium text-black text-[16px] mt-20" href="#">
-              Privacy Terms
-            </a>
-            <a className="font-medium text-black text-[16px] mt-10" href="#">
-              Contact Us
-            </a>
-          </div>
-        </div>
-      </nav>
     </header>
   );
 };

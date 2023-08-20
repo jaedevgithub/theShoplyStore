@@ -117,7 +117,7 @@ function Footer() {
           </div>
           <div className="mt-3 text-[18px] relative top-0 flex flex-col items-center justify-evenly">
             <div className="flex flex-col items-right justify-right text-left relative -top-[350px] left-72">
-              <a className="hover:underline">Repository of this project</a>
+              <a className="hover:underline">Repository</a>
               <a className="hover:underline mt-4">Original website</a>
             </div>
             <div className="flex flex-col text-left justify-left w-[40px] relative -top-[190px] left-[60px]">
@@ -151,7 +151,7 @@ function Footer() {
       </footer>
 
       {/* Mobile footer */}
-      <footer className="md:hidden mt-40 w-screen bg-customOrange h-[924px] flex flex-col">
+      <footer className="md:hidden mt-[2320px] w-screen bg-customOrange h-[924px] flex flex-col">
         <div className="text-center">
           <div className="relative top-20">
             <img

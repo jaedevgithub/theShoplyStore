@@ -45,7 +45,7 @@ function HomePageSlider() {
 
   return (
     <>
-      <section className="md:hidden xl:block font-[Whyte] font-bold hidden sm:block relative -top-40 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
+      <section className="md:hidden xl:block font-[Whyte] font-bold hidden sm:block relative -top-80 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
         <div className="scale-150 w-screen overflow-hidden hd:h-[593px] fullhd:h-[993px] 4k:h-[1713px] relative top-[-90px] hd:top-[-40px] fullhd:top-[110px] 4k:top-[160px]">
           <div className="w-screen overflow-hidden">
             <Carousel
@@ -286,7 +286,7 @@ function HomePageSlider() {
             <div>
               <div className="relative group">
                 <img
-                  src="mobile-slider-1.png"
+                  src="/mobile-slider-1.png"
                   alt="Image for the Carousel"
                   className="w-full h-auto inline-block cursor-pointer"
                 />

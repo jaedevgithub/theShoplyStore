@@ -55,31 +55,40 @@ const ProductDetail = () => {
             {/* Desktop product detail code */}
             <div className="hidden md:flex flex-row-3 items-center justify-between mb-60 relative mt-80">
               <aside>
-                {/* Display product images */}
-                {productToShow.images.map((image, index) => (
-                  <figure
-                    key={index}
-                    className="-mb-4 scale-75 relative -top-72 right-60"
-                  >
-                    <img
-                      className={`w-32 h-32 object-cover rounded-customBorder ${
-                        selectedImage === image ? "border-2 border-black" : ""
-                      }`}
-                      src={image}
-                      alt={productToShow.title}
-                      onClick={() => handleImageClick(image)}
-                    />
-                  </figure>
-                ))}
+                {/* Display product images if productToShow is defined and has images */}
+                {productToShow &&
+                  productToShow.images &&
+                  productToShow.images.length > 0 &&
+                  productToShow.images.map((image, index) => (
+                    <figure
+                      key={index}
+                      className="-mb-4 scale-75 relative -top-72 right-60"
+                    >
+                      <img
+                        className={`w-32 h-32 object-cover rounded-customBorder ${
+                          selectedImage === image ? "border-2 border-black" : ""
+                        }`}
+                        src={image}
+                        alt={productToShow.title}
+                        onClick={() => handleImageClick(image)}
+                      />
+                    </figure>
+                  ))}
               </aside>
               {/* Display main product image */}
               <figure className="h-100 w-96 scale-150 relative right-20 top-2">
                 <img
                   className="h-[600px] w-[900px] object-cover rounded-customBorder"
-                  src={selectedImage || productToShow.images[0]}
-                  alt={productToShow.title}
+                  src={
+                    selectedImage ||
+                    (productToShow &&
+                      productToShow.images &&
+                      productToShow.images[0])
+                  }
+                  alt={productToShow && productToShow.title}
                 />
               </figure>
+
               <div className="flex flex-col justify-between relative mt-10 -top-[255px] -right-20">
                 <div className="flex flex-col items-left">
                   {/* Display product details */}
@@ -89,24 +98,29 @@ const ProductDetail = () => {
                     </p>
                   </span>
                   <span>
-                    <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5">
-                      {productToShow.title}
-                    </h2>
+                    {productToShow && (
+                      <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5">
+                        {productToShow.title}
+                      </h2>
+                    )}
                   </span>
                 </div>
                 <div>
                   {/* Display product sizes */}
-                  {productToShow.sizes.map((size) => (
-                    <button
-                      key={size}
-                      onClick={() => handleSizeSelect(size)}
-                      className={`w-[50px] h-[50px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
-                        selectedSize === size ? "bg-black text-white" : ""
-                      }`}
-                    >
-                      <p className="mt-[1px]">{size}</p>
-                    </button>
-                  ))}
+                  {productToShow &&
+                    productToShow.sizes &&
+                    productToShow.sizes.length > 0 &&
+                    productToShow.sizes.map((size) => (
+                      <button
+                        key={size}
+                        onClick={() => handleSizeSelect(size)}
+                        className={`w-[50px] h-[50px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
+                          selectedSize === size ? "bg-black text-white" : ""
+                        }`}
+                      >
+                        <p className="mt-[1px]">{size}</p>
+                      </button>
+                    ))}
                 </div>
                 <p className="mt-2 font-[Whyte] font-bold">
                   Selected Size: {selectedSize}
@@ -117,10 +131,14 @@ const ProductDetail = () => {
                   onClick={addProductsToCart}
                   disabled={!selectedSize}
                 >
-                  Add ${productToShow.price}
+                  {productToShow
+                    ? `Add $${productToShow.price}`
+                    : "Add to Cart"}{" "}
+                  {/* Verifica si productToShow es nulo antes de acceder a 'price' */}
                 </button>
                 <p className="text-[24px] mb-5 font-[Whyte]">
-                  {productToShow.description}
+                  {productToShow ? productToShow.description : ""}{" "}
+                  {/* Verifica si productToShow es nulo antes de acceder a 'description' */}
                 </p>
               </div>
             </div>
