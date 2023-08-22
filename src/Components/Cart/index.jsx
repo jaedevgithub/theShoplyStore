@@ -8,12 +8,14 @@ import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 function Cart() {
+  // Context and state variables
   const context = useContext(ShoppingCartContext);
   const cartProducts = context.cartProducts || [];
   const [total, setTotal] = useState(0);
-  const { isLoggedIn } = useContext(ShoppingCartContext);
   const navigate = useNavigate();
+  const [orderCreated, setOrderCreated] = useState(false);
 
+  // Calculate total price
   useEffect(() => {
     const calculateTotal = () => {
       let total = 0;
@@ -28,6 +30,7 @@ function Cart() {
     setTotal(newTotal);
   }, [cartProducts]);
 
+  // Handlers
   const handleRemoveProduct = (product) => {
     const updatedCartProducts = cartProducts.filter(
       (p) => !(p.id === product.id && p.size === product.size)
@@ -52,20 +55,8 @@ function Cart() {
       context.setCartProducts(updatedCartProducts);
       context.setCount(context.count - 1);
     } else {
-      const sizesWithQuantity = productSizes
-        .find((p) => p.id === product.id)
-        .sizes.filter((size) => product.quantityBySize[size] > 0);
-
-      if (sizesWithQuantity.length > 1) {
-        const updatedCartProducts = cartProducts.filter(
-          (p) => !(p.id === product.id && p.size === product.size)
-        );
-        context.setCartProducts(updatedCartProducts);
-        context.setCount(context.count - 1);
-      } else {
-        context.removeProductFromCart(product);
-        context.setCount(context.count - 1);
-      }
+      // Handle removal when quantity is 1 or less
+      // Replace 'productSizes' with your logic
     }
   };
 
@@ -77,21 +68,17 @@ function Cart() {
       total: total,
     };
 
-    // Agrega la orden al contexto global
     context.setOrder([...context.order, orderToAdd]);
-
-    // Limpia el carrito
     context.setCartProducts([]);
     context.setCount(0);
 
-    // Guarda la orden en el almacenamiento local (opcional)
     const ordersInLocalStorage = localStorage.getItem("orders");
     const orders = ordersInLocalStorage ? JSON.parse(ordersInLocalStorage) : [];
     orders.push(orderToAdd);
     localStorage.setItem("orders", JSON.stringify(orders));
-
-    // Limpia el carrito en el almacenamiento local
     localStorage.removeItem("cart");
+
+    setOrderCreated(true);
   };
 
   const handleSignInFromCart = () => {
@@ -99,22 +86,10 @@ function Cart() {
     navigate("/sign-in");
   };
 
-  const login = (email, password) => {
-  // Realiza la lógica de autenticación aquí
-  if (email.includes("@") && password.trim() !== "") {
-    setIsAuthenticated(true); // Establece isAuthenticated en true después de la autenticación exitosa
-    localStorage.setItem("isLoggedIn", "true"); // Guarda el estado de inicio de sesión en el localStorage
-  } else {
-    alert("Credenciales incorrectas.");
-  }
-};
-
-
   return (
-    <>
-      {/* Desktop shopping cart*/}
-
-      <section className="hidden md:block lg:block container mx-auto px-4 relative mt-60 w-screen -mb-[800px]">
+    <Layout>
+      {/* Desktop shopping cart */}
+      <section className="hidden relative ml-20 md:block lg:block container mx-auto w- px-4 relative mt-60 w-60 mb-[800px] md:mb-[-550px]">
         <h1 className="text-3xl font-bold mt-8 mb-4 pb-6 border-b-2 border-black">
           {context.count} items in Cart
         </h1>
@@ -122,7 +97,7 @@ function Cart() {
           <div>
             <table className="border-collapse w-full bg-white">
               <thead className="text-[24px] border-b-2 border-black">
-                <tr className="bg-white ">
+                <tr className="bg-white">
                   <th className="px-4 py-2 text-left">Item</th>
                   <th className="px-4 py-2">Price</th>
                   <th className="px-4 py-2">Qty</th>
@@ -132,14 +107,14 @@ function Cart() {
               <tbody>
                 {cartProducts.map((product, index) => {
                   const count = product.quantity || 0;
-                  const subtotal = product.price * count; // Calculate subtotal for each product
+                  const subtotal = product.price * count;
 
                   return (
                     <tr
                       key={index}
                       className={
                         index % 2 === 0
-                          ? " border-t-2 border-b-2 border-black"
+                          ? "border-t-2 border-b-2 border-black"
                           : ""
                       }
                     >
@@ -156,14 +131,13 @@ function Cart() {
                             alt={product.title}
                             className="w-[120px] h-[120px] object-cover rounded-lg"
                           />
-
                           <span>
                             <p className="text-[26px]">{product.title}</p>
                             <p>
                               {typeof product.size === "object"
                                 ? Object.keys(product.size).join(", ")
                                 : product.size}
-                            </p>{" "}
+                            </p>
                           </span>
                         </div>
                       </td>
@@ -198,27 +172,30 @@ function Cart() {
             <p className="text-right mt-4 mb-4 text-[26px]">
               <span className="font-bold">Total*</span> ${total}
             </p>
-            {/* Use isAuthenticated to conditionally render buttons */}
-            {context.isAuthenticated ? (
-              <button
-                className="bg-black py-3 text-white w-[200px] rounded-lg relative left-[950px]"
-                onClick={handleCheckout}
-              >
-                Checkout
-              </button>
-            ) : (
-              <button
-                className="bg-black py-3 text-white w-[200px] rounded-lg relative left-[1050px]"
-                onClick={handleSignInFromCart}
-              >
-                Sign In to Checkout
-              </button>
-            )}
+            <span className="flex justify-end items-end">
+              {context.isAuthenticated ? (
+                <button
+                  className="bg-black py-3 text-white w-[200px] rounded-lg relative"
+                  onClick={handleCheckout}
+                >
+                  Checkout
+                </button>
+              ) : (
+                <button
+                  className="bg-black py-3 text-white w-[200px] rounded-lg relative"
+                  onClick={handleSignInFromCart}
+                >
+                  Sign In to Checkout
+                </button>
+              )}
+            </span>
           </div>
         ) : (
           <div className="text-center mt-8">
-            <p className="text-2xl font-semibold mb-40 mt-40 text-[48px]">
-              EMPTY CART, AAACKKK
+            <p className="text-2xl font-semibold mb-40 mt-4 text-[48px]">
+              {orderCreated
+                ? "Order created successfully!"
+                : "EMPTY CART, AAACKKK"}
             </p>
             <Link to="/">
               <button
@@ -228,7 +205,6 @@ function Cart() {
                 See all products
               </button>
             </Link>
-
             {context.isAuthenticated && (
               <Link to="/my-orders">
                 <button
@@ -243,9 +219,8 @@ function Cart() {
         )}
       </section>
 
-      {/* Mobile shopping cart*/}
-
-      <section className="md:hidden container mx-auto px-4 relative mt-[200px] -mb-[1000px] w-screen">
+      {/* Mobile shopping cart */}
+      <section className="md:hidden container mx-auto px-4 relative mt-[-700px] -mb-[880px] w-screen">
         <h1 className="text-3xl font-bold mt-8 mb-4">
           {context.count} items in Cart
         </h1>
@@ -260,14 +235,14 @@ function Cart() {
               <tbody>
                 {cartProducts.map((product, index) => {
                   const count = product.quantity || 0;
-                  const subtotal = product.price * count; // Calculate subtotal for each product
+                  const subtotal = product.price * count;
 
                   return (
                     <tr
                       key={index}
                       className={
                         index % 2 === 0
-                          ? " border-t-2 border-b-2 border-black"
+                          ? "border-t-2 border-b-2 border-black"
                           : ""
                       }
                     >
@@ -278,7 +253,6 @@ function Cart() {
                             alt={product.title}
                             className="w-[120px] h-[120px] object-cover rounded-lg"
                           />
-
                           <span>
                             <p className="text-[16px]">{product.title}</p>
                           </span>
@@ -321,19 +295,28 @@ function Cart() {
             <p className="text-right mt-4 mb-4 text-[26px]">
               <span className="font-bold">Total*</span> ${total}
             </p>
-            <Link to="/my-orders/last">
+            {context.isAuthenticated ? (
               <button
                 className="bg-black py-3 text-white w-full rounded-lg"
                 onClick={handleCheckout}
               >
                 Checkout
               </button>
-            </Link>
+            ) : (
+              <button
+                className="bg-black py-3 text-white w-full rounded-lg"
+                onClick={handleSignInFromCart}
+              >
+                Sign In to Checkout
+              </button>
+            )}
           </div>
         ) : (
           <div className="text-center mt-8">
-            <p className="text-2xl font-semibold mb-40 mt-40 text-[38px]">
-              EMPTY CART, AAACKKK
+            <p className="text-2xl font-medium mb-40 mt-40 text-[48px] font-[Whyte]">
+              {orderCreated
+                ? "Order created successfully!"
+                : "EMPTY CART, AAACKKK"}
             </p>
             <Link to="/">
               <button
@@ -346,8 +329,7 @@ function Cart() {
           </div>
         )}
       </section>
-      <Layout></Layout>
-    </>
+    </Layout>
   );
 }
 

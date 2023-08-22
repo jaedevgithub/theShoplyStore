@@ -161,6 +161,14 @@ export const ShoppingCartProvider = ({ children }) => {
       products: cartProducts,
     };
 
+
+    const deleteOrder = (index) => {
+      const updatedOrders = [...order];
+      updatedOrders.splice(index, 1);
+      setOrder(updatedOrders);
+      saveOrderToLocalStorage(updatedOrders);
+      setIsDeleteOrder(false); // Asegúrate de desactivar isDeleteOrder después de eliminar
+    };
     const updatedCartProducts = [];
 
     const updatedOrders = [...order, newOrder];
