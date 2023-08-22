@@ -12,12 +12,8 @@ const Navbar = () => {
   const navigate = useNavigate();
   const isLoggedIn = context.isLoggedIn;
 
-  const { isAuthenticated, logout } = useContext(ShoppingCartContext);
-
-  const handleLogout = () => {
-    // Realiza cualquier lógica necesaria para el cierre de sesión aquí
-    logout();
-  };
+  const { isAuthenticated, setIsAuthenticated } =
+    useContext(ShoppingCartContext);
 
   const handleSearchButtonClick = () => {
     setIsSearchVisible(!isSearchVisible);
@@ -59,6 +55,16 @@ const Navbar = () => {
       }
     }
   };
+
+  useEffect(() => {
+    // Verifica si el usuario está autenticado en el almacenamiento local
+    const isLoggedIn = localStorage.getItem("isLoggedIn");
+
+    // Si está autenticado, actualiza el estado de autenticación en tu contexto o componente
+    if (isLoggedIn === "true") {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   return (
     <header className="w-screen">

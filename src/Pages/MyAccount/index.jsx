@@ -4,14 +4,14 @@ import Layout from "../../Components/Layout";
 import { ShoppingCartContext } from "../../Context"; // Asegúrate de proporcionar la ruta correcta al contexto global
 
 function MyAccount() {
-  const { isLoggedIn, logout } = useContext(ShoppingCartContext);
+  const { setIsAuthenticated } = useContext(ShoppingCartContext);
 
   const handleLogout = () => {
-    // Elimina el estado de inicio de sesión del almacenamiento local
+    // Establece isAuthenticated en false para cerrar la sesión
+    setIsAuthenticated(false);
+  
+    // Elimina el estado de inicio de sesión del localStorage al cerrar sesión
     localStorage.removeItem("isLoggedIn");
-
-    // Limpia el estado de inicio de sesión en el contexto global
-    logout();
   };
 
   return (

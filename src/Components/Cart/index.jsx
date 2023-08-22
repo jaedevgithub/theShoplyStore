@@ -3,6 +3,7 @@ import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
 import { Link } from "react-router-dom";
 import { IoIosCloseCircleOutline } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
@@ -10,6 +11,8 @@ function Cart() {
   const context = useContext(ShoppingCartContext);
   const cartProducts = context.cartProducts || [];
   const [total, setTotal] = useState(0);
+  const { isLoggedIn } = useContext(ShoppingCartContext);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const calculateTotal = () => {
@@ -90,6 +93,22 @@ function Cart() {
     // Limpia el carrito en el almacenamiento local
     localStorage.removeItem("cart");
   };
+
+  const handleSignInFromCart = () => {
+    localStorage.setItem("redirectPath", "/cart");
+    navigate("/sign-in");
+  };
+
+  const login = (email, password) => {
+  // Realiza la lógica de autenticación aquí
+  if (email.includes("@") && password.trim() !== "") {
+    setIsAuthenticated(true); // Establece isAuthenticated en true después de la autenticación exitosa
+    localStorage.setItem("isLoggedIn", "true"); // Guarda el estado de inicio de sesión en el localStorage
+  } else {
+    alert("Credenciales incorrectas.");
+  }
+};
+
 
   return (
     <>
@@ -179,14 +198,22 @@ function Cart() {
             <p className="text-right mt-4 mb-4 text-[26px]">
               <span className="font-bold">Total*</span> ${total}
             </p>
-            <Link to="/my-orders/last">
+            {/* Use isAuthenticated to conditionally render buttons */}
+            {context.isAuthenticated ? (
               <button
-                className="bg-black py-3 text-white w-[200px] rounded-lg relative left-[1050px]"
+                className="bg-black py-3 text-white w-[200px] rounded-lg relative left-[950px]"
                 onClick={handleCheckout}
               >
                 Checkout
               </button>
-            </Link>
+            ) : (
+              <button
+                className="bg-black py-3 text-white w-[200px] rounded-lg relative left-[1050px]"
+                onClick={handleSignInFromCart}
+              >
+                Sign In to Checkout
+              </button>
+            )}
           </div>
         ) : (
           <div className="text-center mt-8">
@@ -201,6 +228,17 @@ function Cart() {
                 See all products
               </button>
             </Link>
+
+            {context.isAuthenticated && (
+              <Link to="/my-orders">
+                <button
+                  className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline"
+                  onClick={handleCheckout}
+                >
+                  Go to my orders
+                </button>
+              </Link>
+            )}
           </div>
         )}
       </section>

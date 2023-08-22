@@ -1,8 +1,11 @@
 import React, { createContext, useState, useEffect } from "react";
 
+// Create the context
 export const ShoppingCartContext = createContext();
 
+// Provider component
 export const ShoppingCartProvider = ({ children }) => {
+  // States related to the shopping cart
   const [count, setCount] = useState(0);
   const [isProductDetailOpen, setIsProductDetailOpen] = useState(false);
   const [productToShow, setProductToShow] = useState(null);
@@ -13,7 +16,11 @@ export const ShoppingCartProvider = ({ children }) => {
   const [searchByCategory, setSearchByCategory] = useState(null);
   const [filteredItems, setFilteredItems] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
+  // Print some states for debugging purposes
   console.log("searchByTitle", searchByTitle);
   console.log("searchByCategory:", searchByCategory);
   console.log("filteredItems", filteredItems);
@@ -29,11 +36,12 @@ export const ShoppingCartProvider = ({ children }) => {
       });
   }, []);
 
+  // useEffect to load data from the API initially
   useEffect(() => {
     loadDataFromAPI();
   }, []);
 
-  // Función para cargar datos desde la API
+  // Function to load data from the API
   const loadDataFromAPI = () => {
     fetch("https://testing-api-cghc.onrender.com/products")
       .then((res) => res.json())
@@ -45,27 +53,26 @@ export const ShoppingCartProvider = ({ children }) => {
       });
   };
 
+  // useEffect to load cart and order data from local storage
   useEffect(() => {
-    // Load cart data from localStorage
     const savedCart = localStorage.getItem("cart");
     if (savedCart) {
       setCartProducts(JSON.parse(savedCart));
     }
 
-    // Load order data from localStorage
     const savedOrder = localStorage.getItem("order");
     if (savedOrder) {
       setOrder(JSON.parse(savedOrder));
     }
-    // Other variables you may save in localStorage
+    // You can load other variables from local storage here
   }, []);
 
-  // Function to save the cart to localStorage
+  // Function to save the cart to local storage
   const saveCartToLocalStorage = (cart) => {
     localStorage.setItem("cart", JSON.stringify(cart));
   };
 
-  // Function to save the order to localStorage
+  // Function to save the order to local storage
   const saveOrderToLocalStorage = (orderData) => {
     localStorage.setItem("order", JSON.stringify(orderData));
   };
@@ -91,7 +98,6 @@ export const ShoppingCartProvider = ({ children }) => {
     } else if (searchByCategory) {
       setFilteredItems(filteredItemsByCategory(items, searchByCategory));
     } else {
-      // If neither searchByTitle nor searchByCategory, reset filteredItems to null
       setFilteredItems(null);
     }
   }, [items, searchByTitle, searchByCategory]);
@@ -118,7 +124,6 @@ export const ShoppingCartProvider = ({ children }) => {
     );
 
     if (existingProduct) {
-      // If the product with the selected size already exists in the cart, update its quantity
       const updatedCartProducts = cartProducts.map((p) =>
         p.id === product.id && p.size === selectedSize
           ? { ...p, quantity: p.quantity + 1 }
@@ -127,7 +132,6 @@ export const ShoppingCartProvider = ({ children }) => {
       setCartProducts(updatedCartProducts);
       saveCartToLocalStorage(updatedCartProducts);
     } else {
-      // If the product with the selected size doesn't exist in the cart, add it with quantity 1
       const updatedCartProducts = [
         ...cartProducts,
         { ...product, size: selectedSize, quantity: 1 },
@@ -148,11 +152,8 @@ export const ShoppingCartProvider = ({ children }) => {
 
   // Function to place an order
   const placeOrder = () => {
-    // Implement your logic to place an order here
-
-    // For example, you can save the current cart as an order
     const newOrder = {
-      date: new Date().toISOString(), // You can set the order date to the current date
+      date: new Date().toISOString(),
       total: cartProducts.reduce(
         (total, product) => total + (product.quantity || 0),
         0
@@ -160,47 +161,35 @@ export const ShoppingCartProvider = ({ children }) => {
       products: cartProducts,
     };
 
-    // Clear the cart
     const updatedCartProducts = [];
 
-    // Save the updated order to localStorage
     const updatedOrders = [...order, newOrder];
     saveOrderToLocalStorage(updatedOrders);
 
-    // Clear the cart data from localStorage
     localStorage.removeItem("cart");
 
-    // Update the state with the new order and cleared cart
     setOrder(updatedOrders);
     setCartProducts(updatedCartProducts);
-    setCount(0); // Reset the count to 0
+    setCount(0);
 
-    // You might want to do other things related to order placement here
-
-    setIsProductDetailOpen(false); // Close the product detail modal
+    setIsProductDetailOpen(false);
   };
 
-  // Estados y funciones relacionados con el inicio de sesión
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-
-  // En el contexto global
+  // Function to login
   const login = (email, password) => {
-    // Realiza la lógica de autenticación aquí
     if (email.includes("@") && password.trim() !== "") {
-      setIsAuthenticated(true); // Establece isAuthenticated en true después de la autenticación exitosa
+      setIsAuthenticated(true);
     } else {
-      alert("Credenciales incorrectas.");
+      alert("Incorrect credentials.");
     }
   };
 
+  // Function to log out
   const logout = () => {
-    // Establece isAuthenticated en false para cerrar la sesión
     setIsAuthenticated(false);
   };
-  
 
+  // Context object
   const contextValue = {
     count,
     setCount,
