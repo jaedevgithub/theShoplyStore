@@ -89,7 +89,7 @@ function Cart() {
   return (
     <Layout>
       {/* Desktop shopping cart */}
-      <section className="hidden relative ml-20 md:block lg:block container mx-auto w- px-4 relative mt-60 w-60 mb-[800px] md:mb-[-550px]">
+      <section className="hidden relative md:block lg:block container mx-auto px-4 relative w-[1330px] mb-[800px] md:mb-[450px] fullhd:mt-[00px] hd:mt-[50px] 4k:mt-[-2200px]">
         <h1 className="text-3xl font-bold mt-8 mb-4 pb-6 border-b-2 border-black">
           {context.count} items in Cart
         </h1>
@@ -199,7 +199,7 @@ function Cart() {
             </p>
             <Link to="/">
               <button
-                className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline"
+                className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline mr-10"
                 onClick={handleCheckout}
               >
                 See all products
@@ -220,7 +220,7 @@ function Cart() {
       </section>
 
       {/* Mobile shopping cart */}
-      <section className="md:hidden container mx-auto px-4 relative mt-[-700px] -mb-[880px] w-screen">
+      <section className="md:hidden container mx-auto px-4 relative mt-[-500px] -mb-[880px] w-screen">
         <h1 className="text-3xl font-bold mt-8 mb-4">
           {context.count} items in Cart
         </h1>

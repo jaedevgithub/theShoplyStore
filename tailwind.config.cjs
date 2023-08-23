@@ -14,6 +14,8 @@ module.exports = {
         customYellow: "#FFC700",
         customGray: "#a3a3a3",
         customOrange: "#f24e1e",
+        purple: "#c7b9ff",
+        green: "#0fa958",
         scale: {
           175: "1.75",
         },

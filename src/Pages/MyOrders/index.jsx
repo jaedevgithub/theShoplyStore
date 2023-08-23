@@ -9,8 +9,11 @@ function MyOrders() {
 
   // Use useEffect to fetch orders from localStorage when the component mounts
   useEffect(() => {
+    // Retrieve saved orders from localStorage
     const savedOrders = localStorage.getItem("orders");
+    
     if (savedOrders) {
+      // Parse and set the orders in the context
       context.setOrder(JSON.parse(savedOrders));
     }
   }, []);
@@ -19,11 +22,11 @@ function MyOrders() {
   if (!context.order || context.order.length === 0) {
     return (
       <div className="flex flex-col items-center justify-center min-h-screen pt-20 mt-20">
-        <p className="text-2xl font-semibold mb-40 mt-40 text-[48px]">
+        <p className="text-2xl font-semibold mb-40 mt-40 text-4xl">
           NO ORDERS HERE, AAACKKK
         </p>
         <Link to="/">
-          <button className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline">
+          <button className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline-none">
             See all products
           </button>
         </Link>
@@ -32,12 +35,12 @@ function MyOrders() {
   }
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen pt-20 mt-20">
+    <div className="font-[Whyte] flex flex-col items-center justify-center min-h-screen pt-20 mt-20">
       {/* Container for the "My Orders" heading */}
       <div className="container mx-auto px-4 text-left mb-8">
-        <h2 className="text-3xl font-bold mt-8 mb-4">My orders</h2>
+        <h2 className="text-3xl font-bold mt-8 mb-4">My Orders</h2>
       </div>
-      <section className="flex items-center justify-center flex-col md:justify-start -mb-[900px]">
+      <section className="flex items-center justify-center flex-col md:justify-start -mb-96">
         {/* Render each order */}
         {context.order.map((order, index) => {
           // Check if the 'products' property is defined before accessing it

@@ -46,67 +46,95 @@ function SignIn() {
       );
     }
   };
+
+  const handleLogout = () => {
+    // Actualiza el estado de autenticación en el contexto global a false
+    setIsAuthenticated(false);
+
+    // Elimina el estado de inicio de sesión del localStorage al cerrar sesión
+    localStorage.removeItem("isLoggedIn");
+
+    // Redirige al usuario a la página de inicio
+    navigate("/");
+  };
+
   return (
     <Layout>
-      <div className="bg-white rounded-lg shadow dark:bg-gray-700">
+      <div className="bg-customYellow outline rounded-lg shadow font-[Whyte] w-[330px]">
         <div className="px-6 py-6 lg:px-8">
-          <h3 className="mb-4 text-xl font-medium text-gray-900 dark:text-white">
-            Sign in to our platform
+          <h3 className="mb-4 text-xl font-medium text-gray-900">
+            {isAuthenticated ? "Logged Out" : "Sign in to our platform"}
           </h3>
-          <form className="space-y-6" action="#">
-            <div>
-              <label
-                htmlFor="email"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
+          {!isAuthenticated ? (
+            <form className="space-y-6" action="#">
+              <div>
+                <label
+                  htmlFor="email"
+                  className={
+                    "block mb-2 text-sm font-medium text-gray-900" +
+                    (isAuthenticated ? " hidden" : "")
+                  }
+                >
+                  Your email
+                </label>
+                <input
+                  type="email"
+                  name="email"
+                  id="email"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  className={
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" +
+                    (isAuthenticated ? " hidden" : "")
+                  }
+                  placeholder="your@youremail.com"
+                  required
+                />
+              </div>
+              <div>
+                <label
+                  htmlFor="password"
+                  className={
+                    "block mb-2 text-sm font-medium text-gray-900" +
+                    (isAuthenticated ? " hidden" : "")
+                  }
+                >
+                  Your password
+                </label>
+                <input
+                  type="password"
+                  name="password"
+                  id="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  placeholder="••••••••"
+                  className={
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " +
+                    (isAuthenticated ? " hidden" : "")
+                  }
+                  required
+                />
+              </div>
+              <button
+                type="button"
+                onClick={handleLogin}
+                className="w-full text-white bg-black hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
-                Your email
-              </label>
-              <input
-                type="email"
-                name="email"
-                id="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                placeholder="name@company.com"
-                required
-              />
-            </div>
-            <div>
-              <label
-                htmlFor="password"
-                className="block mb-2 text-sm font-medium text-gray-900 dark:text-white"
-              >
-                Your password
-              </label>
-              <input
-                type="password"
-                name="password"
-                id="password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                placeholder="••••••••"
-                className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                required
-              />
-            </div>
+                Log In
+              </button>
+              <div className="text-sm font-medium text-black">
+                Type any data for test this app{" "}
+              </div>
+            </form>
+          ) : (
             <button
               type="button"
-              onClick={handleLogin}
-              className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark-bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+              onClick={handleLogout}
+              className="w-full text-white bg-black hover:white focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
             >
-              {isAuthenticated ? "Sign out" : "Sign in"}
+              Log Out
             </button>
-            <div className="text-sm font-medium text-gray-500 dark:text-gray-300">
-              Not registered?{" "}
-              <a
-                href="#"
-                className="text-blue-700 hover:underline dark:text-blue-500"
-              >
-                Create account
-              </a>
-            </div>
-          </form>
+          )}
         </div>
       </div>
     </Layout>

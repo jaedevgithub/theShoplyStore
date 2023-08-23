@@ -10,7 +10,6 @@ const Navbar = () => {
   const [prevScrollPos, setPrevScrollPos] = useState(0);
   const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
-  const isLoggedIn = context.isLoggedIn;
 
   const { isAuthenticated, setIsAuthenticated } =
     useContext(ShoppingCartContext);
@@ -141,7 +140,7 @@ const Navbar = () => {
         <ul className="flex items-center">
           <div>
             <NavLink onClick={handleNavLinkClick} to="/">
-              <img src="/shoply-logo-full.static.svg" alt="logo" />
+              <img className="ml-20" src="/shoply-logo-full.static.svg" alt="logo" />
             </NavLink>
           </div>
         </ul>
