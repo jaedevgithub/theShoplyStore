@@ -45,8 +45,8 @@ function HomePageSlider() {
 
   return (
     <>
-      <section className="md:hidden xl:block font-[Whyte] font-bold hidden sm:block relative -top-80 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
-        <div className="scale-150 w-screen overflow-hidden hd:h-[593px] fullhd:h-[993px] 4k:h-[1713px] relative top-[-90px] hd:top-[-40px] fullhd:top-[110px] 4k:top-[160px]">
+      <section className="md:hidden xl:block font-[Whyte] hidden sm:block relative -top-80 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
+        <div className="scale-150 w-screen overflow-hidden hd:h-[693px] fullhd:h-[993px] 4k:h-[1713px] relative top-[-90px] hd:top-[5px] fullhd:top-[110px] 4k:top-[160px]">
           <div className="w-screen overflow-hidden">
             <Carousel
               swipeable={true}
@@ -65,7 +65,7 @@ function HomePageSlider() {
                     type="button"
                     onClick={onClickHandler}
                     title="Previous"
-                    className="hd:w-[20px] relative hd:top-[230px] hd:right-[-900px] fullhd:right-[-1550px] qhd:right-[-1480px] fullhd:top-[315px] z-10 4k:right-[-2813px] 4k:top-[480px]"
+                    className="hd:w-[20px] relative hd:top-[240px] hd:right-[-1050px] fullhd:right-[-1550px] qhd:right-[-1480px] fullhd:top-[315px] z-10 4k:right-[-2813px] 4k:top-[480px]"
                   >
                     <img src={leftArrowIcon} alt="Next" />
                   </button>
@@ -77,7 +77,7 @@ function HomePageSlider() {
                     type="button"
                     onClick={onClickHandler}
                     title="Next"
-                    className="relative hd:w-[20px] hd:right-[-310px] hd:top-[-140px] fullhd:right-[-570px] fullhd:top-[-230px] z-10 4k:right-[-1013px] 4k:top-[-380px]"
+                    className="relative hd:w-[20px] hd:right-[-350px] hd:top-[-153px] fullhd:right-[-570px] fullhd:top-[-230px] z-10 4k:right-[-1013px] 4k:top-[-380px]"
                   >
                     <img src={rightArrowIcon} alt="Previous" />
                   </button>
@@ -94,7 +94,7 @@ function HomePageSlider() {
                   {productDetails.map((product) => (
                     <button
                       key={product.id}
-                      className={`absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] fullhd:left-[15%] hd:left-[13%] flex items-center justify-center opacity-0 transition-opacity  hover:opacity-100`}
+                      className={`absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] fullhd:left-[15%] hd:left-[13%] flex items-center justify-center opacity-0 transition-opacity  hover:opacity-100`}
                     >
                       <Link
                         to={`/product-detail/${product.id}`}
@@ -107,7 +107,7 @@ function HomePageSlider() {
                       </Link>
                     </button>
                   ))}
-                  <button className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[40%] fullhd:left-[42%] 4k:left-[44%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100 ">
+                  <button className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[40%] fullhd:left-[42%] 4k:left-[44%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100 ">
                     <Link
                       to={`/product-detail/${17}`}
                       className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
@@ -125,7 +125,7 @@ function HomePageSlider() {
                         : "Loading..."}
                     </Link>
                   </button>
-                  <button className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[60%] fullhd:left-[62%] 4k:left-[65%] flex items-center justify-center opacity-0 transition-opacity left-[62%] hover:opacity-100">
+                  <button className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[60%] fullhd:left-[62%] 4k:left-[65%] flex items-center justify-center opacity-0 transition-opacity left-[62%] hover:opacity-100">
                     <Link
                       to={`/product-detail/${10}`}
                       className={`text-black  hd:text-xl  bg-zinc-50 px-4 py-2 rounded-full ${
@@ -143,7 +143,7 @@ function HomePageSlider() {
                         : "Loading..."}
                     </Link>
                   </button>
-                  <button className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[81.1%] fullhd:left-[84%]  4k:left-[86%] flex items-center justify-center opacity-0 transition-opacity hd:left-[84%] hover:opacity-100">
+                  <button className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[81.1%] fullhd:left-[84%]  4k:left-[86%] flex items-center justify-center opacity-0 transition-opacity hd:left-[84%] hover:opacity-100">
                     <Link
                       to={`/product-detail/${7}`}
                       className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
@@ -173,7 +173,7 @@ function HomePageSlider() {
                   {productDetails.map((product) => (
                     <button
                       key={product.id}
-                      className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[150px] fullhd:left-[270px] 4k:left-[550px] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100"
+                      className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[150px] fullhd:left-[270px] 4k:left-[550px] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100"
                     >
                       <Link
                         to={`/product-detail/${product.id}`}
@@ -186,7 +186,7 @@ function HomePageSlider() {
                       </Link>
                     </button>
                   ))}
-                  <button className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[40%] fullhd:left-[42%] 4k:left-[44%] flex items-center justify-center opacity-0 transition-opacity left-[42%] hover:opacity-100">
+                  <button className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[40%] fullhd:left-[42%] 4k:left-[44%] flex items-center justify-center opacity-0 transition-opacity left-[42%] hover:opacity-100">
                     <Link
                       to={`/product-detail/${17}`}
                       className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
@@ -204,7 +204,7 @@ function HomePageSlider() {
                         : "Loading..."}
                     </Link>
                   </button>
-                  <button className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[60%] fullhd:left-[63%] 4k:left-[65%] flex items-center justify-center opacity-0 transition-opacity left-[62%] hover:opacity-100">
+                  <button className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[60%] fullhd:left-[63%] 4k:left-[65%] flex items-center justify-center opacity-0 transition-opacity left-[62%] hover:opacity-100">
                     <Link
                       to={`/product-detail/${10}`}
                       className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
@@ -222,7 +222,7 @@ function HomePageSlider() {
                         : "Loading..."}
                     </Link>
                   </button>
-                  <button className="absolute hd:top-[190px] fullhd:top-[260px] 4k:top-[450px] hd:left-[81%] fullhd:left-[84%] 4k:left-[86%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100">
+                  <button className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[81%] fullhd:left-[84%] 4k:left-[86%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100">
                     <Link
                       to={`/product-detail/${7}`}
                       className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
@@ -247,7 +247,7 @@ function HomePageSlider() {
         </div>
       </section>
 
-      <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer -top-40 bg-customYellow h-[430px] md:h-[788px]">
+      <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer-top-40 -top-20 md:-top-60 bg-customYellow h-[430px] md:h-[788px]">
         <div className="w-screen overflow-hidden max-w-screen relative top-20">
           <Carousel
             swipeable={true}

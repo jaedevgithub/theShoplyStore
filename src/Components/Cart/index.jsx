@@ -220,7 +220,7 @@ function Cart() {
       </section>
 
       {/* Mobile shopping cart */}
-      <section className="md:hidden container mx-auto px-4 relative mt-[-500px] -mb-[880px] w-screen">
+      <section className="md:hidden container mx-auto px-4 relative mt-[-500px] -mb-[680px] w-screen">
         <h1 className="text-3xl font-bold mt-8 mb-4">
           {context.count} items in Cart
         </h1>

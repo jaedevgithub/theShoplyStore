@@ -69,7 +69,7 @@ function Footer() {
       {/* Desktop footer */}
       {isDesktopView && (
         <footer
-          className={`font-[Whyte] hidden md:hidden lg:block w-screen ${getFooterBackgroundColor()} h-full relative overflow-hidden`}
+          className={`font-[Whyte] hidden md:hidden lg:block w-screen ${getFooterBackgroundColor()} h-full relative overflow-hidden `}
         >
           <div
             className={`${

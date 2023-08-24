@@ -8,14 +8,12 @@ import Layout from "../../Components/Layout";
 const ProductDetail = () => {
   const context = useContext(ShoppingCartContext);
   const { items, loadDataFromAPI } = context;
-  const { id } = useParams();
   const navigate = useNavigate();
-  const { productId } = useParams(); // Desestructura productId
+  const { productId } = useParams();
   const productToShow = items.find(
     (product) => product.id === parseInt(productId)
   );
   const category = productToShow?.category?.name || "";
-
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
 
@@ -26,14 +24,13 @@ const ProductDetail = () => {
     }
   }, [items, loadDataFromAPI]);
 
-// Manejar el caso de producto no encontrado
-useEffect(() => {
-  if (!productToShow) {
-    // Redirigir a la página de detalle de producto actual
-    navigate(`/product-detail/${productId}`); // Utiliza el productId actual
-  }
-}, [productToShow, navigate, productId]);
-
+  // Manejar el caso de producto no encontrado
+  useEffect(() => {
+    if (!productToShow) {
+      // Redirigir a la página de detalle de producto actual
+      navigate(`/product-detail/${productId}`); // Utiliza el productId actual
+    }
+  }, [productToShow, navigate, productId]);
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
@@ -75,7 +72,7 @@ useEffect(() => {
     <>
       <Layout>
         {screenWidth >= 768 && ( // Render if screen width is greater than or equal to 768px
-          <section className="hidden lg:flex items-center justify-center hd:-mb-[350px] hd:-mt-60 fullhd:mb-[-1550px] fullhd:mt-[-1540px] hd:-mt-20 hd:ml-40 fullhd:scale-100 4k:mb-[-2500px] 4k:mt-[-3700px]">
+          <section className="hidden lg:flex items-center justify-center hd:mb-[10px] hd:-mt-20 fullhd:mb-[-1350px] fullhd:mt-[-1540px] hd:-mt-20 hd:ml-40 fullhd:scale-100 4k:mb-[-2500px] 4k:mt-[-3700px]">
             {/* Desktop product detail code */}
             <div className="hidden md:flex flex-row-3 items-center justify-between mb-60 relative mt-80">
               <aside>
@@ -116,7 +113,7 @@ useEffect(() => {
               <div className="flex flex-col justify-between relative mt-10 -top-[255px] -right-20">
                 <div className="flex flex-col items-left">
                   {/* Display product details */}
-                  <span className="bg-green-500 rounded-full flex w-[110px] h-[36px] items-center mb-5">
+                  <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center mb-5">
                     <p className="font-[Whyte] ml-4 text-xl font-bold mt-[1px]">
                       {category}
                     </p>
@@ -138,14 +135,17 @@ useEffect(() => {
                       <button
                         key={size}
                         onClick={() => handleSizeSelect(size)}
-                        className={`w-[50px] h-[50px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
+                        className={`w-16 h-16 font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
                           selectedSize === size ? "bg-black text-white" : ""
                         }`}
                       >
-                        <p className="mt-[1px]">{size}</p>
+                        <span className="flex items-center text-center justify-center">
+                          <p className="text-[12px] font-semibold">{size}</p>
+                        </span>
                       </button>
                     ))}
                 </div>
+
                 <p className="mt-2 font-[Whyte] font-bold">
                   Selected Size: {selectedSize}
                 </p>
@@ -169,18 +169,18 @@ useEffect(() => {
           </section>
         )}
 
-        {screenWidth < 768 && ( // Render if screen width is less than 768px
-          <section className="sm:block md:block xl:hidden mt-[180px] md:mb-[-1320px]">
+        {(screenWidth < 768 || screenWidth >= 768) && ( // Render if screen width is less than 768px or greater than or equal to 768px (tablets)
+          <section className="sm:block md:block xl:hidden mt-[190px] md:mt-[40px] md:mb-[150px] overflow-hidden">
             {/* Mobile and tablet product detail code */}
             <div className="flex flex-col items-left">
               {/* Display product details on mobile */}
-              <span className="bg-green-500 rounded-full flex w-[110px] h-[36px] items-center mb-5 ml-8 text-center">
-                <p className="font-[Whyte ml-4 text-xl font-bold mt-[1px] mb-[4px]">
+              <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center mb-5 ml-8 text-center">
+                <p className="font-[Whyte] ml-4 text-xl font-bold mt-[1px] mb-[4px]">
                   {category}
                 </p>
               </span>
               {productToShow && (
-                <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5">
+                <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5 ml-8">
                   {productToShow.title}
                 </h2>
               )}
@@ -193,7 +193,7 @@ useEffect(() => {
             </div>
             {/* Display carousel of product images on mobile */}
             <Carousel
-              className="relative mx-auto mt-10 mb-10 w-screen"
+              className="relative mx-auto mt-10 mb-10 w-screen md:scale-[2.2] md:mt-60 md:mb-60 "
               swipeable={true}
               showStatus={false}
               showThumbs={false}
@@ -221,7 +221,7 @@ useEffect(() => {
             </Carousel>
             {/* Add to cart button on mobile */}
             <div className="mx-12 mt-4">
-              <div className="flex flex-row items-center justify-left mx-auto">
+              <div className="flex flex-row items-center justify-center mx-auto">
                 {/* Display product sizes */}
                 {productToShow &&
                   productToShow.sizes &&
@@ -230,12 +230,13 @@ useEffect(() => {
                     <button
                       key={size}
                       onClick={() => handleSizeSelect(size)}
-                      className={`font-[Whyte] w-[50px] h-[50px] hd:w-[60px] hd:h-[60px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-2 mb-2 ${
+                      className={`font-[Whyte] w-[50px] h-[50px] hd:w-[60px] hd:h-[60px] font-[Whyte] text-center inline-block border border-black rounded-full text-sm font-semibold mr-4 mb-2 ${
                         selectedSize === size ? "bg-black text-white" : ""
                       }`}
                     >
-                      <span className="flex items-center">
-                        <p className="mt-[0px]">{size}</p>
+                      <span className="flex items-center text-center justify-center">
+                        {" "}
+                        <p className="text-[12px] font-semibold">{size}</p>
                       </span>
                     </button>
                   ))}

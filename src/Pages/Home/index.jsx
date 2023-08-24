@@ -51,7 +51,7 @@ function Home() {
 
           {/* Sección principal para vista de escritorio */}
           {isDesktopView && (
-            <div className="hidden md:hidden lg:block sm:w-screens relative animate-slideInLeft">
+            <div className="hidden md:hidden lg:block sm:w-screens relative animate-slideInLeft mb-80 mt-20">
               <div className="grid gap-x-6 gap-y-20 grid-cols-4 w-full max-w-screen-xl relative mx-auto">
                 {filteredProducts.map((item, index) => (
                   <Card key={index} data={item} className="animate-fadeIn" />
@@ -61,7 +61,7 @@ function Home() {
           )}
 
           {isMobileView && (
-            <div className="md:hidden animate-fadeIn flex justify-center items-center h-screen relative top-[1000px] mb-[2290px] mt-[120px]">
+            <div className="md:hidden animate-fadeIn flex justify-center items-center h-screen relative top-[1000px] mb-[2290px] mt-[290px]">
               <div className="grid grid-cols-2 items-center gap-y-[120px] gap-x-5 justify-center ">
                 {filteredProducts.map((item, index) => (
                   <Card key={index} data={item} className="animate-fadeIn" />

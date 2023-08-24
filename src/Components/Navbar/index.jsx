@@ -140,7 +140,11 @@ const Navbar = () => {
         <ul className="flex items-center">
           <div>
             <NavLink onClick={handleNavLinkClick} to="/">
-              <img className="ml-20" src="/shoply-logo-full.static.svg" alt="logo" />
+              <img
+                className="ml-20"
+                src="/shoply-logo-full.static.svg"
+                alt="logo"
+              />
             </NavLink>
           </div>
         </ul>
@@ -237,19 +241,29 @@ const Navbar = () => {
           </button>
           <nav
             id="navbar-collapse-with-animation"
-            className="sm:hidden z-10 absolute top-20 left-0 flex items-left hidden overflow-hidden transition-all duration-300 bg-white h-[190px] grow w-screen border-black border-t-2 shadow-lg"
+            className="sm:hidden z-10 absolute top-20 left-0 flex items-left hidden overflow-hidden transition-all duration-300 bg-white h-[80px] grow w-screen border-black border-t-2 shadow-lg"
           >
-            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative ml-5 mt-[120px] font-[Whyte]">
+            <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-end sm:mt-0 sm:pl-5 text-6xl relative ml-5 mt-[28px] font-[Whyte]">
               <div>
                 <div className="flex flex-col relative ">
-                  <Link
-                    to="my-account"
-                    className="font-medium text-black"
-                    href="#"
-                    aria-current="page"
-                  >
-                    <p className="text-[25px]">My account</p>
-                  </Link>
+                  {isAuthenticated ? (
+                    <Link
+                      to="/my-account"
+                      className="font-medium text-black"
+                      href="#"
+                      aria-current="page"
+                    >
+                      <p className="text-[25px]">My account</p>
+                    </Link>
+                  ) : (
+                    <Link
+                      to="/sign-in"
+                      className="font-medium text-black"
+                      href="#"
+                    >
+                      <p className="text-[25px]">Log In</p>
+                    </Link>
+                  )}
                 </div>
               </div>
             </div>

@@ -27,7 +27,7 @@ const MyOrder = () => {
   return (
     <Layout>
       {/* Desktop view */}
-      <section className="font-[Whyte] bg-white rounded-lg p-4 fullhd:-mt-[900px] hd:top-[20px] hd:left-[0px] flex flex-col items-center fullhd:w-[1330px] hd:w-screen relative fullhd:-top-[610px] fullhd:left-[40px] fullhd:mb-[-2250px] fullhd:mx-auto justify-center h-screen hidden sm:hidden md:hidden lg:block">
+      <section className="font-[Whyte] bg-white rounded-lg p-4 fullhd:-mt-[900px] hd:top-[20px] hd:left-[75px] flex flex-col items-center fullhd:w-[1330px] hd:w-screen relative fullhd:-top-[610px] fullhd:left-[40px] fullhd:mb-[-2250px] fullhd:mx-auto justify-center h-screen hidden sm:hidden md:hidden lg:block">
         <span className="fullhd:mr-[900px] hd:ml-[190px]">
           <h2 className="text-[30px] font-bold mb-20">My Order</h2>
         </span>

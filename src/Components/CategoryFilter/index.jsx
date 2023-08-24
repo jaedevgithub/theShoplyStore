@@ -1,7 +1,6 @@
 import React, { useContext, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import "/src/index.css";
-import Layout from "../Layout";
 
 const CategoryFilter = () => {
   const context = useContext(ShoppingCartContext);
@@ -16,70 +15,103 @@ const CategoryFilter = () => {
   return (
     <>
       {/* Category filter for desktop*/}
-      <figure className="hidden md:hidden lg:flex items-center justify-center">
+      <section className="relative -mt-60 mr-40 hidden lg:block">
         <img
-          src="categoryfilter-desktop.png"
+          src="SHOPLY (3).svg"
           alt="category-image"
-          className="w-full h-full inline-block md:ml-40 sm:ml-0"
+          className="w-full h-full inline-block relative z-10 pointer-events-none"
         />
-      </figure>
-
-      <section className="hidden md:hidden lg:grid gap-x-60 gap-y-20 grid-cols-2 w-full max-w-screen-lg relative -top-[210px] left-[40px] text-[54px]">
-        {/* Render clickable category options */}
-        <p
+        <button
           onClick={() => handleCategoryClick("shoes")}
-          className={`font-[Whyte] font-bold relative uppercase underline underline-offset-8 right-[95px] text-[54px] cursor-pointer ${
-            selectedCategory === "shoes" || selectedCategory === null
-              ? "text-black"
-              : "text-customGray"
-          }`}
+          className={`absolute top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 z-0 bg-white text-white w-60 h-20 transition hover:border-b-4 hover:border-black ${
+            selectedCategory === "shoes" ? "border-b-4 border-black" : ""
+          } hd:w-[150px] hd:-ml-[335px] hd:top-[135px] 4k:top-[460px] 4k:left-[1330px] 4k:w-[500px] fullhd:w-[220px] fullhd:-ml-[450px] qhd:top-[225px] qhd:left-[915px] fullhd:top-[210px]`}
         >
           Shoes
-        </p>
-        <p
+        </button>
+        <button
           onClick={() => handleCategoryClick("clothes")}
-          className={`font-[Whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[54px] cursor-pointer  ${
-            selectedCategory === "clothes" || selectedCategory === null
-              ? "text-black"
-              : "text-customGray"
-          } `}
+          className={`absolute top-1/2 left-1/2 cursor-pointer transform translate-x-1/2 -translate-y-1/2 z-0 bg-white text-white w-[350px] h-20 transition hover:border-b-4 hover:border-black ${
+            selectedCategory === "clothes" ? "border-b-4 border-black" : ""
+          } fullhd:w-[300px] hd:top-[135px] hd:-ml-[50px] hd:w-[205px] qhd:top-[225px] qhd:left-[925px] 4k:top-[460px] 4k:left-[1800px] 4k:w-[580px] fullhd:top-[210px] fullhd:ml-[-75px]`}
         >
           Clothes
-        </p>
+        </button>
+      </section>
+
+      {/* Category filter for tablet*/}
+      <section className="hidden md:block lg:hidden">
+        <figure className="flex items-center justify-center relative -top-[160px] overflow-hidden -ml-40">
+          <img
+            src="SHOPLY (475 × 195 px) (1).svg"
+            alt="category-image"
+            className="w-full h-full inline-block md:ml-40 sm:ml-0 scale-150 z-10 pointer-events-none"
+          />
+        </figure>
+
+        <section className="md:flex lg:hidden grid gap-x-60 gap-y-20 grid-cols-2 w-screen relative -top-[345px] left-9 overflow-hidden">
+          {/* Render clickable category options */}
+          <button
+            onClick={() => handleCategoryClick("shoes")}
+            className={`bg-white text-white cursor-pointer border-b-2 border-transparent hover:border-black w-[150px] relative left-8 mt-[10px]${
+              selectedCategory === "clothes" ? "border-b-2 border-black" : ""
+            }`}
+          >
+            Shoes
+          </button>
+          <span className="relative -left-[-80px]">
+            <button
+              onClick={() => handleCategoryClick("clothes")}
+              className={`bg-white text-white border-b-2 border-transparent w-[195px] hover:border-black left-5 mt-[15px] ${
+                selectedCategory === "clothes" ? "border-b-2 border-black" : ""
+              }`}
+            >
+              Clothes
+            </button>
+          </span>
+        </section>
       </section>
 
       {/* Category filter for mobile*/}
+      <section>
+        <figure className="flex items-center justify-center md:hidden relative -top-[0px] overflow-hidden">
+          <img
+            src="SHOPLY (475 × 195 px) (1).svg"
+            alt="category-image"
+            className="w-full h-full inline-block md:ml-40 sm:ml-0 scale-150  z-10  pointer-events-none"
+          />
+        </figure>
 
-      <figure className="flex items-center justify-center md:hidden relative -top-[120px]">
-        <img
-          src="categoryfilter-mobile.png"
-          alt="category-image"
-          className="w-full h-full inline-block md:ml-40 sm:ml-0"
-        />
-      </figure>
+        <section className="md:hidden lg:hidden grid gap-x-60 gap-y-20 grid-cols-2 w-screen  relative -top-[95px] overflow-hidden">
+          {/* Render clickable category options */}
 
-      <section className="md:hidden grid gap-x-60 gap-y-20 grid-cols-2 w-full max-w-screen-lg relative -top-[210px]">
-        {/* Render clickable category options */}
-        <p
-          onClick={() => handleCategoryClick("shoes")}
-          className={`font-[Whyte] font-bold relative uppercase underline underline-offset-8 right-[-8px] text-[19px] top-[19px] cursor-pointer ${
-            selectedCategory === "shoes" || selectedCategory === null
-              ? "text-black"
-              : "text-customGray"
-          }`}
-        >
-          Shoes
-        </p>
-        <p
-          onClick={() => handleCategoryClick("clothes")}
-          className={`font-[Whyte] font-bold relative underline underline-offset-8 right-[170px] uppercase text-[19px] top-[19px] left-[-110px]  cursor-pointer  ${
-            selectedCategory === "clothes" || selectedCategory === null
-              ? "text-black"
-              : "text-customGray"
-          } `}
-        >
-          Clothes
-        </p>
+          <button
+            onClick={() => handleCategoryClick("shoes")}
+            className={` bg-white text-white cursor-pointer border-b-2 border-transparent hover:border-black relative left-8 mt-[1px]${
+              selectedCategory === "clothes"
+                ? "border-b-2 border-black"
+                : ""
+                ? "border-black"
+                : ""
+            }`}
+          >
+            Shoes
+          </button>
+          <span className="relative -left-[70px]">
+            <button
+              onClick={() => handleCategoryClick("clothes")}
+              className={` bg-white text-white border-b-2 border-transparent w-[95px] hover:border-black  mt-[1px] ${
+                selectedCategory === "clothes"
+                  ? "border-b-2 border-black"
+                  : ""
+                  ? "border-black"
+                  : ""
+              }`}
+            >
+              Clothes
+            </button>
+          </span>
+        </section>
       </section>
     </>
   );

@@ -60,10 +60,10 @@ function SignIn() {
 
   return (
     <Layout>
-      <div className="bg-customYellow outline rounded-lg shadow font-[Whyte] w-[330px]">
+      <section className="bg-customYellow outline rounded-lg shadow-lg font-[Whyte] w-[300px] hd:-mt-40 fullhd:-mt-[650px] 4k:scale-150 4k:-mt-[1350px] md:-mt-[480px]">
         <div className="px-6 py-6 lg:px-8">
           <h3 className="mb-4 text-xl font-medium text-gray-900">
-            {isAuthenticated ? "Logged Out" : "Sign in to our platform"}
+            {isAuthenticated ? "Want to log Out?" : "Try our platform"}
           </h3>
           {!isAuthenticated ? (
             <form className="space-y-6" action="#">
@@ -84,10 +84,10 @@ function SignIn() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={
-                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" +
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline block w-full p-2.5" +
                     (isAuthenticated ? " hidden" : "")
                   }
-                  placeholder="your@youremail.com"
+                  placeholder="yourname@youremail.com"
                   required
                 />
               </div>
@@ -109,7 +109,7 @@ function SignIn() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className={
-                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 " +
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline block w-full p-2.5 " +
                     (isAuthenticated ? " hidden" : "")
                   }
                   required
@@ -118,7 +118,7 @@ function SignIn() {
               <button
                 type="button"
                 onClick={handleLogin}
-                className="w-full text-white bg-black hover:bg-white hover:text-black focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-black hover:bg-white hover:text-black hover:outline font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Log In
               </button>
@@ -136,7 +136,7 @@ function SignIn() {
             </button>
           )}
         </div>
-      </div>
+      </section>
     </Layout>
   );
 }
