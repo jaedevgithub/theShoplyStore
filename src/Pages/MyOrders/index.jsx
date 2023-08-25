@@ -11,7 +11,7 @@ function MyOrders() {
   useEffect(() => {
     // Retrieve saved orders from localStorage
     const savedOrders = localStorage.getItem("orders");
-    
+
     if (savedOrders) {
       // Parse and set the orders in the context
       context.setOrder(JSON.parse(savedOrders));
@@ -35,37 +35,38 @@ function MyOrders() {
   }
 
   return (
-    <div className="font-[Whyte] flex flex-col items-center justify-center min-h-screen pt-20 mt-20">
-      {/* Container for the "My Orders" heading */}
-      <div className="container mx-auto px-4 text-left mb-8">
-        <h2 className="text-3xl font-bold mt-8 mb-4">My Orders</h2>
-      </div>
-      <section className="flex items-center justify-center flex-col md:justify-start -mb-96">
-        {/* Render each order */}
-        {context.order.map((order, index) => {
-          // Check if the 'products' property is defined before accessing it
-          if (order.products && order.products.length > 0) {
-            return (
-              <Link key={index} to={`/my-orders/${index}`}>
-                {/* Only render the data for each order */}
-                <OrdersCard
-                  key={index}
-                  date={order.date}
-                  totalPrice={order.total}
-                  totalProducts={order.products.reduce(
-                    (total, product) => total + (product.quantity || 0),
-                    0
-                  )}
-                />
-              </Link>
-            );
-          } else {
-            return null;
-          }
-        })}
+    <>
+      <section className="font-[Whyte] flex flex-col items-center justify-center min-h-screen pt-20 mt-20 mb-[450px]">
+        {/* Container for the "My Orders" heading */}
+        <div className="container mx-auto px-4 text-left mb-8">
+          <h2 className="text-3xl font-bold mt-8 mb-4">My Orders</h2>
+        </div>
+        <div className="flex items-center justify-center flex-col md:justify-start -mb-96">
+          {/* Render each order */}
+          {context.order.map((order, index) => {
+            // Check if the 'products' property is defined before accessing it
+            if (order.products && order.products.length > 0) {
+              return (
+                <Link key={index} to={`/my-orders/${index}`}>
+                  {/* Only render the data for each order */}
+                  <OrdersCard
+                    key={index}
+                    date={order.date}
+                    totalPrice={order.total}
+                    totalProducts={order.products.reduce(
+                      (total, product) => total + (product.quantity || 0),
+                      0
+                    )}
+                  />
+                </Link>
+              );
+            } else {
+              return null;
+            }
+          })}
+        </div>
       </section>
-      <Layout />
-    </div>
+    </>
   );
 }
 

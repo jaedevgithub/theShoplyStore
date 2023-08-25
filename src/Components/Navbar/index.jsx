@@ -14,10 +14,12 @@ const Navbar = () => {
   const { isAuthenticated, setIsAuthenticated } =
     useContext(ShoppingCartContext);
 
+  // Toggle search bar visibility
   const handleSearchButtonClick = () => {
     setIsSearchVisible(!isSearchVisible);
   };
 
+  // Handle scrolling for showing/hiding the navbar and search bar
   const handleScroll = () => {
     const currentScrollPos = window.pageYOffset;
     const isScrollingDown = prevScrollPos < currentScrollPos;
@@ -31,6 +33,7 @@ const Navbar = () => {
     setIsNavbarVisible(!isScrollingDown || currentScrollPos === 0);
   };
 
+  // Add scroll event listener and cleanup on unmount
   useEffect(() => {
     window.addEventListener("scroll", handleScroll);
 
@@ -39,11 +42,13 @@ const Navbar = () => {
     };
   }, [isSearchVisible]);
 
+  // Handle search form submission
   const handleSearch = (event) => {
     event.preventDefault();
     navigate(`/search-results?query=${encodeURIComponent(searchQuery)}`);
   };
 
+  // Handle navigation link click
   const handleNavLinkClick = (event) => {
     const isActive = event.currentTarget === document.activeElement;
     if (isActive) {
@@ -55,11 +60,10 @@ const Navbar = () => {
     }
   };
 
+  // Check if the user is authenticated from local storage
   useEffect(() => {
-    // Verifica si el usuario está autenticado en el almacenamiento local
     const isLoggedIn = localStorage.getItem("isLoggedIn");
 
-    // Si está autenticado, actualiza el estado de autenticación en tu contexto o componente
     if (isLoggedIn === "true") {
       setIsAuthenticated(true);
     }
@@ -67,7 +71,8 @@ const Navbar = () => {
 
   return (
     <header className="w-screen">
-      <div
+      {/* Search bar */}
+      <section
         className={`search-bar-container z-20 ${
           isSearchVisible ? "h-20" : "h-0"
         } overflow-hidden transition-all duration-200 ease-in-out fixed top-20 w-screen  ${
@@ -100,8 +105,9 @@ const Navbar = () => {
             </div>
           </div>
         </div>
-      </div>
+      </section>
 
+      {/* Desktop navbar */}
       <nav
         className={`hidden md:hidden lg:flex justify-between top-0 font-[Whyte] text-[14px] items-center md:fixed z-10 w-auto lg:w-full py-5 px-8 text-sm font-light bg-customYellow h-20 transition-opacity ${
           isNavbarVisible ? "opacity-100" : "opacity-0"
@@ -169,11 +175,28 @@ const Navbar = () => {
         </ul>
       </nav>
 
-      <section aria-label="Global">
+      {/* Mobile and tablet navbar */}
+      <nav aria-label="Global">
         <div className="lg:hidden top-0 flex justify-between items-center fixed z-10 w-screen py-5 px-8 text-sm font-light bg-customYellow h-20 opacity-100">
+          <div className="hidden md:block flex flex-col relative ">
+            {isAuthenticated ? (
+              <Link
+                to="/my-account"
+                className="font-medium text-black"
+                href="#"
+                aria-current="page"
+              >
+                <p className="text-[25px]">My account</p>
+              </Link>
+            ) : (
+              <Link to="/sign-in" className="font-medium text-black" href="#">
+                <p className="text-[25px]">Log In</p>
+              </Link>
+            )}
+          </div>
           <button
             type="button"
-            className="hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
+            className="md:hidden hs-collapse-toggle p-2 border-2 inline-flex justify-center items-center gap-2 rounded-full font-medium border-black relative right-5"
             data-hs-collapse="#navbar-collapse-with-animation"
             aria-controls="navbar-collapse-with-animation"
             aria-label="Toggle navigation"
@@ -202,7 +225,7 @@ const Navbar = () => {
           </button>
           <button onClick={handleSearchButtonClick}>
             <svg
-              className="relative right-2"
+              className="relative md:right-20 md:top-1"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               xmlns="http://www.w3.org/2000/svg"
               width="18"
@@ -225,7 +248,7 @@ const Navbar = () => {
               />
             </svg>
           </button>
-          <button className="w-52 h-full">
+          <button className="w-52 h-full relative md:-left-20 top-1 ">
             <Link to="/" onClick={handleNavLinkClick}>
               <img
                 className="w-full h-full object-cover relative right-2"
@@ -239,7 +262,7 @@ const Navbar = () => {
               <p className="text-xs text-white">{context.count}</p>
             </NavLink>
           </button>
-          <nav
+          <div
             id="navbar-collapse-with-animation"
             className="sm:hidden z-10 absolute top-20 left-0 flex items-left hidden overflow-hidden transition-all duration-300 bg-white h-[80px] grow w-screen border-black border-t-2 shadow-lg"
           >
@@ -267,9 +290,9 @@ const Navbar = () => {
                 </div>
               </div>
             </div>
-          </nav>
+          </div>
         </div>
-      </section>
+      </nav>
     </header>
   );
 };

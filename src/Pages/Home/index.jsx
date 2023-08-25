@@ -6,34 +6,34 @@ import CategoryFilter from "../../Components/CategoryFilter";
 import HomePageSlider from "../../Components/HomePageSlider";
 
 function Home() {
-  // Accede al contexto global
+  // Access the global context
   const context = useContext(ShoppingCartContext);
 
-  // Extrae filteredItems e items del contexto
+  // Extract filteredItems and items from the context
   const filteredProducts = context.filteredItems || context.items;
 
-  // Estado para determinar el tipo de vista
+  // State to determine the view type
   const [isDesktopView, setIsDesktopView] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [isTabletView, setIsTabletView] = useState(false);
 
-  // Función para manejar los cambios en el tamaño de la ventana
+  // Function to handle window size changes
   const handleWindowSizeChange = () => {
     const width = window.innerWidth;
     setIsDesktopView(width >= 1024);
     setIsMobileView(width < 640);
-    setIsTabletView(!isDesktopView && !isMobileView);
+    setIsTabletView(width >= 640 && width < 1024);
   };
 
-  // Suscribirse a los cambios en el tamaño de la ventana
+  // Subscribe to window size changes
   useEffect(() => {
-    // Ejecutar una vez para establecer la vista inicial
+    // Execute once to set the initial view
     handleWindowSizeChange();
 
-    // Agregar un event listener para detectar cambios en el tamaño de la ventana
+    // Add an event listener to detect window size changes
     window.addEventListener("resize", handleWindowSizeChange);
 
-    // Limpiar el event listener al desmontar el componente
+    // Clean up the event listener when the component unmounts
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
@@ -43,46 +43,50 @@ function Home() {
     <>
       <Layout>
         <section className="mt-40">
-          {/* Componente del carrusel de la página de inicio para escritorio y móvil */}
-          <HomePageSlider className="animate-fadeIn" />
+          {/* Homepage carousel component for desktop and mobile */}
+          <HomePageSlider />
 
-          {/* Componente de filtro de categoría de productos para escritorio y móvil */}
-          <CategoryFilter className="animate-fadeIn" />
+          {/* Product category filter component for desktop and mobile */}
+          <CategoryFilter />
 
-          {/* Sección principal para vista de escritorio */}
+          {/* Main section for desktop view */}
           {isDesktopView && (
-            <div className="hidden md:hidden lg:block sm:w-screens relative animate-slideInLeft mb-80 mt-20">
+            <section className="hidden md:hidden lg:block sm:w-screens md:left-2 relative mb-60 mt-20">
               <div className="grid gap-x-6 gap-y-20 grid-cols-4 w-full max-w-screen-xl relative mx-auto">
                 {filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} className="animate-fadeIn" />
+                  <Card key={index} data={item} />
                 ))}
               </div>
-            </div>
+            </section>
           )}
 
+          {/* Secondary section for tablet view */}
+          {isTabletView && (
+            <section className="flex justify-center items-center h-screen top-[-50px] mt-[500px] mb-[600px]">
+              <div className="hidden md:block lg:hidden w-screens relative ">
+                <div className="grid grid-cols-4 items-center gap-y-40 gap-x-4">
+                  {filteredProducts.map((item, index) => (
+                    <Card key={index} data={item} />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
+
+          {/* Mobile section for mobile view */}
           {isMobileView && (
-            <div className="md:hidden animate-fadeIn flex justify-center items-center h-screen relative top-[1000px] mb-[2290px] mt-[290px]">
+            <section className="md:hidden flex justify-center items-center h-screen relative top-[1000px] mb-[2290px] mt-[290px]">
               <div className="grid grid-cols-2 items-center gap-y-[120px] gap-x-5 justify-center ">
                 {filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} className="animate-fadeIn" />
+                  <Card key={index} data={item} />
                 ))}
               </div>
-            </div>
-          )}
-
-          {/* Sección secundaria para vista de tableta */}
-          {isTabletView && (
-            <div className="hidden md:block lg:hidden w-screens relative top-[-50px] animate-slideInRight">
-              <div className="grid grid-cols-4 items-center gap-y-40 gap-x-6">
-                {filteredProducts.map((item, index) => (
-                  <Card key={index} data={item} className="animate-fadeIn" />
-                ))}
-              </div>
-            </div>
+            </section>
           )}
         </section>
       </Layout>
     </>
   );
 }
+
 export default Home;

@@ -1,20 +1,16 @@
-import React, { useContext } from "react";
-import Footer from "../../Components/Footer";
-import { ShoppingCartContext } from "../../Context"; // Importa el contexto de inicio de sesión
+import React from "react";
 
 const Layout = ({ children }) => {
-  const context = useContext(ShoppingCartContext); // Accede al contexto de inicio de sesión
-
   return (
     <>
-      {/* Resto del código del Layout */}
+      {/* Main content of the website */}
       <main
-        className="flex flex-col items-center justify-center sm:mt-20 md:mt-40 text-black"
+        className="flex flex-col items-center justify-center sm:mt-20 md:mt-20 text-black"
         style={{ minHeight: "100vh" }}
       >
         {children}
+        {/* The "children" prop is where you'll render the content of individual pages */}
       </main>
-      <Footer />
     </>
   );
 };

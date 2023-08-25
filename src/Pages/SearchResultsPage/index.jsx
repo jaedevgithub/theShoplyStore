@@ -5,9 +5,30 @@ import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
 
 const SearchResultsPage = () => {
+  // Access the shopping cart context
   const context = useContext(ShoppingCartContext);
   const location = useLocation();
+  
+  // State to manage search query and view size
   const [searchQuery, setSearchQuery] = useState("");
+  const [isDesktopAndTabletView, setIsDesktopAndTabletView] = useState(true);
+  const [isMobileView, setIsMobileView] = useState(false);
+
+  // Function to handle window size changes
+  const handleWindowSizeChange = () => {
+    const width = window.innerWidth;
+    setIsDesktopAndTabletView(width > 640);
+    setIsMobileView(width < 767);
+  };
+
+  // Subscribe to window resize events
+  useEffect(() => {
+    window.addEventListener("resize", handleWindowSizeChange);
+    // Unsubscribe when the component unmounts
+    return () => {
+      window.removeEventListener("resize", handleWindowSizeChange);
+    };
+  }, []);
 
   // Get the search query from the URL parameter when the page loads
   useEffect(() => {
@@ -23,26 +44,46 @@ const SearchResultsPage = () => {
 
   return (
     <Layout>
-      {/* Search results desktop*/}
-      <h2 className="hidden md:block">Search Results</h2>
-      <section className="hidden md:block grid gap-x-60 gap-y-20 grid-cols-4 w-full max-w-screen-lg relative right-28">
-        {filteredItems.length > 0 ? (
-          filteredItems.map((item, index) => (
-            <Card key={index} data={item} /> // Use the index as a unique key
-          ))
-        ) : (
-          <p>No results found</p>
-        )}
-      </section>
-      {/* Search results mobile*/}
-      <h2 className="md:hidden">Search Results</h2>
-      <section className="md:hidden flex justify-center flex-col items-center gap-y-20 w-screen ">
-        {filteredItems.length > 0 ? (
-          filteredItems.map((item, index) => (
-            <Card key={index} data={item} /> // Use the index as a unique key
-          ))
-        ) : (
-          <p>No results found</p>
+      {/* Search results for desktop and tablet */}
+      {isDesktopAndTabletView && (
+        <section>
+          <h2 className="hidden md:block font-[Whyte] text-[58px] mb-20 mt-20 text-center">
+            Search Results
+          </h2>
+          <div className="hidden md:grid md:gap-x-6 md:gap-y-20 md:grid-cols-4 w-full max-w-screen-xl relative mx-auto mb-60 font-[Whyte] md:scale-[0.99]">
+            {filteredItems.length > 0 ? (
+              filteredItems.map((item, index) => (
+                <Card key={index} data={item} /> // Use the index as a unique key
+              ))
+            ) : (
+              <p className="text-2xl font-semibold mb-40 mt-40 text-[58px] font-[Whyte]">
+                NO ORDERS HERE, AAACKKK
+              </p>
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* Search results for mobile */}
+      <section className="mt-40 mb-10">
+        {!isMobileView && (
+          <div>
+            {/* Search results for mobile */}
+            <h2 className="md:hidden font-[Whyte] text-[38px] mb-20 mt-20 text-center">
+              Search Results
+            </h2>
+            <div className="md:hidden flex justify-center flex-col items-center gap-y-40 w-screen">
+              {filteredItems.length > 0 ? (
+                filteredItems.map((item, index) => (
+                  <Card key={index} data={item} /> // Use the index as a unique key
+                ))
+              ) : (
+                <p className="text-2xl font-semibold mb-40 mt-40 text-[58px] font-[Whyte]">
+                  NO ORDERS HERE, AAACKKK
+                </p>
+              )}
+            </div>
+          </div>
         )}
       </section>
     </Layout>

@@ -4,67 +4,67 @@ import { useNavigate } from "react-router-dom";
 import Layout from "../../Components/Layout";
 
 function SignIn() {
-  const { isAuthenticated, setIsAuthenticated, login } =
+  const { isAuthenticated, setIsAuthenticated } =
     useContext(ShoppingCartContext);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const navigate = useNavigate();
 
+  // Handle user login
   const handleLogin = () => {
     if (email.includes("@") && password.trim() !== "") {
-      // Realiza la lógica de autenticación aquí (reemplaza con tu lógica real)
-      const authenticationSuccessful = true; // Cambia esto con tu lógica real
+      // Replace the following line with your actual authentication logic
+      const authenticationSuccessful = true;
 
       if (authenticationSuccessful) {
-        // Actualiza el estado de autenticación en el contexto global
-        setIsAuthenticated(true); // Establece isAuthenticated en true después de la autenticación exitosa
+        // Update authentication status in the global context
+        setIsAuthenticated(true);
 
-        // Guarda la información de autenticación en el almacenamiento local
+        // Store authentication info in local storage
         localStorage.setItem("isLoggedIn", "true");
 
-        // Verifica si el usuario llegó a la página de Sign-In desde el Carrito
+        // Check if there's a stored redirect path
         const redirectPath = localStorage.getItem("redirectPath");
         if (redirectPath) {
-          // Borra la ruta guardada en localStorage
+          // Remove the stored path
           localStorage.removeItem("redirectPath");
 
-          // Redirige al usuario de vuelta al Carrito
+          // Redirect the user back to the saved path
           navigate(redirectPath);
 
-          // Importante: Retorna para evitar que el código siguiente se ejecute
+          // Return to prevent further execution
           return;
         }
 
-        // Si no hay una ruta guardada, redirige al usuario a la página de su cuenta por defecto
+        // Redirect authenticated user to the account page
         navigate("/my-account");
       } else {
-        alert("Credenciales incorrectas.");
+        alert("Incorrect credentials.");
       }
     } else {
-      alert(
-        "Por favor, ingresa un correo electrónico válido y una contraseña."
-      );
+      alert("Please enter a valid email and password.");
     }
   };
 
+  // Handle user logout
   const handleLogout = () => {
-    // Actualiza el estado de autenticación en el contexto global a false
+    // Update authentication status in the global context
     setIsAuthenticated(false);
 
-    // Elimina el estado de inicio de sesión del localStorage al cerrar sesión
+    // Remove authentication state from local storage
     localStorage.removeItem("isLoggedIn");
 
-    // Redirige al usuario a la página de inicio
+    // Redirect user to the home page
     navigate("/");
   };
 
   return (
-    <Layout>
-      <section className="bg-customYellow outline rounded-lg shadow-lg font-[Whyte] w-[300px] hd:-mt-40 fullhd:-mt-[650px] 4k:scale-150 4k:-mt-[1350px] md:-mt-[480px]">
+    <>
+      <section className="bg-white outline rounded-lg shadow-lg font-[Whyte] w-[280px] mt-[150px] md:mt-10 hd:-mt-40 fullhd:-mt-[150px] fullhd:scale-125 4k:scale-150 4k:-mt-[1350px] md:-mt-[480px]">
         <div className="px-6 py-6 lg:px-8">
-          <h3 className="mb-4 text-xl font-medium text-gray-900">
+          <h2 className="mb-4 text-xl font-medium text-gray-900">
             {isAuthenticated ? "Want to log Out?" : "Try our platform"}
-          </h3>
+          </h2>
           {!isAuthenticated ? (
             <form className="space-y-6" action="#">
               <div>
@@ -87,7 +87,7 @@ function SignIn() {
                     "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline block w-full p-2.5" +
                     (isAuthenticated ? " hidden" : "")
                   }
-                  placeholder="yourname@youremail.com"
+                  placeholder="anyname@anyemail.com"
                   required
                 />
               </div>
@@ -123,7 +123,7 @@ function SignIn() {
                 Log In
               </button>
               <div className="text-sm font-medium text-black">
-                Type any data for test this app{" "}
+                Type any data for testing this app
               </div>
             </form>
           ) : (
@@ -137,7 +137,7 @@ function SignIn() {
           )}
         </div>
       </section>
-    </Layout>
+    </>
   );
 }
 

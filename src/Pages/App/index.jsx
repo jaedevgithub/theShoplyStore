@@ -9,6 +9,8 @@ import NotFound from "../NotFound";
 import SignIn from "../../Components/SignIn";
 import Cart from "../../Components/Cart";
 import ProductDetail from "../../Components/ProductDetail";
+import Layout from "../../Components/Layout";
+import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
 import SearchResultsPage from "../SearchResultsPage";
 import "./App.css";
@@ -38,9 +40,12 @@ const App = () => {
     <ShoppingCartProvider>
       <BrowserRouter>
         {/* Render the application routes */}
-        <AppRoutes />
-        {/* Render the Navbar */}
         <Navbar />
+        <Layout>
+          {/* Renderiza las rutas de la aplicación */}
+          <AppRoutes />
+        </Layout>
+        <Footer />
       </BrowserRouter>
     </ShoppingCartProvider>
   );

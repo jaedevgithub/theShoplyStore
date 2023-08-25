@@ -6,6 +6,7 @@ function Footer() {
   const [isMobileView, setIsMobileView] = useState(false);
   const [isTabletView, setIsTabletView] = useState(false);
   const [showFooter, setShowFooter] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
 
   // Function to handle window size changes
   const handleWindowSizeChange = () => {
@@ -41,15 +42,17 @@ function Footer() {
     // Initial call to set the initial view based on window size
     handleWindowSizeChange();
 
-    // Add an event listener to check scroll position
-    window.addEventListener("scroll", handleScroll);
+    // Add an event listener to check scroll position only if scroll hasn't been triggered
+    if (!hasScrolled) {
+      window.addEventListener("scroll", handleScroll);
+    }
 
     // Remove event listeners when the component unmounts
     return () => {
       window.removeEventListener("resize", handleWindowSizeChange);
       window.removeEventListener("scroll", handleScroll);
     };
-  }, []);
+  }, [hasScrolled]);
 
   // Function to check scroll position and show footer when scrolled to the bottom
   const handleScroll = () => {
@@ -59,8 +62,8 @@ function Footer() {
 
     if (documentHeight - scrollTop <= windowHeight) {
       setShowFooter(true);
-    } else {
-      setShowFooter(false);
+      setHasScrolled(true);
+      window.removeEventListener("scroll", handleScroll);
     }
   };
 
@@ -69,14 +72,14 @@ function Footer() {
       {/* Desktop footer */}
       {isDesktopView && (
         <footer
-          className={`font-[Whyte] hidden md:hidden lg:block w-screen ${getFooterBackgroundColor()} h-full relative overflow-hidden `}
+          className={`font-[Whyte] hidden md:hidden lg:block w-screen ${getFooterBackgroundColor()} h-full relative overflow-hidden`}
         >
           <div
             className={`${
               showFooter
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-16"
-            } transition-opacity text-center grid relative transition-transform duration-2000 ease-in-out transform -translate-y-16 opacity-0 `}
+            } transition-opacity text-center grid relative transition-transform duration-2000 ease-in-out transform -translate-y-16 opacity-0 -top-10`}
           >
             <div className="relative left-[-450px] top-[120px]">
               <img
@@ -86,7 +89,7 @@ function Footer() {
               />
             </div>
             <div className="flex justify-center items-center relative -top-40">
-              <p className="text-black text-[32px] font-bold w-[410px] relative left-[-20px] uppercase w-[105px] text-left">
+              <p className="text-black text-[32px] font-bold w-[310px] relative left-[80px] uppercase w-[105px] text-left">
                 Objects that inspire
               </p>
               <div className="flex flex-col text-[20px] font-medium items-right justify-right text-left relative w-[300px] left-[200px]">
@@ -155,7 +158,7 @@ function Footer() {
               showFooter
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-16"
-            } transition-opacity transition-transform text-center duration-2000 ease-in-out transform -translate-y-16 opacity-0`}
+            } transition-opacity transition-transform text-center duration-2000 ease-in-out transform -translate-y-16 opacity-100`}
           >
             <div className="relative top-20">
               <img
