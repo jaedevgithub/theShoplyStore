@@ -1,67 +1,92 @@
-# Frontend Mentor - Single-page design portfolio
-
-This is a solution to the [Single-page design portfolio](https://www.frontendmentor.io/challenges/singlepage-design-portfolio-2MMhyhfKVo/hub). 
-
-Frontend Mentor challenges help to improve coding skills by building realistic projects. 
-
-## Table of contents
-
-- [Overview](#overview)
-  - [The challenge](#the-challenge)
-  - [Screenshot](#screenshot)
-  - [Links](#links)
-- [My process](#my-process)
-  - [Built with](#built-with)
-  - [What I learned](#what-i-learned)
-  - [What can be improved](#What-can-be-improve)
-- [Author](#author)
+# [Shoply Store](https://the-shoply-store.vercel.app/)
 
 ## Overview
 
-### The challenge
+This is a final project for two courses of Platzi. The first one: [React course with Vite and Tailwind CSS](https://platzi.com/cursos/react-vite-tailwindcss/) and the second one: [Technical Test: Professional E-commerce with React.js](https://platzi.com/cursos/laboratorio-react/) 
 
-Your challenge is to build out this single-page design portfolio site and get it looking as close to the design as possible.
+### Description
 
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
+Shoply Store is a web application that allows you to browse and buy streetwear fashion items easily and conveniently. The website is inspire in the official [Figma Store e-commerce](https://render.com/https://store.figma.com/).
 
-Your users should be able to:
+The application was developed using React, Vite.js, Tailwind and instead of using the [ Fake API from Platzi]( https://fakeapi.platzi.com/) I create my own using [Render](https://render.com/).
 
-- View the optimal layout for the site depending on their device's screen size
-- See hover states for all interactive elements on the page
-- Navigate the slider using either their mouse/trackpad or keyboard
-
-### Screenshot
+The site's design is fully responsive, meaning that it adapts optimally to different screen sizes, providing a consistent user experience on mobile devices, tablets and desktop computers.
 
 <p align="center">
   <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmI1cHJrMWhjd3lpZDJtOGllZXg2NGpxdWR1YzVpODZ5c3Y0cWVlZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L0X4MQX06w4Vvz8f7D/giphy.gif"/>
 </p>
 
-### Links
 
-- Solution URL: [GitHub](https://github.com/jaedevgithub/singlePageWebsitePortfolio)
+## Features
 
-- Live Site URL: [Github Pages](https://jaedevgithub.github.io/singlePageWebsitePortfolio/)
+- Fully responsive.
+- Add items to your shopping cart.
+- Search for items by name.
+- Filter items by category.
+- Home page with a carousel that highlight products.
+- Access detailed product descriptions.
+- Create and view your orders in the "My Orders" section.
+- My account section.
+- Private and public paths for a secure experience.
+- Loading spinner for correct data load.
 
-## My process
+## Objectives 
+<ol>
+  <li>
+<b>Integration of an API</b>: An API was implemented to simulate the collection of product data, which allowed creating a realistic and dynamic shopping experience.  </li>
+  <li>
+<b>State and Context Management</b>: The concept of state was used and several global contexts were created for using across all the website.  </li>
+  <li>
+<b>Private and public routes</b>: Using authentication contexts, private and public routes were established. Users can only access certain sections of the application after logging in, ensuring data security and protection.  </li>
+  <li>
+<b>Shopping cart functionalities</b>: The ability to add products to the shopping cart, view and search for products, and group them by category was implemented. This improved the shopping experience for users and allowed them to browse and purchase products efficiently.  </li>
+  <li>
+<b>Use of localStorage</b>: localStorage was used to store login and order creation information. This ensures that users can access and review their orders when they log in.  </li>
+  </ol>
+  
+  ## Contribution
 
-### Built with
+Anyone can contribute to this project in several ways, such as:
 
-- HTML
-- CSS.
-- JavaScript.
+<ul>
+<li>Fixing errors or bugs: If you find an error or some unexpected behavior in the application, please create an issue in the repository so that the developers can review it.</li>
+<li>Improving functionality: If you have an idea to improve the functionality of the application, you can make a proposal through an issue or create a pull request with your proposed changes.</li>
+<li>Implementation of new features: If you want to add a new feature to the application, you can propose it through an issue and then create a pull request with the corresponding changes.</li>
+</ul>
 
-### What I learned
+## What can be improve
 
-- The skill list grid was a great challenge for the CSS grid.
-- I use ChatGPT to create the JavaScript code with my HTML and CSS configuration.
+<ul>
+<li>Mobile view still needs some work</li>
+<li>Private routes are not complete implemented</li>
+</ul>
 
 
-### What can be improve
+## Bug reporting
 
-- Some CSS elements can be redundant.
-- The slider only works when buttons are clicked.
+If you find any problem or bug in the application, please create an issue in the repository with the details of the problem and, if possible, how to reproduce it. The developers will review the issue and work to fix it as soon as possible. If you have any questions or concerns, you can also ask them through an issue.
 
-## Author
+## Credits
 
-- Frontend Mentor - [@jaegit123](https://www.frontendmentor.io/profile/jaegit123)
-- Check out my [portfolio](https://codingwithjae.dev/)
+[Tutorial for the API creation](https://www.youtube.com/watch?v=EcxYcpF3W7c) 
+<br />
+Photos: [Unsplash](https://unsplash.com/es)
+<br/>
+Icons: [React Icons]((https://react-icons.github.io/react-icons/))
+<br/>
+Animations: 
+<br/>[React Spinner](https://mhnpd.github.io/react-loader-spinner/)
+<br/>[React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel)
+
+## Contact
+For any questions or information please contact me: 
+<br/>
+Project developer: [Johander Campos](https://github.com/jaedevgithub)
+<br/>
+[Web Page](https://codingwithjae.dev/)
+<br/>
+[Linkedin](https://www.linkedin.com/in/johandercampos/) 
+
+
+<img width="1464" alt="image" src="https://github.com/albscr/TrendyZone/assets/108294869/3bbf2c48-9b71-45f2-87bc-72aa1de14198">
+
