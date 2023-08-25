@@ -44,7 +44,7 @@ const Card = ({ productId }) => {
           <button className="bg-blue cursor-pointer special-style" onClick={() => showProduct(seventhProduct)}>
             <p className="flex justify-between">
               <span className="text-[50px] font-[Whyte]">
-                {hasFetched ? seventhProduct.title : "Loading..."}
+                {hasFetched ? seventhProduct.title : "Loadingss..."}
               </span>
             </p>
           </button>
