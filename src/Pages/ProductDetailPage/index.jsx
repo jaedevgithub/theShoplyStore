@@ -4,7 +4,7 @@ import Layout from "../../Components/Layout";
 function ProductDetailPage() {
   return (
     <>
-      <ProductDetail>Product</ProductDetail>
+      <ProductDetail></ProductDetail>
     </>
   );
 }

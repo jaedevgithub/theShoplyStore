@@ -141,7 +141,7 @@ const ProductDetail = () => {
               />
             </figure>
 
-            <div className="flex flex-col justify-between relative mt-10 -top-[255px] -right-20">
+            <div className="flex flex-col justify-between relative mt-10 -top-[105px] -right-20">
               <div className="flex flex-col items-left">
                 {/* Display product details */}
                 <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center justify-center mb-5">
@@ -187,10 +187,12 @@ const ProductDetail = () => {
                 {productToShow ? `Add $${productToShow.price}` : "Add to Cart"}{" "}
                 {/* Check if productToShow is null before accessing 'price' */}
               </button>
-              <p className="text-[24px] mb-5 font-[Whyte]">
-                {productToShow ? productToShow.description : ""}{" "}
-                {/* Check if productToShow is null before accessing 'description' */}
-              </p>
+              <span className="w-[500px] mt-10">
+                <p className="text-[24px] mb-5 font-[Whyte]">
+                  {productToShow ? productToShow.description : ""}{" "}
+                  {/* Check if productToShow is null before accessing 'description' */}
+                </p>
+              </span>
             </div>
           </div>
         </section>
