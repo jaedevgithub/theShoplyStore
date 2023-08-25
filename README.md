@@ -13,7 +13,7 @@ The application was developed using React, Vite.js, Tailwind and instead of usin
 The site's design is fully responsive, meaning that it adapts optimally to different screen sizes, providing a consistent user experience on mobile devices, tablets and desktop computers.
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExdmI1cHJrMWhjd3lpZDJtOGllZXg2NGpxdWR1YzVpODZ5c3Y0cWVlZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/L0X4MQX06w4Vvz8f7D/giphy.gif"/>
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2dhdXhweW11cDNsOGowZDZiejZ1b2tibGx4azVldTNmd2E4aDVubiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lS5tZqZ01ZQ0RKw9jt/giphy-downsized-large.gif"/>
 </p>
 
 
@@ -72,7 +72,7 @@ If you find any problem or bug in the application, please create an issue in the
 <br />
 Photos: [Unsplash](https://unsplash.com/es)
 <br/>
-Icons: [React Icons]((https://react-icons.github.io/react-icons/))
+Icons: [React Icons](https://react-icons.github.io/react-icons/)
 <br/>
 Animations: 
 <br/>[React Spinner](https://mhnpd.github.io/react-loader-spinner/)
@@ -86,7 +86,4 @@ Project developer: [Johander Campos](https://github.com/jaedevgithub)
 [Web Page](https://codingwithjae.dev/)
 <br/>
 [Linkedin](https://www.linkedin.com/in/johandercampos/) 
-
-
-<img width="1464" alt="image" src="https://github.com/albscr/TrendyZone/assets/108294869/3bbf2c48-9b71-45f2-87bc-72aa1de14198">
 
