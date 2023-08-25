@@ -37,9 +37,9 @@ const MyOrder = () => {
   }
 
   // If there are no orders, display a message
-  if (!order) {
+  if (!order || !order[index]) {
     return (
-      <p className="text-2xl font-semibold mb-40 mt-40 text-[48px]">
+      <p className="hd:text-2xl font-semibold hd:mb-40 hd:mt-40 -mt-40 text-[38px] ml-5">
         NO ORDERS HERE, AAACKKK
       </p>
     );
@@ -67,8 +67,7 @@ const MyOrder = () => {
               </tr>
             </thead>
             <tbody className="text-[24px]">
-              {orderDetails &&
-                orderDetails.products &&
+              {orderDetails.products &&
                 orderDetails.products.map((product, index) => (
                   <tr
                     key={index}
@@ -108,9 +107,7 @@ const MyOrder = () => {
                   Total*
                 </td>
                 <td className=" text-[24px] bg-white px-2 md:px-4 py-2 text-center font-bold">
-                  {orderDetails && orderDetails.total && (
-                    <span>${orderDetails.total}</span>
-                  )}
+                  {orderDetails.total && <span>${orderDetails.total}</span>}
                 </td>
               </tr>
             </tfoot>
@@ -134,8 +131,7 @@ const MyOrder = () => {
               </tr>
             </thead>
             <tbody className="text-[22px]">
-              {orderDetails &&
-                orderDetails.products &&
+              {orderDetails.products &&
                 orderDetails.products.map((product, index) => (
                   <tr
                     key={index}
@@ -181,9 +177,7 @@ const MyOrder = () => {
                   Total*
                 </td>
                 <td className=" text-[24px] bg-white px-2 md:px-4 py-2 text-center font-bold">
-                  {orderDetails && orderDetails.total && (
-                    <span>${orderDetails.total}</span>
-                  )}
+                  {orderDetails.total && <span>${orderDetails.total}</span>}
                 </td>
               </tr>
             </tfoot>

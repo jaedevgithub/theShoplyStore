@@ -200,7 +200,7 @@ const ProductDetail = () => {
 
       {/* Mobile and tablet product detail */}
       {isMobileAndTabletView && (
-        <section className="sm:block md:block xl:hidden mt-[190px] md:mt-[40px] md:mb-[150px] overflow-hidden">
+        <section className="sm:block md:block xl:hidden mt-[190px] md:mt-[140px] md:mb-[150px] overflow-hidden">
           {/* Mobile and tablet product detail code */}
           <div className="flex flex-col items-left">
             {/* Display product details on mobile */}
@@ -214,7 +214,7 @@ const ProductDetail = () => {
             )}
 
             {productToShow && productToShow.description && (
-              <span className="w-[350px] overflow-hidden">
+              <span className="w-[350px] overflow-hidden md:w-[750px] overflow-hidden">
                 <p className="font-[Whyte] text-[20px] mb-5 ml-8">
                   {productToShow.description}
                 </p>

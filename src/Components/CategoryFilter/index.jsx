@@ -71,7 +71,7 @@ const CategoryFilter = () => {
 
       {/* Category filter for tablet */}
       {isTabletView && (
-        <section className="hidden md:block lg:hidden overflow-hidden -mt-20 mb-40">
+        <section className="hidden md:block lg:hidden overflow-hidden -mt-20 mb-60">
           <figure className="flex items-center justify-center relative -top-[-20px] overflow-hidden -ml-40 z-0">
             <img
               src="/categoryfilter-mobile-and-tablet.svg"

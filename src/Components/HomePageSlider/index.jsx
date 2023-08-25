@@ -47,7 +47,7 @@ function HomePageSlider() {
   useEffect(() => {
     // Check if the screen width is less than or equal to the width of tablets
     const handleResize = () => {
-      if (window.innerWidth <= 768) {
+      if (window.innerWidth <= 820) {
         setCurrentView("mobile");
       } else {
         setCurrentView("desktop");
@@ -119,7 +119,7 @@ function HomePageSlider() {
                     {productDetails.map((product) => (
                       <button
                         key={product.id}
-                        className={`absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] fullhd:left-[15%] hd:left-[13%] flex items-center justify-center opacity-0 transition-opacity  hover:opacity-100`}
+                        className={`absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] fullhd:left-[15%] hd:left-[13%] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100`}
                       >
                         <Link
                           to={`/product-detail/${product.id}`}
@@ -198,7 +198,7 @@ function HomePageSlider() {
                     {productDetails.map((product) => (
                       <button
                         key={product.id}
-                        className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[150px] fullhd:left-[270px] 4k:left-[550px] flex items-center justify-center opacity-100 transition-opacity hover:opacity-100"
+                        className="absolute hd:top-[215px] fullhd:top-[260px] 4k:top-[450px] hd:left-[150px] fullhd:left-[270px] 4k:left-[550px] flex items-center justify-center opacity-0 transition-opacity hover:opacity-100"
                       >
                         <Link
                           to={`/product-detail/${product.id}`}
