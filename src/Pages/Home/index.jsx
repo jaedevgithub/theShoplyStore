@@ -53,7 +53,7 @@ function Home() {
 
           {/* Main section for desktop view */}
           {isDesktopView && (
-            <section className="hidden md:hidden lg:block sm:w-screens md:left-2 relative mb-60 mt-20">
+            <section className="hidden md:hidden lg:block sm:w-screens md:left-2 relative mb-60 mt-20 hd:scale-[0.9] fullhd:scale-[1.0]">
               <div className="grid gap-x-6 gap-y-20 grid-cols-4 w-full max-w-screen-xl relative mx-auto">
                 {filteredProducts.map((item, index) => (
                   <Card key={index} data={item} />
@@ -77,7 +77,7 @@ function Home() {
 
           {/* Mobile section for mobile view */}
           {isMobileView && (
-            <section className="md:hidden flex justify-center items-center h-screen relative top-[1000px] mb-[2290px] mt-[290px]">
+            <section className="md:hidden flex justify-center items-center h-screen relative top-[1000px] mb-[2590px] mt-[490px]">
               <div className="grid grid-cols-2 items-center gap-y-[120px] gap-x-5 justify-center ">
                 {filteredProducts.map((item, index) => (
                   <Card key={index} data={item} />

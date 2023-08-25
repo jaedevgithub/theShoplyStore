@@ -260,7 +260,7 @@ const ProductDetail = () => {
                       selectedSize === size ? "bg-black text-white" : ""
                     }`}
                   >
-                    <span className="flex items-center justify-center">
+                    <span className="flex items-center justify-center relative top-1 ">
                       <p className="text-[12px] font-semibold">{size}</p>
                     </span>
                   </button>

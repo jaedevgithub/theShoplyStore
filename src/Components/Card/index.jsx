@@ -42,7 +42,7 @@ const Card = ({ data }) => {
           onMouseEnter={handleMouseEnter}
           onMouseLeave={handleMouseLeave}
         >
-          <figure className="relative mb-6 w-full h-full">
+          <figure className="relative mb-12 mt-12 w-full h-full">
             <img
               className={`w-full h-full object-cover rounded-customBorder transition-opacity  ${
                 isMouseOver ? "opacity-0" : "opacity-100"
