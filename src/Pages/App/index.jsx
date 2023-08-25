@@ -45,7 +45,7 @@ const App = () => {
     // Simulate a 2-second loading delay
     setTimeout(() => {
       setIsAppLoaded(true); // Mark the application as loaded
-    }, 3000); // Adjust the time as needed
+    }, 4000); // Adjust the time as needed
   }, []);
 
   return (

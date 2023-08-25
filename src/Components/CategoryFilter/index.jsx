@@ -54,7 +54,7 @@ const CategoryFilter = () => {
             onClick={() => handleCategoryClick("shoes")}
             className={`absolute top-1/2 left-1/2 cursor-pointer transform -translate-x-1/2 -translate-y-1/2 z-0 bg-white text-white w-60 h-20 transition hover:border-b-4 hover:border-black ${
               selectedCategory === "shoes" ? "border-b-4 border-black" : ""
-            } hd:w-[150px] hd:-ml-[295px] hd:top-[115px] 4k:top-[460px] 4k:left-[1330px] 4k:w-[500px] fullhd:w-[220px] fullhd:-ml-[435px] qhd:top-[225px] qhd:left-[900px] fullhd:top-[210px]`}
+            } hd:w-[150px] hd:-ml-[330px] hd:top-[135px] 4k:top-[460px] 4k:left-[1330px] 4k:w-[500px] fullhd:w-[220px] fullhd:-ml-[435px] qhd:top-[225px] qhd:left-[900px] fullhd:top-[210px]`}
           >
             Shoes
           </button>
@@ -62,7 +62,7 @@ const CategoryFilter = () => {
             onClick={() => handleCategoryClick("clothes")}
             className={`absolute top-1/2 left-1/2 cursor-pointer transform translate-x-1/2 -translate-y-1/2 z-0 bg-white text-white w-[350px] h-20 transition hover:border-b-4 hover:border-black ${
               selectedCategory === "clothes" ? "border-b-4 border-black" : ""
-            } fullhd:w-[300px] hd:top-[115px] hd:-ml-[65px] hd:w-[205px] qhd:top-[225px] qhd:left-[950px] 4k:top-[460px] 4k:left-[1800px] 4k:w-[580px] fullhd:top-[210px] fullhd:ml-[-20px]`}
+            } fullhd:w-[300px] hd:top-[135px] hd:-ml-[50px] hd:w-[205px] qhd:top-[225px] qhd:left-[950px] 4k:top-[460px] 4k:left-[1800px] 4k:w-[580px] fullhd:top-[210px] fullhd:ml-[-20px]`}
           >
             Clothes
           </button>
@@ -126,7 +126,10 @@ const CategoryFilter = () => {
           <div className="md:hidden lg:hidden grid gap-x-60 gap-y-20 grid-cols-2 w-screen relative -top-[95px] overflow-hidden ">
             {/* Render clickable category options */}
             <button
-              onClick={() => handleCategoryClick("shoes")}
+             onClick={() => {
+              handleCategoryClick("shoes");
+              setSelectedCategory("shoes");
+            }}
               className={` bg-none text-white cursor-pointer border-b-2 border-transparent hover:border-black relative left-8 mt-[1px] z-2${
                 selectedCategory === "clothes"
                   ? "border-b-2 border-black"
@@ -139,7 +142,10 @@ const CategoryFilter = () => {
             </button>
             <span className="relative -left-[70px]">
               <button
-                onClick={() => handleCategoryClick("clothes")}
+               onClick={() => {
+                handleCategoryClick("clothes");
+                setSelectedCategory("clothes");
+              }}
                 className={` bg-none text-white border-b-2 border-transparent w-[95px] hover:border-black mt-[1px] ${
                   selectedCategory === "clothes"
                     ? "border-b-2 border-black"

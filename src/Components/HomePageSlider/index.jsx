@@ -376,7 +376,7 @@ function HomePageSlider() {
                   {productDetails.map((product) => (
                     <button
                       key={product.id}
-                      className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-100 transition-opacity left-[90px] opacity-0 md:left-[150px]"
+                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[90px] opacity-0 md:left-[150px]"
                     >
                       <Link
                         to={`/product-detail/${product.id}`}

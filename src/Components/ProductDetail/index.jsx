@@ -208,15 +208,17 @@ const ProductDetail = () => {
               <p className="font-[Whyte] text-xl font-medium">{category}</p>
             </span>
             {productToShow && (
-              <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5 ml-8">
+              <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[40px] mt-5 ml-8">
                 {productToShow.title}
               </h2>
             )}
 
             {productToShow && productToShow.description && (
-              <p className="font-[Whyte] text-xl mb-5 ml-8">
-                {productToShow.description}
-              </p>
+              <span className="w-[350px] overflow-hidden">
+                <p className="font-[Whyte] text-[20px] mb-5 ml-8">
+                  {productToShow.description}
+                </p>
+              </span>
             )}
           </div>
           {/* Display carousel of product images on mobile */}

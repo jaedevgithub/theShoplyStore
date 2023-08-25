@@ -69,16 +69,16 @@ const SearchResultsPage = () => {
         {!isMobileView && (
           <div>
             {/* Search results for mobile */}
-            <h2 className="md:hidden font-[Whyte] text-[38px] mb-20 mt-20 text-center">
+            <h2 className="md:hidden font-[Whyte] text-[38px] mb-5 mt-40 text-center">
               Search Results
             </h2>
-            <div className="md:hidden flex justify-center flex-col items-center gap-y-40 w-screen">
+            <div className="md:hidden flex justify-center flex-col items-center gap-y-[150px] w-screen">
               {filteredItems.length > 0 ? (
                 filteredItems.map((item, index) => (
                   <Card key={index} data={item} /> // Use the index as a unique key
                 ))
               ) : (
-                <p className="text-2xl font-semibold mb-40 mt-40 text-[58px] font-[Whyte]">
+                <p className="text-2xl font-semibold mb-40 mt-40 text-[28px] font-[Whyte]">
                   NO ORDERS HERE, AAACKKK
                 </p>
               )}

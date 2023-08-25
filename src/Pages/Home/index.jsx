@@ -16,6 +16,7 @@ function Home() {
   const [isDesktopView, setIsDesktopView] = useState(false);
   const [isMobileView, setIsMobileView] = useState(false);
   const [isTabletView, setIsTabletView] = useState(false);
+  
 
   // Function to handle window size changes
   const handleWindowSizeChange = () => {
