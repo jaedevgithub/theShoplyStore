@@ -72,7 +72,7 @@ const CategoryFilter = () => {
       {/* Category filter for tablet */}
       {isTabletView && (
         <section className="hidden md:block lg:hidden overflow-hidden -mt-20 mb-40">
-          <figure className="flex items-center justify-center relative -top-[-20px] overflow-hidden -ml-40">
+          <figure className="flex items-center justify-center relative -top-[-20px] overflow-hidden -ml-40 z-0">
             <img
               src="/categoryfilter-mobile-and-tablet.svg"
               alt="category-image"
@@ -86,25 +86,25 @@ const CategoryFilter = () => {
               <span className="relative left-6">
                 <button
                   onClick={() => handleCategoryClick("shoes")}
-                  className={`bg-white text-white cursor-pointer border-b-4 border-transparent hover:border-black w-[150px] ${
+                  className={`bg-none text-white cursor-pointer border-b-4 border-transparent hover:border-black w-[150px] ${
                     selectedCategory === "clothes"
                       ? "border-b-4 border-black"
                       : ""
                   }`}
                 >
-                  Shoes
+               <p className="opacity-0">Shoes</p>
                 </button>
               </span>
               <span className="relative -right-[300px] tablet:-right-[340px]">
                 <button
                   onClick={() => handleCategoryClick("clothes")}
-                  className={`bg-white text-white border-b-4 border-transparent w-[185px] hover:border-black hover:underline ${
+                  className={`bg-none text-white border-b-4 border-transparent w-[185px] hover:border-black hover:underline ${
                     selectedCategory === "clothes"
                       ? "border-b-4 border-black underline"
                       : ""
                   }`}
                 >
-                  Clothes
+               <p className="opacity-0">Clothes</p>
                 </button>
               </span>
             </span>
@@ -115,7 +115,7 @@ const CategoryFilter = () => {
       {/* Category filter for mobile */}
       {isMobileView && (
         <section>
-          <figure className="flex items-center justify-center md:hidden relative -top-[0px] overflow-hidden">
+          <figure className="flex items-center justify-center md:hidden relative -top-[0px] overflow-hidden z-0">
             <img
               src="/categoryfilter-mobile-and-tablet.svg"
               alt="category-image"
@@ -123,11 +123,11 @@ const CategoryFilter = () => {
             />
           </figure>
 
-          <div className="md:hidden lg:hidden grid gap-x-60 gap-y-20 grid-cols-2 w-screen  relative -top-[95px] overflow-hidden">
+          <div className="md:hidden lg:hidden grid gap-x-60 gap-y-20 grid-cols-2 w-screen relative -top-[95px] overflow-hidden ">
             {/* Render clickable category options */}
             <button
               onClick={() => handleCategoryClick("shoes")}
-              className={` bg-white text-white cursor-pointer border-b-2 border-transparent hover:border-black relative left-8 mt-[1px]${
+              className={` bg-none text-white cursor-pointer border-b-2 border-transparent hover:border-black relative left-8 mt-[1px] z-2${
                 selectedCategory === "clothes"
                   ? "border-b-2 border-black"
                   : ""
@@ -135,12 +135,12 @@ const CategoryFilter = () => {
                   : ""
               }`}
             >
-              Shoes
+              <p className="opacity-0">Shoes</p>
             </button>
             <span className="relative -left-[70px]">
               <button
                 onClick={() => handleCategoryClick("clothes")}
-                className={` bg-white text-white border-b-2 border-transparent w-[95px] hover:border-black  mt-[1px] ${
+                className={` bg-none text-white border-b-2 border-transparent w-[95px] hover:border-black mt-[1px] ${
                   selectedCategory === "clothes"
                     ? "border-b-2 border-black"
                     : ""
@@ -148,7 +148,7 @@ const CategoryFilter = () => {
                     : ""
                 }`}
               >
-                Clothes
+              <p className="opacity-0">Clothes</p>
               </button>
             </span>
           </div>

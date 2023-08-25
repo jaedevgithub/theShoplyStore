@@ -65,7 +65,7 @@ const SearchResultsPage = () => {
       )}
 
       {/* Search results for mobile */}
-      <section className="mt-40 mb-10">
+      <section className="mt-10 mb-10">
         {!isMobileView && (
           <div>
             {/* Search results for mobile */}

@@ -144,10 +144,8 @@ const ProductDetail = () => {
             <div className="flex flex-col justify-between relative mt-10 -top-[255px] -right-20">
               <div className="flex flex-col items-left">
                 {/* Display product details */}
-                <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center mb-5">
-                  <p className="font-[Whyte] ml-4 text-xl font-bold mt-[1px]">
-                    {category}
-                  </p>
+                <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center justify-center mb-5">
+                  <p className="font-[Whyte] text-xl font-bold">{category}</p>
                 </span>
                 <span>
                   {productToShow && (
@@ -166,11 +164,11 @@ const ProductDetail = () => {
                     <button
                       key={size}
                       onClick={() => handleSizeSelect(size)}
-                      className={`w-16 h-16 font-[Whyte] text-center inline-block border border-black rounded-full text-sm mr-2 mb-2 ${
+                      className={`w-16 h-16 font-[Whyte] font-medium text-center inline-block border border-black rounded-full text-sm mr-2 mb-2 ${
                         selectedSize === size ? "bg-black text-white" : ""
                       }`}
                     >
-                      <span className="flex items-center text-center justify-center">
+                      <span className="flex items-center justify-center">
                         <p className="text-[12px] font-bold">{size}</p>
                       </span>
                     </button>
@@ -204,10 +202,8 @@ const ProductDetail = () => {
           {/* Mobile and tablet product detail code */}
           <div className="flex flex-col items-left">
             {/* Display product details on mobile */}
-            <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center mb-5 ml-8 text-center">
-              <p className="font-[Whyte] ml-4 text-xl font-bold mt-[1px] mb-[4px]">
-                {category}
-              </p>
+            <span className="bg-green rounded-full flex w-[110px] h-[36px] items-center justify-center mb-5 ml-8 text-center">
+              <p className="font-[Whyte] text-xl font-medium">{category}</p>
             </span>
             {productToShow && (
               <h2 className="mb-5 font-[WhyteInktrap] font-[600] text-[60px] mt-5 ml-8">
@@ -264,8 +260,7 @@ const ProductDetail = () => {
                       selectedSize === size ? "bg-black text-white" : ""
                     }`}
                   >
-                    <span className="flex items-center text-center justify-center">
-                      {" "}
+                    <span className="flex items-center justify-center">
                       <p className="text-[12px] font-semibold">{size}</p>
                     </span>
                   </button>
@@ -279,7 +274,7 @@ const ProductDetail = () => {
           {productToShow && productToShow.price && (
             <div className="flex items-center justify-center">
               <button
-                className="font-bold font-[Whyte] border-2 border-black font-semibold rounded-customBorder p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase w-[320px] hover.bg-black hover.text-white"
+                className="font-bold font-[Whyte] border-2 border-black font-semibold rounded-lg p-2 text-lg cursor-pointer flex items-center justify-center h-9 mb-4 mt-4 uppercase w-[320px] hover:bg-black hover:text-white"
                 onClick={addProductsToCart}
                 disabled={!selectedSize}
               >

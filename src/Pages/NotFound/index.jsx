@@ -1,11 +1,12 @@
-import Layout from '../../Components/Layout'
+import React from "react";
+import NotFoundComponent from "../../Components/NotFound"; // Import the NotFoundComponent
 
-function NotFound() {
+function NotFoundPage() {
   return (
-    <Layout>
-    NotFound
-   </Layout>
-  )
+    <>
+      <NotFoundComponent /> {/* Render the NotFoundComponent */}
+    </>
+  );
 }
 
-export default NotFound
+export default NotFoundPage;

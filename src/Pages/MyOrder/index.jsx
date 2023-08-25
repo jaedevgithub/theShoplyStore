@@ -9,7 +9,7 @@ const MyOrder = () => {
 
   // State variables for responsive design
   const [isDesktopAndTabletView, setIsDesktopAndTabletView] = useState(true);
-  const [isMobileView, setIsMobileView] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(true);
 
   // Function to handle window size changes
   const handleWindowSizeChange = () => {
@@ -125,7 +125,7 @@ const MyOrder = () => {
 
       {/* Mobile view */}
       {isMobileView && (
-        <section className="md:hidden container mx-auto px-4 mt-[50px] mb-[80px] w-screen">
+        <section className="md:hidden container mx-auto px-4 mt-[180px] mb-[80px] w-screen">
           <h2 className="text-[30px] font-bold mb-6">My Order</h2>
           <table className="border-collapse w-full bg-white">
             <thead className="text-[26px] border-b-2 border-black">

@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from "react";
+import React, { useContext, useEffect, useState,  CSSProperties } from "react";
 import { ShoppingCartContext } from "../../Context";
 import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
@@ -38,10 +38,12 @@ function Home() {
       window.removeEventListener("resize", handleWindowSizeChange);
     };
   }, []);
+  
 
   return (
     <>
       <Layout>
+      
         <section className="mt-40">
           {/* Homepage carousel component for desktop and mobile */}
           <HomePageSlider />

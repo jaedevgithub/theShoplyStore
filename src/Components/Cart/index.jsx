@@ -319,19 +319,19 @@ function Cart() {
                 <span className="font-bold">Total*</span> ${total}
               </p>
               {context.isAuthenticated ? (
-                <button
-                  className="bg-black py-3 text-white w-full rounded-lg"
-                  onClick={handleCheckout}
-                >
-                  Checkout
-                </button>
-              ) : (
-                <button
-                  className="bg-black py-3 text-white w-full rounded-lg"
-                  onClick={handleSignInFromCart}
-                >
-                  Sign In to Checkout
-                </button>
+                 <button
+                 className="bg-black py-3 text-white w-full rounded-lg flex items-center justify-center"
+                 onClick={handleCheckout}
+               >
+                 Checkout
+               </button>
+             ) : (
+               <button
+                 className="bg-black py-3 text-white w-full rounded-lg flex items-center justify-center"
+                 onClick={handleSignInFromCart}
+               >
+                 Sign In to Checkout
+               </button>
               )}
             </div>
           ) : (
@@ -343,7 +343,7 @@ function Cart() {
               </p>
               <Link to="/">
                 <button
-                  className="bg-black py-3 text-white w-[248px] rounded-full uppercase hover:bg-white hover:text-black hover:outline"
+                  className="bg-black py-3 text-white w-[248px] rounded-lg uppercase hover:bg-white hover:text-black hover:outline"
                   onClick={handleCheckout}
                 >
                   See all products

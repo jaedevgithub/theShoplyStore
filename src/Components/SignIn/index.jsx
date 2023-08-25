@@ -84,7 +84,7 @@ function SignIn() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={
-                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline block w-full p-2.5" +
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm flex items-center justify-center rounded-lg focus:outline block w-full p-2.5" +
                     (isAuthenticated ? " hidden" : "")
                   }
                   placeholder="anyname@anyemail.com"
@@ -109,7 +109,7 @@ function SignIn() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className={
-                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:outline block w-full p-2.5 " +
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg flex items-center justify-center focus:outline block w-full p-2.5 " +
                     (isAuthenticated ? " hidden" : "")
                   }
                   required
@@ -118,7 +118,7 @@ function SignIn() {
               <button
                 type="button"
                 onClick={handleLogin}
-                className="w-full text-white bg-black hover:bg-white hover:text-black hover:outline font-medium rounded-lg text-sm px-5 py-2.5 text-center"
+                className="w-full text-white bg-black hover:bg-white hover:text-black hover:outline items-center justify-center font-medium rounded-lg text-sm px-5 py-2.5 text-center"
               >
                 Log In
               </button>
