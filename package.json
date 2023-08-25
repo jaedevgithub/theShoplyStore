@@ -13,9 +13,6 @@
   "dependencies": {
     "@heroicons/react": "^2.0.18",
     "@react-icons/all-files": "^4.1.0",
-    "firebase": "^8.10.1",
-    "firebaseui": "^6.1.0",
-    "framer-motion": "^10.16.0",
     "preline": "^1.9.0",
     "primereact": "^9.6.1",
     "react": "^18.2.0",
@@ -23,10 +20,7 @@
     "react-icons": "^4.10.1",
     "react-responsive-carousel": "^3.2.23",
     "react-router-dom": "^6.14.2",
-    "react-spinners": "^0.13.8",
-    "react-swipeable": "^7.0.1",
-    "rerousel": "^0.1.9",
-    "swiper": "^10.1.0"
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
     "@types/react": "^18.0.27",

@@ -17,8 +17,8 @@ function Home() {
         {/* Home page carousel component */}
         <HomePageSlider />
 
-        {/* Product category filter component */}
-        <CategoryFilter />
+        {/* Product category filter componentsadasdasdas */}
+        <CategoryFilter /> 
 
         {/* Main section */}
         <section>
