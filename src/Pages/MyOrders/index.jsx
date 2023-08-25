@@ -36,7 +36,7 @@ function MyOrders() {
 
   return (
     <>
-      <section className="font-[Whyte] flex flex-col items-center justify-center min-h-screen mt-[120px] mb-80 pt-20 md:mt-20 md:mb-[450px]">
+      <section className="font-[Whyte] flex flex-col items-center justify-center min-h-screen mt-[90px] mb-80 pt-20 md:mt-20 md:mb-[450px]">
         {/* Container for the "My Orders" heading */}
         <div className="container mx-auto px-4 text-left mb-8">
           <h2 className="text-3xl font-bold mt-8 mb-4">My Orders</h2>

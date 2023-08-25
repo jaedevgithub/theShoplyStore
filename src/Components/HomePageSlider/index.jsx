@@ -275,7 +275,7 @@ function HomePageSlider() {
 
       {/* Carousel for mobile and tablet */}
       {currentView === "mobile" && (
-        <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer-top-40 -top-20 md:-top-60 bg-customYellow h-[430px] md:h-[788px] font-[Whyte]">
+        <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer-top-40 -top-20 md:-top-60 bg-customYellow h-[490px] md:h-[788px] font-[Whyte]">
           <div className="w-screen overflow-hidden max-w-screen relative top-20">
             <Carousel
               swipeable={true}
@@ -376,11 +376,11 @@ function HomePageSlider() {
                   {productDetails.map((product) => (
                     <button
                       key={product.id}
-                      className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity left-[90px] opacity-0 md:left-[150px]"
+                      className="absolute inset-0 flex items-center justify-center opacity-100 group-hover:opacity-100 transition-opacity left-[90px] opacity-0 md:left-[150px]"
                     >
                       <Link
                         to={`/product-detail/${product.id}`}
-                        className={`text-black hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
+                        className={`text-black font-medium text-[10px] hd:text-xl bg-zinc-50 px-4 py-2 rounded-full ${
                           product.id === 14 ? "special-style" : ""
                         }`}
                         onClick={() => showProduct(product)}
