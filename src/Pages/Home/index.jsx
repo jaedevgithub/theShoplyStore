@@ -74,7 +74,7 @@ function Home() {
 
         {/* Mobile section for mobile view */}
         {isMobileView && (
-          <section className="md:hidden flex justify-center items-center h-screen relative top-[1000px] mb-[2590px] mt-[380px]">
+          <section className="md:hidden flex justify-center items-center h-screen relative top-[1000px] mb-[2590px] mt-[480px]">
             <div className="grid grid-cols-2 items-center gap-y-[120px] gap-x-5 justify-center ">
               {filteredProducts.map((item, index) => (
                 <Card key={index} data={item} />
