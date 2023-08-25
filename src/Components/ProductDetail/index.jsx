@@ -261,7 +261,7 @@ const ProductDetail = () => {
                     }`}
                   >
                     <span className="flex items-center justify-center relative top-1 ">
-                      <p className="text-[12px] font-semibold">{size}</p>
+                      <p className="text-[10px] font-semibold">{size}</p>
                     </span>
                   </button>
                 ))}
