@@ -20,7 +20,7 @@ The site's design is fully responsive, meaning that it adapts optimally to diffe
 ## Features
 
 - Fully responsive.
-- Add items to your shopping cart.
+- Add and remove items to your shopping cart.
 - Search for items by name.
 - Filter items by category.
 - Home page with a carousel that highlight products.
