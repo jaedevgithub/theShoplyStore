@@ -12,7 +12,7 @@ const SearchResultsPage = () => {
   // State to manage search query and view size
   const [searchQuery, setSearchQuery] = useState("");
   const [isDesktopAndTabletView, setIsDesktopAndTabletView] = useState(true);
-  const [isMobileView, setIsMobileView] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(true);
 
   // Function to handle window size changes
   const handleWindowSizeChange = () => {

@@ -45,7 +45,7 @@ const App = () => {
     // Simulate a 2-second loading delay
     setTimeout(() => {
       setIsAppLoaded(true); // Mark the application as loaded
-    }, 4000); // Adjust the time as needed
+    }, 5000); 
   }, []);
 
   return (
@@ -64,8 +64,8 @@ const App = () => {
           // Show a loading spinner while the application is loading
           <div className="flex flex-col justify-center items-center h-screen">
             <Rings
-              height="80"
-              width="80"
+              height="100"
+              width="100"
               radius={9}
               color="black"
               ariaLabel="three-dots-loading"

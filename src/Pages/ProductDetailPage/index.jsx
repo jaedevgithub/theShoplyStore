@@ -1,5 +1,4 @@
 import ProductDetail from "../../Components/ProductDetail";
-import Layout from "../../Components/Layout";
 
 function ProductDetailPage() {
   return (
@@ -9,4 +8,4 @@ function ProductDetailPage() {
   );
 }
 
-export default ProductDetailPage
+export default ProductDetailPage;

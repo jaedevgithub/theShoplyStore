@@ -70,7 +70,7 @@ function HomePageSlider() {
     <>
       {/* Carousel for desktop */}
       {currentView === "desktop" && (
-        <section className="md:hidden xl:block font-[Whyte] hidden sm:block relative -top-80 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
+        <section className="md:hidden xl:block font-[Whyte] hidden sm:block relative -top-60 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
           <div className="scale-150 w-screen overflow-hidden hd:h-[693px] fullhd:h-[993px] 4k:h-[1713px] relative top-[-90px] hd:top-[5px] fullhd:top-[110px] 4k:top-[160px]">
             <div className="w-screen overflow-hidden">
               <Carousel
@@ -275,8 +275,8 @@ function HomePageSlider() {
 
       {/* Carousel for mobile and tablet */}
       {currentView === "mobile" && (
-        <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer-top-40 -top-20 md:-top-60 bg-customYellow h-[490px] md:h-[788px] font-[Whyte]">
-          <div className="w-screen overflow-hidden max-w-screen relative top-20">
+        <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer -top-60 -top-20 md:-top-60 bg-customYellow h-[490px] md:h-[788px] font-[Whyte]">
+          <div className="w-screen overflow-hidden max-w-screen relative top-40 md:top-20">
             <Carousel
               swipeable={true}
               emulateTouch={true}
