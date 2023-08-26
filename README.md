@@ -2,20 +2,19 @@
 
 ## Overview
 
-This is a final project for two courses of Platzi. The first one: [React course with Vite and Tailwind CSS](https://platzi.com/cursos/react-vite-tailwindcss/) and the second one: [Technical Test: Professional E-commerce with React.js](https://platzi.com/cursos/laboratorio-react/) 
+This is a final project for two courses of Platzi. The first one: [React course with Vite and Tailwind CSS](https://platzi.com/cursos/react-vite-tailwindcss/) and the second one: [Technical Test: Professional E-commerce with React.js](https://platzi.com/cursos/laboratorio-react/)
 
 ### Description
 
 Shoply Store is a web application that allows you to browse and buy streetwear fashion items easily and conveniently. The website is inspire in the official [Figma Store e-commerce](https://render.com/https://store.figma.com/).
 
-The application was developed using React, Vite.js, Tailwind and instead of using the [ Fake API from Platzi]( https://fakeapi.platzi.com/) I create my own using [Render](https://render.com/).
+The application was developed using React, Vite.js, Tailwind and instead of using the [ Fake API from Platzi](https://fakeapi.platzi.com/) I create my own using [Render](https://render.com/).
 
 The site's design is fully responsive, meaning that it adapts optimally to different screen sizes, providing a consistent user experience on mobile devices, tablets and desktop computers.
 
 <p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZ2dhdXhweW11cDNsOGowZDZiejZ1b2tibGx4azVldTNmd2E4aDVubiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lS5tZqZ01ZQ0RKw9jt/giphy-downsized-large.gif"/>
-</p>
-
+  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDZ0bHowZGdvODI5aHJoM3d4MnNlZ252cXB3eHEya2dibHlpZXl5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lS5tZqZ01ZQ0RKw9jt/giphy.gif" alt="Screenshot"/>
+</p
 
 ## Features
 
@@ -30,7 +29,8 @@ The site's design is fully responsive, meaning that it adapts optimally to diffe
 - Private and public paths for a secure experience.
 - Loading spinner for correct data load.
 
-## Objectives 
+## Objectives
+
 <ol>
   <li>
 <b>Integration of an API</b>: An API was implemented to simulate the collection of product data, which allowed creating a realistic and dynamic shopping experience.  </li>
@@ -61,29 +61,28 @@ Anyone can contribute to this project in several ways, such as:
 <li>Private routes are not complete implemented</li>
 </ul>
 
-
 ## Bug reporting
 
 If you find any problem or bug in the application, please create an issue in the repository with the details of the problem and, if possible, how to reproduce it. The developers will review the issue and work to fix it as soon as possible. If you have any questions or concerns, you can also ask them through an issue.
 
 ## Credits
 
-[Tutorial for the API creation](https://www.youtube.com/watch?v=EcxYcpF3W7c) 
+[Tutorial for the API creation](https://www.youtube.com/watch?v=EcxYcpF3W7c)
 <br />
 Photos: [Unsplash](https://unsplash.com/es)
 <br/>
 Icons: [React Icons](https://react-icons.github.io/react-icons/)
 <br/>
-Animations: 
+Animations:
 <br/>[React Spinner](https://mhnpd.github.io/react-loader-spinner/)
 <br/>[React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel)
 
 ## Contact
-For any questions or information please contact me: 
+
+For any questions or information please contact me:
 <br/>
 Project developer: [Johander Campos](https://github.com/jaedevgithub)
 <br/>
 [Web Page](https://codingwithjae.dev/)
 <br/>
-[Linkedin](https://www.linkedin.com/in/johandercampos/) 
-
+[Linkedin](https://www.linkedin.com/in/johandercampos/)
