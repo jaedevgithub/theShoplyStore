@@ -93,32 +93,43 @@ function Footer() {
                 Objects that inspire
               </p>
               <div className="flex flex-col text-[20px] font-medium items-right justify-right text-left relative w-[300px] left-[200px]">
-                <a className="hover:underline">Repository</a>{" "}
-                <a className="hover:underline">Original website</a>
+                <a
+                  href="https://codingwithjae.dev/"
+                  className="hover:underline"
+                >
+                  By Johander Campos
+                </a>
+
+                <a
+                  href="https://store.figma.com/"
+                  className="hover:underline mt-2"
+                >
+                  Original website
+                </a>
               </div>
             </div>
             <div className="mt-3 space-x-[100px] text-[26px] relative -top-20 ">
               <a
                 className="inline-flex justify-center items-center w-10 h-10 text-center relative left-[100px] hover:underline"
-                href="#"
+                href=" https://twitter.com/figma"
               >
                 Twitter
               </a>
               <a
                 className="inline-flex justify-center items-center w-10 h-10 text-center relative left-[100px] hover:underline"
-                href="#"
+                href="https://www.instagram.com/figma"
               >
                 Instagram
               </a>
               <a
                 className="inline-flex justify-center items-center w-10 h-10 text-center relative left-[115px] hover:underline"
-                href="#"
+                href="https://www.facebook.com/groups/733797307583141"
               >
                 Facebook
               </a>
               <a
                 className="inline-flex justify-center items-center w-10 h-10 text-center relative left-[120px] hover:underline"
-                href="#"
+                href="https://www.youtube.com/c/Figmadesign"
               >
                 Youtube
               </a>
@@ -197,31 +208,42 @@ function Footer() {
             </div>
             <div className="mt-3 text-[18px] relative top-0 flex flex-col items-center justify-evenly">
               <div className="flex flex-col items-right justify-right text-left relative -top-[350px] left-72">
-                <a className="hover:underline">Repository</a>
-                <a className="hover:underline mt-4">Original website</a>
+                <a
+                  href="https://codingwithjae.dev/"
+                  className="hover:underline"
+                >
+                  By Johander Campos
+                </a>
+
+                <a
+                  href="https://store.figma.com/"
+                  className="hover:underline mt-2"
+                >
+                  Original website
+                </a>
               </div>
               <div className="flex flex-col text-left justify-left w-[40px] relative -top-[190px] left-[5px]">
                 <a
+                  href="https://twitter.com/figma"
                   className="inline-flex text-center relative hover:underline"
-                  href="#"
                 >
                   Twitter
                 </a>
                 <a
                   className="inline-flex text-left mt-4 relative hover:underline"
-                  href="#"
+                  href="https://www.instagram.com/figma"
                 >
                   Instagram
                 </a>
                 <a
                   className="inline-flex text-left mt-4 relative hover:underline"
-                  href="#"
+                  href="https://www.facebook.com/groups/733797307583141"
                 >
                   Facebook
                 </a>
                 <a
                   className="inline-flex text-left mt-4 relative hover:underline"
-                  href="#"
+                  href="https://www.youtube.com/c/Figmadesign"
                 >
                   Youtube
                 </a>
@@ -278,31 +300,42 @@ function Footer() {
             </div>
             <div className="mt-3 text-[18px] relative top-60 flex flex-col items-center justify-evenly">
               <div className="flex flex-col items-right justify-right text-left relative -top-2 right-20">
-                <a className="hover:underline">Repository</a>
-                <a className="hover:underline mt-4">Original website</a>
+                <a
+                  href="https://codingwithjae.dev/"
+                  className="hover:underline"
+                >
+                  By Johander Campos
+                </a>
+
+                <a
+                  href="https://store.figma.com/"
+                  className="hover:underline mt-2"
+                >
+                  Original website
+                </a>
               </div>
               <div className="flex flex-col text-left justify-left w-[40px] relative -top-20 left-20">
                 <a
                   className="inline-flex text-center relative  hover:underline"
-                  href="#"
+                  href="https://twitter.com/figma"
                 >
                   Twitter
                 </a>
                 <a
                   className="inline-flex text-left mt-4 relative hover:underline"
-                  href="#"
+                  href="https://www.instagram.com/figma"
                 >
                   Instagram
                 </a>
                 <a
                   className="inline-flex text-left mt-4 relative hover:underline"
-                  href="#"
+                  href="https://www.facebook.com/groups/733797307583141"
                 >
                   Facebook
                 </a>
                 <a
                   className="inline-flex text-left mt-4 relative hover:underline"
-                  href="#"
+                  href="https://www.youtube.com/c/Figmadesign"
                 >
                   Youtube
                 </a>

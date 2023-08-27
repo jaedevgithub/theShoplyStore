@@ -83,7 +83,7 @@ function SignIn() {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className={
-                    "bg-gray-50 border border-gray-300 text-gray-900 text-[7px] md:text-sm flex items-center justify-center rounded-lg focus:outline block w-full p-2.5" +
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-[10px] md:text-sm flex items-center justify-center rounded-lg focus:outline block w-full p-2.5" +
                     (isAuthenticated ? " hidden" : "")
                   }
                   placeholder="anyname@anyemail.com"
@@ -108,7 +108,7 @@ function SignIn() {
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="••••••••"
                   className={
-                    "bg-gray-50 border border-gray-300 text-gray-900  text-[7px]  md:text-sm rounded-lg items-center justify-center focus:outline block w-full p-2.5 " +
+                    "bg-gray-50 border border-gray-300 text-gray-900 text-[10px] md:text-sm rounded-lg items-center justify-center focus:outline block w-full p-2.5 " +
                     (isAuthenticated ? " hidden" : "")
                   }
                   required

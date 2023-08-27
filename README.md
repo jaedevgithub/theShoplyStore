@@ -12,10 +12,6 @@ The application was developed using React, Vite.js, Tailwind and instead of usin
 
 The site's design is fully responsive, meaning that it adapts optimally to different screen sizes, providing a consistent user experience on mobile devices, tablets and desktop computers.
 
-<p align="center">
-  <img src="https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExZDZ0bHowZGdvODI5aHJoM3d4MnNlZ252cXB3eHEya2dibHlpZXl5aSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lS5tZqZ01ZQ0RKw9jt/giphy.gif" alt="Screenshot"/>
-</p
-
 ## Features
 
 - Fully responsive.
@@ -34,6 +30,9 @@ The site's design is fully responsive, meaning that it adapts optimally to diffe
 <ol>
   <li>
 <b>Integration of an API</b>: An API was implemented to simulate the collection of product data, which allowed creating a realistic and dynamic shopping experience.  </li>
+  <li>
+   <li>
+<b>Use of conditional rendering</b>: I used conditional rendering in React to correctly apply the necessary structure and styles for each type of screen. </li>
   <li>
 <b>State and Context Management</b>: The concept of state was used and several global contexts were created for using across all the website.  </li>
   <li>
@@ -76,6 +75,8 @@ Icons: [React Icons](https://react-icons.github.io/react-icons/)
 Animations:
 <br/>[React Spinner](https://mhnpd.github.io/react-loader-spinner/)
 <br/>[React Responsive Carousel](https://www.npmjs.com/package/react-responsive-carousel)
+Components:
+<br/>[Preline](https://preline.co/)
 
 ## Contact
 
