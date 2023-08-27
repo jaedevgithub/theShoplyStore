@@ -71,7 +71,7 @@ function HomePageSlider() {
       {/* Carousel for desktop */}
       {currentView === "desktop" && (
         <section className="md:hidden xl:block font-[Whyte] hidden sm:block relative -top-60 border-b-2 border-black bg-customYellow w-screen overflow-hidden">
-          <div className="scale-150 w-screen overflow-hidden hd:h-[693px] fullhd:h-[993px] 4k:h-[1713px] relative top-[-90px] hd:top-[5px] fullhd:top-[110px] 4k:top-[160px]">
+          <div className=" scale-150 w-screen overflow-hidden hd:h-[693px] fullhd:h-[993px] 4k:h-[1713px] relative top-[-90px] hd:top-[80px] fullhd:top-[160px] 4k:top-[160px]">
             <div className="w-screen overflow-hidden">
               <Carousel
                 swipeable={true}
@@ -83,16 +83,17 @@ function HomePageSlider() {
                 transitionTime={15000}
                 stopOnHover={true}
                 showArrows={true}
-                className="scale-125 h-[800px] relative top-[150px] 4k:h-[1513px] 4k:top-[330px]"
+                className=" h-[800px] scale-125 relative top-[150px] 4k:h-[1513px] 4k:top-[330px]"
                 renderArrowPrev={(onClickHandler, hasPrev) =>
                   hasPrev && (
                     <button
                       type="button"
                       onClick={onClickHandler}
                       title="Previous"
-                      className="hd:w-[20px] relative hd:top-[240px] hd:right-[-950px] fullhd:right-[-1420px] qhd:right-[-1480px] qhd:top-[328px] fullhd:top-[318px] z-10 4k:right-[-2813px] 4k:top-[520px]"
+                      className="absolute hd:left-[360px] fullhd:left-[550px] 4k:left-[1000px] top-[58%] transform -translate-y-1/2"
+                      style={{ zIndex: 10 }}
                     >
-                      <img src={leftArrowIcon} alt="Next" />
+                      <img src={leftArrowIcon} alt="Previous" />
                     </button>
                   )
                 }
@@ -102,9 +103,10 @@ function HomePageSlider() {
                       type="button"
                       onClick={onClickHandler}
                       title="Next"
-                      className="relative hd:w-[20px] hd:right-[-310px] hd:top-[-135px] fullhd:right-[-470px] fullhd:top-[-180px] qhd:right-[-490px]  z-10 4k:right-[-1013px] 4k:top-[-380px]"
+                      className="absolute hd:right-[360px] fullhd:right-[550px] 4k:right-[1000px] top-[58%] transform -translate-y-1/2"
+                      style={{ zIndex: 10 }}
                     >
-                      <img src={rightArrowIcon} alt="Previous" />
+                      <img src={rightArrowIcon} alt="Next" />
                     </button>
                   )
                 }
@@ -275,7 +277,7 @@ function HomePageSlider() {
 
       {/* Carousel for mobile and tablet */}
       {currentView === "mobile" && (
-        <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer -top-60 -top-20 md:-top-60 bg-customYellow h-[490px] md:h-[788px] font-[Whyte]">
+        <section className="md:block relative border-b-2 xl:hidden border-black cursor-pointer -top-60 -top-20 md:-top-60 bg-customYellow h-[520px] md:h-[788px] font-[Whyte]">
           <div className="w-screen overflow-hidden max-w-screen relative top-40 md:top-20">
             <Carousel
               swipeable={true}

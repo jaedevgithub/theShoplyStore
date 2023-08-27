@@ -1,6 +1,5 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
-import Layout from "../../Components/Layout";
 import { Link } from "react-router-dom";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 import { useNavigate } from "react-router-dom";
@@ -8,32 +7,34 @@ import { AiOutlineMinusCircle } from "react-icons/ai";
 import { AiOutlinePlusCircle } from "react-icons/ai";
 
 function Cart() {
-  // State variables for responsive design
-  const [isDesktopAndTabletView, setIsDesktopAndTabletView] = useState(true);
-  const [isMobileView, setIsMobileView] = useState(true);
+  const [currentView, setCurrentView] = useState("desktop");
   const context = useContext(ShoppingCartContext);
   const cartProducts = context.cartProducts || [];
   const [total, setTotal] = useState(0);
   const navigate = useNavigate();
   const [orderCreated, setOrderCreated] = useState(false);
 
-  // Function to handle window size changes
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setIsDesktopAndTabletView(width > 640);
-    setIsMobileView(width < 767);
-  };
-
-  // Subscribe to window resize events
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    // Unsubscribe when the component unmounts
+    const handleResize = () => {
+      if (window.innerWidth <= 767) {
+        setCurrentView("mobile");
+      } else {
+        setCurrentView("desktop");
+      }
+    };
+
+    // Initial check when the component mounts
+    handleResize();
+
+    // Add the event listener
+    window.addEventListener("resize", handleResize);
+
+    // Remove the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
-  // Calculate total price
   useEffect(() => {
     const calculateTotal = () => {
       let total = 0;
@@ -48,7 +49,6 @@ function Cart() {
     setTotal(newTotal);
   }, [cartProducts]);
 
-  // Handlers
   const handleRemoveProduct = (product) => {
     const updatedCartProducts = cartProducts.filter(
       (p) => !(p.id === product.id && p.size === product.size)
@@ -104,10 +104,11 @@ function Cart() {
     navigate("/sign-in");
   };
 
+
   return (
     <>
       {/* Desktop and tablet shopping cart */}
-      {isDesktopAndTabletView && (
+      {currentView === "desktop" && (
         <section className="hidden relative md:block lg:block container mx-auto px-4 relative w-[1330px] mb-[800px] md:mb-[150px] md:mt-[-200px] fullhd:mt-[-200px] hd:mt-[50px] 4k:mt-[-1200px]">
           <h1 className="text-3xl font-bold mt-8 mb-4 pb-6 border-b-2 border-black">
             {context.count} items in Cart
@@ -242,7 +243,7 @@ function Cart() {
       )}
 
       {/* Mobile shopping cart */}
-      {isMobileView && (
+      {currentView === "mobile" && (
         <section className="md:hidden container mx-auto px-4 relative mt-[170px] mb-[60px] w-screen">
           <h1 className="text-3xl font-bold mt-8 mb-4">
             {context.count} items in Cart

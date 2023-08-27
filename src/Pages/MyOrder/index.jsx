@@ -1,29 +1,31 @@
 import React, { useContext, useEffect, useState } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { Link } from "react-router-dom";
-import Layout from "../../Components/Layout";
 
 const MyOrder = () => {
   const context = useContext(ShoppingCartContext);
   const { order } = context;
 
-  // State variables for responsive design
-  const [isDesktopAndTabletView, setIsDesktopAndTabletView] = useState(true);
-  const [isMobileView, setIsMobileView] = useState(true);
+  const [currentView, setCurrentView] = useState("desktop");
 
-  // Function to handle window size changes
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setIsDesktopAndTabletView(width > 640);
-    setIsMobileView(width < 767);
-  };
-
-  // Subscribe to window resize events
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    // Unsubscribe when the component unmounts
+    const handleResize = () => {
+      if (window.innerWidth <= 767) {
+        setCurrentView("mobile");
+      } else {
+        setCurrentView("desktop");
+      }
+    };
+
+    // Initial check when the component mounts
+    handleResize();
+
+    // Add the event listener
+    window.addEventListener("resize", handleResize);
+
+    // Remove the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -51,7 +53,7 @@ const MyOrder = () => {
   return (
     <>
       {/* Desktop and tablet view */}
-      {isDesktopAndTabletView && (
+      {currentView === "desktop" && (
         <section className="font-[Whyte] bg-white rounded-lg p-4 flex flex-col items-center hidden sm:hidden md:block md:-mt-[300px] hd:mt-[20px] fullhd:mt-[-150px] lg:block -mt-80 4k:mt-[-1200px] ">
           <span>
             <h2 className="text-[30px] font-bold mb-20">My Order</h2>
@@ -121,7 +123,7 @@ const MyOrder = () => {
       )}
 
       {/* Mobile view */}
-      {isMobileView && (
+      {currentView === "mobile" && (
         <section className="md:hidden container mx-auto px-4 mt-60 md:mt-[180px] md:mb-[80px] w-screen">
           <h2 className="text-[30px] font-bold mb-6">My Order</h2>
           <table className="border-collapse w-full bg-white">

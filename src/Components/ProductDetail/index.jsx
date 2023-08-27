@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
 import { ShoppingCartContext } from "../../Context";
-import Layout from "../../Components/Layout";
 
 const ProductDetail = () => {
   // Access the shopping cart context
@@ -20,27 +19,30 @@ const ProductDetail = () => {
   );
   const category = productToShow?.category?.name || "";
 
-  // State to manage selected image and size
+  // States to manage selected image, size, and view
   const [selectedImage, setSelectedImage] = useState("");
   const [selectedSize, setSelectedSize] = useState("");
+  const [currentView, setCurrentView] = useState("desktop");
 
-  // States to track the view size (desktop, mobile, or tablet)
-  const [isDesktopView, setIsDesktopView] = useState(true);
-  const [isMobileAndTabletView, setIsMobileAndTabletView] = useState(true);
-
-  // Function to handle window size changes
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setIsDesktopView(width >= 1024);
-    setIsMobileAndTabletView(width < 640);
-  };
-
-  // Subscribe to window resize events
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
-    // Unsubscribe when the component unmounts
+    // Check if the screen width is less than or equal to the width of tablets
+    const handleResize = () => {
+      if (window.innerWidth <= 820) {
+        setCurrentView("mobile");
+      } else {
+        setCurrentView("desktop");
+      }
+    };
+
+    // Initial check when the component mounts
+    handleResize();
+
+    // Add the event listener
+    window.addEventListener("resize", handleResize);
+
+    // Remove the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -79,30 +81,10 @@ const ProductDetail = () => {
     }
   };
 
-  // State to track the screen width using window.innerWidth
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
-
-  // Log the screen width when rendering
-  console.log("Rendering Desktop View");
-
-  // Subscribe to window resize events to update screenWidth
-  useEffect(() => {
-    const handleResize = () => {
-      const newScreenWidth = window.innerWidth;
-      if (newScreenWidth !== screenWidth) {
-        setScreenWidth(newScreenWidth);
-      }
-    };
-    window.addEventListener("resize", handleResize);
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, [screenWidth]);
-
   return (
     <>
       {/* Desktop product detail */}
-      {isDesktopView && (
+      {currentView === "desktop" && (
         <section className="hidden lg:flex relative items-center justify-center hd:mb-[10px] hd:-mt-20 fullhd:mb-[250px] fullhd:mt-[-240px] fullhd:top-[190px] hd:-mt-20 hd:ml-40 hd:scale-[0.9] fullhd:scale-100 4k:mb-[-2500px] 4k:mt-[-3700px]">
           {/* Desktop product detail code */}
           <div className="hidden md:flex flex-row-3 items-center justify-between mb-60 relative mt-80">
@@ -199,7 +181,7 @@ const ProductDetail = () => {
       )}
 
       {/* Mobile and tablet product detail */}
-      {isMobileAndTabletView && (
+      {currentView === "mobile" && (
         <section className="sm:block md:block xl:hidden mt-[190px] md:mt-[140px] md:mb-[150px] overflow-hidden">
           {/* Mobile and tablet product detail code */}
           <div className="flex flex-col items-left">

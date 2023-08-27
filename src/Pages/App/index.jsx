@@ -14,7 +14,6 @@ import Layout from "../../Components/Layout";
 import Footer from "../../Components/Footer";
 import Navbar from "../../Components/Navbar";
 import SearchResultsPage from "../SearchResultsPage";
-
 import "./App.css";
 
 // Define the routes for the application
@@ -47,6 +46,8 @@ const App = () => {
       setIsAppLoaded(true); // Mark the application as loaded
     }, 5000); 
   }, []);
+
+ 
 
   return (
     <ShoppingCartProvider>

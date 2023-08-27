@@ -8,11 +8,7 @@ const CategoryFilter = () => {
 
   // State variables to track selected category and view modes
   const [selectedCategory, setSelectedCategory] = useState(null);
-  const [isDesktopView, setIsDesktopView] = useState(window.innerWidth >= 1024);
-  const [isMobileView, setIsMobileView] = useState(window.innerWidth < 640);
-  const [isTabletView, setIsTabletView] = useState(
-    window.innerWidth >= 640 && window.innerWidth < 1024
-  );
+  const [currentView, setCurrentView] = useState("desktop");
 
   // Function to handle category selection
   const handleCategoryClick = (category) => {
@@ -22,28 +18,31 @@ const CategoryFilter = () => {
 
   // Effect to update view mode based on window size
   useEffect(() => {
-    const handleWindowSizeChange = () => {
-      const width = window.innerWidth;
-      setIsDesktopView(width >= 1024);
-      setIsMobileView(width < 640);
-      setIsTabletView(width >= 640 && width < 1024);
+    const handleResize = () => {
+      if (window.innerWidth <= 820) {
+        setCurrentView("mobile");
+      } else {
+        setCurrentView("desktop");
+      }
     };
 
-    // Add event listener for window resize
-    window.addEventListener("resize", handleWindowSizeChange);
-    // Initial call to set view mode based on window size
-    handleWindowSizeChange();
+    // Initial check when the component mounts
+    handleResize();
 
-    // Clean up the event listener
+    // Add the event listener for window resize
+    window.addEventListener("resize", handleResize);
+
+    // Clean up the event listener when the component unmounts
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
+
 
   return (
     <>
       {/* Category filter for desktop */}
-      {isDesktopView && (
+      {currentView === "desktop" && (
         <section className="relative md:left-10 md:scale-125 md:mb-40 md:-mt-40 fullhd:scale-100 -mt-60 mr-40 hidden lg:block ">
           <img
             src="/categoryfilter-desktop.svg"
@@ -70,7 +69,7 @@ const CategoryFilter = () => {
       )}
 
       {/* Category filter for tablet */}
-      {isTabletView && (
+      {currentView === "mobile" && (
         <section className="hidden md:block lg:hidden overflow-hidden -mt-20 mb-60">
           <figure className="flex items-center justify-center relative -top-[-20px] overflow-hidden -ml-40 z-0">
             <img
@@ -113,7 +112,7 @@ const CategoryFilter = () => {
       )}
 
       {/* Category filter for mobile */}
-      {isMobileView && (
+      {currentView === "mobile" && (
         <section>
           <figure className="flex items-center justify-center md:hidden relative -top-[0px] overflow-hidden z-0">
             <img

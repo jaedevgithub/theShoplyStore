@@ -1,6 +1,5 @@
-import React, { useContext, useEffect, useState, CSSProperties } from "react";
+import React, { useContext, useEffect, useState} from "react";
 import { ShoppingCartContext } from "../../Context";
-import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
 import CategoryFilter from "../../Components/CategoryFilter";
 import HomePageSlider from "../../Components/HomePageSlider";

@@ -1,7 +1,6 @@
 import React, { useState, useContext } from "react";
 import { ShoppingCartContext } from "../../Context";
 import { useNavigate } from "react-router-dom";
-import Layout from "../../Components/Layout";
 
 function SignIn() {
   const { isAuthenticated, setIsAuthenticated } =
@@ -60,7 +59,7 @@ function SignIn() {
 
   return (
     <>
-      <section className="bg-white outline rounded-lg shadow-lg font-[Whyte] w-[280px] mt-[150px] md:mt-10 hd:-mt-40 fullhd:-mt-[150px] fullhd:scale-125 4k:scale-150 4k:-mt-[1350px] md:-mt-[480px]">
+      <section className="bg-white outline rounded-lg shadow-lg font-[Whyte] w-[280px] mt-[150px] md:-mt-20 hd:mt-10 fullhd:-mt-[150px] fullhd:scale-125 4k:scale-150 4k:-mt-[1350px] md:-mt-[480px]">
         <div className="px-6 py-6 lg:px-8">
           <h2 className="mb-4 text-xl font-medium text-gray-900">
             {isAuthenticated ? "Want to log Out?" : "Try our platform"}

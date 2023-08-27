@@ -20,11 +20,6 @@ export const ShoppingCartProvider = ({ children }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  // Print some states for debugging purposes
-  console.log("searchByTitle", searchByTitle);
-  console.log("searchByCategory:", searchByCategory);
-  console.log("filteredItems", filteredItems);
-
   // useEffect to fetch data from the API when the component mounts
   useEffect(() => {
     fetch("https://testing-api-cghc.onrender.com/products")
@@ -161,16 +156,7 @@ export const ShoppingCartProvider = ({ children }) => {
       products: cartProducts,
     };
 
-
-    const deleteOrder = (index) => {
-      const updatedOrders = [...order];
-      updatedOrders.splice(index, 1);
-      setOrder(updatedOrders);
-      saveOrderToLocalStorage(updatedOrders);
-      setIsDeleteOrder(false); // Asegúrate de desactivar isDeleteOrder después de eliminar
-    };
     const updatedCartProducts = [];
-
     const updatedOrders = [...order, newOrder];
     saveOrderToLocalStorage(updatedOrders);
 
