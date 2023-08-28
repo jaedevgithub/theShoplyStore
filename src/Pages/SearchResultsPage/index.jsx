@@ -1,32 +1,37 @@
 import React, { useContext, useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { ShoppingCartContext } from "../../Context";
-import Layout from "../../Components/Layout";
 import Card from "../../Components/Card";
 
 const SearchResultsPage = () => {
   // Access the shopping cart context
   const context = useContext(ShoppingCartContext);
   const location = useLocation();
-  
+
   // State to manage search query and view size
   const [searchQuery, setSearchQuery] = useState("");
-  const [isDesktopAndTabletView, setIsDesktopAndTabletView] = useState(true);
-  const [isMobileView, setIsMobileView] = useState(true);
+  const [currentView, setCurrentView] = useState("desktop"); // Initialize as "desktop"
 
   // Function to handle window size changes
-  const handleWindowSizeChange = () => {
-    const width = window.innerWidth;
-    setIsDesktopAndTabletView(width > 640);
-    setIsMobileView(width < 767);
+  const handleResize = () => {
+    if (window.innerWidth <= 767) {
+      setCurrentView("mobile");
+    } else {
+      setCurrentView("desktop");
+    }
   };
+
+  // Initial check when the component mounts
+  useEffect(() => {
+    handleResize();
+  }, []);
 
   // Subscribe to window resize events
   useEffect(() => {
-    window.addEventListener("resize", handleWindowSizeChange);
+    window.addEventListener("resize", handleResize);
     // Unsubscribe when the component unmounts
     return () => {
-      window.removeEventListener("resize", handleWindowSizeChange);
+      window.removeEventListener("resize", handleResize);
     };
   }, []);
 
@@ -43,9 +48,9 @@ const SearchResultsPage = () => {
   );
 
   return (
-    <Layout>
+    <>
       {/* Search results for desktop and tablet */}
-      {isDesktopAndTabletView && (
+      {currentView === "desktop" && (
         <section>
           <h2 className="hidden md:block font-[Whyte] text-[58px] mb-20 mt-20 text-center">
             Search Results
@@ -66,7 +71,7 @@ const SearchResultsPage = () => {
 
       {/* Search results for mobile */}
       <section className="mt-10 mb-10">
-        {!isMobileView && (
+        {currentView === "mobile" && (
           <div>
             {/* Search results for mobile */}
             <h2 className="md:hidden font-[Whyte] text-[38px] mb-5 mt-40 text-center">
@@ -78,7 +83,7 @@ const SearchResultsPage = () => {
                   <Card key={index} data={item} /> // Use the index as a unique key
                 ))
               ) : (
-                <p className="text-2xl font-semibold mb-40 mt-40 text-[28px] font-[Whyte]">
+                <p className="text-2xl font-semibold mb-40 mt-40 text-[28px] ml-10 font-[Whyte]">
                   NO ORDERS HERE, AAACKKK
                 </p>
               )}
@@ -86,7 +91,7 @@ const SearchResultsPage = () => {
           </div>
         )}
       </section>
-    </Layout>
+    </>
   );
 };
 
